@@ -285,6 +285,7 @@ class Login extends React.PureComponent {
                 text_input_phone: text
               })
               }}
+              underlineColorAndroid="transparent"
               style={{color: `rgba(170, 142, 255, .85)`, 
               width:'100%'}} 
               fontSize={36} 
@@ -305,6 +306,7 @@ class Login extends React.PureComponent {
                 text_input_pass: text
               })
               }}
+              underlineColorAndroid="transparent"
               style={{color: `rgba(43, 255, 126, .85)`, 
               width:'100%'}} 
               fontSize={36} 

@@ -86,6 +86,7 @@ class Statusview extends React.PureComponent {
           <View style={styles.s3e9e1bda}>
             <TextInput 
             keyboardType={`numeric`}
+            underlineColorAndroid="transparent"
             onChangeText={newText => {
               setState({
                 status_input_length: newText.length,
