@@ -5,7 +5,7 @@ import API from "./_laska_/API.js";
 import globals from "./_laska_/globals.js";
 import withNavigationProp from "./_laska_/withNavigationProp.js";
 import { Image, StyleSheet, View } from "react-native";
-import img9978bce0 from "./LogoMakr_9r00Xk.png";
+import img9978bce0 from "./chrispurplelogo.png";
 
 const styles = StyleSheet.create({
   s9978bce0: { height: 200, width: 330 },
@@ -34,7 +34,7 @@ class Splash extends React.PureComponent {
     const lifeCycleMethod = () => {
       setTimeout(() => {
         navigate("login");
-      }, 1000);
+      }, 2500);
     };
 
     lifeCycleMethod();

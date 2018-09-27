@@ -9,6 +9,8 @@ import Contactview from "./Contactview.js";
 import Statusview from "./Statusview.js";
 import Servicesview from "./Servicesview.js";
 import Services2view from "./Services2view.js";
+import History from "./History.js";
+import Quotes from "./Quotes.js";
 import Icon from "./_laska_/Icon";
 import {
   StyleSheet,
@@ -104,7 +106,8 @@ class Client extends React.PureComponent {
     const navigate = this.props.navigation;
     return (
         <Fragment>
-          {state.current_tab === "about" ? <Aboutview /> : null}
+          {state.current_tab === "history" ? <History navigation={navigate}/> : null}
+          {state.current_tab === "quotes" ? <Quotes navigation={navigate}/> : null}
           {state.current_tab === "contact" ? <Contactview navigation={navigate}/> : null}
           {state.current_tab === "status" ? <Statusview /> : null}
           {state.current_tab === "services" ? <Services2view /> : null}
@@ -129,6 +132,40 @@ class Client extends React.PureComponent {
             <TouchableHighlight
               onPress={() => {
                 setState({
+                  current_tab: "History"
+                });
+              }}
+              style={styles.touchableStyle}
+              underlayColor={`rgba(222, 222, 222, 1)`}
+            >
+              <View style={styles.s16466d16}>
+                <Icon
+                  iconIdentifier={`FontAwesome/barcode`}
+                  style={styles.s2938fdb0}
+                />
+                <Text style={styles.sdb5e9373}>History</Text>
+              </View>
+            </TouchableHighlight>
+            <TouchableHighlight
+              onPress={() => {
+                setState({
+                  current_tab: "quotes"
+                });
+              }}
+              style={styles.touchableStyle}
+              underlayColor={`rgba(222, 222, 222, 1)`}
+            >
+              <View style={styles.s16466d16}>
+                <Icon
+                  iconIdentifier={`FontAwesome/money`}
+                  style={styles.se9cedb5b}
+                />
+                <Text style={styles.sdb5e9373}>Quote</Text>
+              </View>
+            </TouchableHighlight>
+            <TouchableHighlight
+              onPress={() => {
+                setState({
                   current_tab: "services"
                 });
               }}
@@ -146,50 +183,16 @@ class Client extends React.PureComponent {
             <TouchableHighlight
               onPress={() => {
                 setState({
-                  current_tab: "about"
+                  current_tab: "contact"
                 });
               }}
               style={styles.touchableStyle}
               underlayColor={`rgba(222, 222, 222, 1)`}
             >
-              <View style={styles.sa878652e}>
+              <View style={styles.s16466d16}>
                 <Icon
-                  iconIdentifier={`FontAwesome/info-circle`}
+                  iconIdentifier={`FontAwesome/phone-square`}
                   style={styles.s2938fdb0}
-                />
-                <Text style={styles.s1ed362b5}>About</Text>
-              </View>
-            </TouchableHighlight>
-            <TouchableHighlight
-              onPress={() => {
-                setState({
-                  current_tab: "contact"
-                });
-              }}
-              style={styles.touchableStyle}
-              underlayColor={`rgba(222, 222, 222, 1)`}
-            >
-              <View style={styles.s16466d16}>
-                <Icon
-                  iconIdentifier={`FontAwesome/phone-square`}
-                  style={styles.se9cedb5b}
-                />
-                <Text style={styles.sdb5e9373}>Contact</Text>
-              </View>
-            </TouchableHighlight>
-            <TouchableHighlight
-              onPress={() => {
-                setState({
-                  current_tab: "contact"
-                });
-              }}
-              style={styles.touchableStyle}
-              underlayColor={`rgba(222, 222, 222, 1)`}
-            >
-              <View style={styles.s16466d16}>
-                <Icon
-                  iconIdentifier={`FontAwesome/phone-square`}
-                  style={styles.se9cedb5b}
                 />
                 <Text style={styles.sdb5e9373}>Contact</Text>
               </View>

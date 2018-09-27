@@ -6,6 +6,7 @@ import moment from "moment";
 const globals = {
 
     current_tab: "login",
+    services_open: false,
     statusData: []
 };
 

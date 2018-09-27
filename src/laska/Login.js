@@ -212,17 +212,17 @@ class Login extends React.PureComponent {
           {
             case "admin":
               setTimeout(() => {
-                this.props.navigation.navigate("main");
+                this.props.navigation.navigate(response.reason);
               }, 1500);
               break;
             case "client":
             setTimeout(() => {
-              this.props.navigation.navigate("main");
+              this.props.navigation.navigate(response.reason);
             }, 1500);
               break;
             case "skip":
             setTimeout(() => {
-              this.props.navigation.navigate("main");
+              this.props.navigation.navigate(response.reason);
             }, 1500);
               break;
           }
@@ -446,16 +446,15 @@ class Login extends React.PureComponent {
               //back_color: "rgba(0, 0, 0, 0.0)"
 
             })
-            this.props.navigation.navigate("skip");
-
+            //this.props.navigation.navigate("skip");
+            this.props.navigation.navigate("admin");
           }}
         style={{
           width: 50,
           height: 50,
         }} underlayColor={"rgba(0, 0, 0, 0.0)"}>
         <View style={{
-          alignItems: "center",
-          textAlign: `center`}}>
+          alignItems: "center"}}>
           <Icon
             style={
               {
