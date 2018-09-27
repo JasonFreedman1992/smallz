@@ -303,7 +303,12 @@ class Login extends React.PureComponent {
           </Text>
           <View style={styles.accnt}>
           <View style={styles.inputWrapper}>
-            <TextInput onChangeText={(text) => {
+            <TextInput 
+              onFocus={()=>  setState({ text_forgot: "Create Account" })}
+              //onEndEditing
+              //onTouchStart={()=>  setState({ text_forgot: "Create Account" })}
+              onEndEditing={()=>  setState({ text_forgot: "Forgot Password" })}
+              onChangeText={(text) => {
               setState({
                 text_input_phone: text
               })
@@ -324,7 +329,10 @@ class Login extends React.PureComponent {
           </Text>
           <View style={styles.pass}>
           <View style={styles.inputWrapper}>
-            <TextInput onChangeText={(text) => {
+            <TextInput 
+              onTouchStart={()=>  setTimeout(() => {setState({ text_forgot: "Create Account" })}, 500)}
+              onEndEditing={()=>  setState({ text_forgot: "Forgot Password" })}
+              onChangeText={(text) => {
               setState({
                 text_input_pass: text
               })

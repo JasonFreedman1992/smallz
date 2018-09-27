@@ -10,7 +10,7 @@ import Statusview from "./Statusview.js";
 import Servicesview from "./Servicesview.js";
 import Services2view from "./Services2view.js";
 import History from "./History.js";
-import Quotes from "./Quotes.js";
+import ClientQuotes from "./ClientQuotes.js";
 import Icon from "./_laska_/Icon";
 import {
   StyleSheet,
@@ -107,7 +107,7 @@ class Client extends React.PureComponent {
     return (
         <Fragment>
           {state.current_tab === "history" ? <History navigation={navigate}/> : null}
-          {state.current_tab === "quotes" ? <Quotes navigation={navigate}/> : null}
+          {state.current_tab === "quotes" ? <ClientQuotes navigation={navigate}/> : null}
           {state.current_tab === "contact" ? <Contactview navigation={navigate}/> : null}
           {state.current_tab === "status" ? <Statusview /> : null}
           {state.current_tab === "services" ? <Services2view /> : null}

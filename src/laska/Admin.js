@@ -10,8 +10,11 @@ import Statusview from "./Statusview.js";
 import Servicesview from "./Servicesview.js";
 import Services2view from "./Services2view.js";
 import History from "./History.js";
-import Quotes from "./Quotes.js";
 import Icon from "./_laska_/Icon";
+import Analytics from "./Analytics.js";
+import Current from "./Current.js";
+import Customers from "./Customers.js";
+import AdminQuotes from "./AdminQuotes.js";
 import {
   StyleSheet,
   Text,
@@ -92,7 +95,7 @@ class Admin extends React.PureComponent {
     registerForPushNotifications();
 
     this.state = {
-      current_tab: "status",
+      current_tab: "customers",
     };
 
     if (this.awake) {
@@ -106,15 +109,15 @@ class Admin extends React.PureComponent {
     const navigate = this.props.navigation;
     return (
         <Fragment>
-          {state.current_tab === "quotes" ? <Quotes navigation={navigate}/> : null}
-          {state.current_tab === "contact" ? <Contactview navigation={navigate}/> : null}
-          {state.current_tab === "status" ? <Statusview /> : null}
-          {state.current_tab === "services" ? <Services2view /> : null}
+          {state.current_tab === "customers" ? <Customers navigation={navigate}/> : null}
+          {state.current_tab === "current" ? <Current /> : null}
+          {state.current_tab === "quotes" ? <AdminQuotes navigation={navigate}/> : null}
+          {state.current_tab === "analytics" ? <Analytics /> : null}
           <View style={styles.navContainerColumns}>
             <TouchableHighlight
               onPress={() => {
                 setState({
-                  current_tab: "status"
+                  current_tab: "customers"
                 });
               }}
               style={styles.touchableStyle}
@@ -131,7 +134,7 @@ class Admin extends React.PureComponent {
             <TouchableHighlight
               onPress={() => {
                 setState({
-                  current_tab: "quotes"
+                  current_tab: "current"
                 });
               }}
               style={styles.touchableStyle}
@@ -148,7 +151,7 @@ class Admin extends React.PureComponent {
             <TouchableHighlight
               onPress={() => {
                 setState({
-                  current_tab: "services"
+                  current_tab: "quotes"
                 });
               }}
               style={styles.touchableStyle}
@@ -165,7 +168,7 @@ class Admin extends React.PureComponent {
             <TouchableHighlight
               onPress={() => {
                 setState({
-                  current_tab: "contact"
+                  current_tab: "analytics"
                 });
               }}
               style={styles.touchableStyle}
