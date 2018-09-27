@@ -73,7 +73,9 @@ class Customers extends React.PureComponent {
                 style={styles.s44622035}
                 underlayColor={`rgba(255, 255, 255, 1)`}
                 key={`${i}-44622035-204b-428c-84fd-3560afae236d`}
-                onPress={() => {}}
+                onPress={() => {
+                    
+                }}
               >
                 <View style={styles.sd4c6b84e}>
                   <ImageBackground

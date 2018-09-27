@@ -62,6 +62,7 @@ class AdminQuotes extends React.PureComponent {
 
   render() {
     const { props, state } = this;
+    const navigate = this.props.navigation;
 
     return (
       <Fragment>
@@ -74,7 +75,9 @@ class AdminQuotes extends React.PureComponent {
                 style={styles.s44622035}
                 underlayColor={`rgba(255, 255, 255, 1)`}
                 key={`${i}-44622035-204b-428c-84fd-3560afae236d`}
-                onPress={() => {}}
+                onPress={() => {
+                  navigate.navigate("login");
+                }}
               >
                 <View style={styles.sd4c6b84e}>
                   <ImageBackground
