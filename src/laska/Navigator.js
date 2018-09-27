@@ -5,8 +5,11 @@ import API from "./_laska_/API.js";
 import globals from "./_laska_/globals.js";
 import withNavigationProp from "./_laska_/withNavigationProp.js";
 import Splash from "./Splash.js";
-import Main from "./Main.js";
+import Client from "./Client.js";
+import Admin from "./Admin.js";
+import Skip from "./Skip.js";
 import Login from "./Login.js";
+import { StatusBar, SafeAreaView, Text, StyleSheet, View } from "react-native";
 import { createStackNavigator } from "react-navigation";
 
 const StackNavigatorf4eed113 = createStackNavigator(
@@ -14,8 +17,16 @@ const StackNavigatorf4eed113 = createStackNavigator(
     splash: {
       screen: Splash
     },
-    main: {
-      screen: Main
+    client: {
+      screen: Client
+    },
+    admin:
+    {
+      screen: Admin
+    },
+    skip:
+    {
+      screen: Skip
     },
     login:
     {
@@ -48,7 +59,10 @@ class Navigator extends React.PureComponent {
 
   render() {
     return (
-      <Fragment>
+      <Fragment>   
+        <SafeAreaView backgroundColor={`rgba(202, 192, 241, 1)`}>
+        <StatusBar barStyle="dark-content"/>
+        </SafeAreaView>
         <StackNavigatorf4eed113 />
       </Fragment>
     );

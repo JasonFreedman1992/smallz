@@ -20,10 +20,10 @@ import {
 import { Permissions, Notifications } from "expo";
 
 const styles = StyleSheet.create({
-  sb5578ac3: { color: `rgba(0, 0, 0, 1)`, fontSize: 30, margin: 3 },
+  sb5578ac3: { color: `rgba(0, 0, 0, 1)`, fontSize: 35, margin: 5 },
   s1fb2c3ba: { fontWeight: `bold`, marginTop: -4, textAlign: `center` },
   s396f5657: { alignItems: `center`, flex: 1 },
-  s2f214928: { fontSize: 30, margin: 3 },
+  s2f214928: { fontSize: 35, margin: 5 },
   s92157e6e: { fontWeight: `bold`, marginTop: -4, textAlign: `center` },
   sfad5c90a: { alignItems: `center`, flex: 1 },
   s220dec38: {
@@ -31,7 +31,7 @@ const styles = StyleSheet.create({
     backgroundColor: `rgba(202, 192, 241, 1)`,
     flex: 1
   },
-  s2938fdb0: { fontSize: 30, margin: 3 },
+  s2938fdb0: { fontSize: 35, margin: 5 },
   s1ed362b5: { fontWeight: `bold`, marginTop: -4, textAlign: `center` },
   sa878652e: { alignItems: `center`, flex: 1 },
   seb349631: {
@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
     backgroundColor: `rgba(202, 192, 241, 1)`,
     flex: 1
   },
-  se9cedb5b: { fontSize: 30, margin: 3 },
+  se9cedb5b: { fontSize: 35, margin: 5 },
   sdb5e9373: { fontWeight: `bold`, marginTop: -4, textAlign: `center` },
   s16466d16: { alignItems: `center`, flex: 1 },
   s98df70cf: {
@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
     backgroundColor: `rgba(202, 192, 241, 1)`,
     flex: 1
   },
-  navContainerColumns: {flex: 1, maxHeight: 55, flexDirection: `row`},
+  navContainerColumns: {flex: 1, maxHeight: 65, flexDirection: `row`},
   container:{
     backgroundColor: `rgba(202, 192, 241, 1)`,
     flex: 1
@@ -82,7 +82,7 @@ registerForPushNotifications = async () => {
   console.log(token);
 }
 
-class Main extends React.PureComponent {
+class Admin extends React.PureComponent {
   static navigationOptions = { title: "Main" };
   constructor(props) {
     super(props);
@@ -177,16 +177,33 @@ class Main extends React.PureComponent {
                 <Text style={styles.sdb5e9373}>Contact</Text>
               </View>
             </TouchableHighlight>
+            <TouchableHighlight
+              onPress={() => {
+                setState({
+                  current_tab: "contact"
+                });
+              }}
+              style={styles.touchableStyle}
+              underlayColor={`rgba(222, 222, 222, 1)`}
+            >
+              <View style={styles.s16466d16}>
+                <Icon
+                  iconIdentifier={`FontAwesome/phone-square`}
+                  style={styles.se9cedb5b}
+                />
+                <Text style={styles.sdb5e9373}>Contact</Text>
+              </View>
+            </TouchableHighlight>
           </View>
       </Fragment>
     );
   }
 }
 
-Main.defaultProps = {};
+Admin.defaultProps = {};
 
-Main = withNavigationProp(Main);
+Admin = withNavigationProp(Admin);
 
-export default Main;
+export default Admin;
 
 export { styles };

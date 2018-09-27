@@ -14,11 +14,14 @@ import {
   ImageBackground,
   ScrollView,
   Platform,
+  SafeAreaView,
   TextInput,
+  StatusBar
 } from "react-native";
 import Icon from "./_laska_/Icon";
 import img7c41f8ae from "./LogoMakr_24AXtg.png";
 import imgcadd08cd from "./BG.png";
+import Constants from "expo"
 
 let width = Dimensions.get('screen').width;
 
@@ -108,10 +111,10 @@ const styles = StyleSheet.create({
     alignItems: `center`,
     backgroundColor: `rgba(43, 255, 126, .65)`,
     flex: 0,
-    justifyContent: `center`,
     maxHeight: 90,
     minHeight: 90,
-    width: `100%`
+    width: `100%`,
+    justifyContent: `center`,
   },
   s241de7f6: { width: `100%` },
   sfbc6c123: { flex: 1, justifyContent: `flex-end`, width: `100%` },
@@ -141,9 +144,8 @@ class Login extends React.PureComponent {
 
     this.state = {
       text_login: "Continue",
-      text_forgot: "Continue without login",
+      text_forgot: "Create Account",
       text_response: "",
-      back_color: "rgba(0, 0, 0, 0.0)",
       current_tab: "login",
       text_input_phone: "",
       text_input_pass: "",
@@ -162,8 +164,7 @@ class Login extends React.PureComponent {
       this.refs.scroll.scrollTo({ x: 0, y: 0, animated: true });
       this.setState({
         text_login: "Continue",
-        text_forgot: "Continue without login",
-        back_color: "rgba(0, 0, 0, 0.0)"
+        text_forgot: "Create Account",
       })
     }
   }
@@ -207,10 +208,24 @@ class Login extends React.PureComponent {
             text_response: "Authenticated!"
           })
 
-          setTimeout(() => {
-            this.props.navigation.navigate("main");
-          }, 1500);
-          
+          switch(response.reason)
+          {
+            case "admin":
+              setTimeout(() => {
+                this.props.navigation.navigate("main");
+              }, 1500);
+              break;
+            case "client":
+            setTimeout(() => {
+              this.props.navigation.navigate("main");
+            }, 1500);
+              break;
+            case "skip":
+            setTimeout(() => {
+              this.props.navigation.navigate("main");
+            }, 1500);
+              break;
+          }
         }
         else if(response.body === "Denied")
         {
@@ -235,9 +250,15 @@ class Login extends React.PureComponent {
 
   forgotButton()
   {
-    if(this.state.text_forgot === "Continue without login")
+    if(this.state.text_forgot === "Create Account")
     {
-      this.props.navigation.navigate("main");
+      //this.props.navigation.navigate("skip");
+
+      this.refs.scroll.scrollTo({ x: width * 2, y: 0, animated: true });
+      this.setState({
+        text_login: "Login",
+        text_forgot: "Forgot Password"
+      })
     }
     else//(else if state.text_forgot === "Forgot Password")
     {
@@ -251,6 +272,8 @@ class Login extends React.PureComponent {
     const setState = this.setState.bind(this);
     const navigate = this.props.navigation;
     return (
+      
+      
       <Fragment>
         <ImageBackground source={imgcadd08cd} style={styles.scadd08cd}>
 
@@ -324,10 +347,6 @@ class Login extends React.PureComponent {
               <View style={styles.sfbc6c123}>
                 <TouchableHighlight style={styles.s31885bc2} onPress={() => {
 
-                  setState({
-                    back_color: `rgba(255, 255, 255, .65)`
-                  })
-
                   this.loginButton();
                 }}>
                   <View style={styles.s8690423d}>
@@ -353,7 +372,14 @@ class Login extends React.PureComponent {
           absolute positioning beyond this point. Renders AFTER 
           everything, like a layer on top of everything before this note
           */
+        
+
+        //
+        // back button
+        //
+        
         }
+        {state.text_forgot === "Forgot Password" ? (
         <View style={
           {
             position: 'absolute',
@@ -370,7 +396,7 @@ class Login extends React.PureComponent {
         onPress={() => {
             console.log("front");
             setState({
-              back_color: "rgba(0, 0, 0, 0.0)"
+              //back_color: "rgba(0, 0, 0, 0.0)"
 
             })
             this.backButton();
@@ -384,7 +410,7 @@ class Login extends React.PureComponent {
             style={
               {
                 fontSize: 48,
-                color: state.back_color,
+                color: `rgba(255, 255, 255, .65)`
               }
             }
             iconIdentifier={`FontAwesome/arrow-left`}
@@ -394,6 +420,58 @@ class Login extends React.PureComponent {
           
         </View>
 
+        
+        //
+        // skip forward button
+        //
+
+        ) : null}
+        {state.text_forgot === "Forgot Password" ? (
+        <View style={
+          {
+            position: 'absolute',
+            marginTop: sideMargins,
+            marginLeft: width - sideMargins - 50,
+            width: 50,
+            height: 50,
+          }
+        }>
+                <TouchableHighlight 
+        onLayout={() => {
+          
+        }}
+        onPress={() => {
+            console.log("front");
+            setState({
+              //back_color: "rgba(0, 0, 0, 0.0)"
+
+            })
+            this.props.navigation.navigate("skip");
+
+          }}
+        style={{
+          width: 50,
+          height: 50,
+        }} underlayColor={"rgba(0, 0, 0, 0.0)"}>
+        <View style={{
+          alignItems: "center",
+          textAlign: `center`}}>
+          <Icon
+            style={
+              {
+                fontSize: 48,
+                color: `rgba(255, 255, 255, .65)`
+              }
+            }
+            iconIdentifier={`Feather/skip-forward`}
+          />
+          <Text style={{color: `rgba(255, 255, 255, .65)`, fontSize: 20}}>
+            Skip
+          </Text>
+        </View>
+        </TouchableHighlight>
+        </View>
+        ) : null}
       </Fragment>
     );
   }
