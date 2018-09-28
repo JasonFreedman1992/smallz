@@ -198,86 +198,6 @@ class Services2view extends React.PureComponent {
         color2: "purple",
     };
 
-
-    if(Platform.OS === 'ios')
-    {
-        let interval = setInterval(() => { 
-            const { props, state } = this;
-            const setState = this.setState.bind(this);
-            console.log("logging");
-
-            tempColor = color7
-            color7 = color1,
-            tempColor2 = color6,
-            color6 = tempColor,
-            tempColor = color5,
-            color5 = tempColor2,
-            tempColor2 = color4,
-            color4 = tempColor,
-            tempColor = color3,
-            color3 = tempColor2,
-            tempColor2 = color2,
-            color2 = tempColor,
-            color1 = tempColor2
-            // if(flip === false)
-            // {
-                setState({
-                    color1: color1,
-                    color2: color2,
-                    color3: color3,
-                    color4: color4,
-                    color5: color5,
-                    color6: color6,
-                    color7: color7,
-                })
-                flip = true;
-            if(globals.current_tab != "services")
-            {
-                clearInterval(interval);
-            }
-
-        }, 220);
-    }
-    else if(Platform.OS === 'android')
-    {
-        let interval = setInterval(() => { 
-            const { props, state } = this;
-            const setState = this.setState.bind(this);
-            console.log("logging");
-
-            tempColor = color7
-            color7 = color1,
-            tempColor2 = color6,
-            color6 = tempColor,
-            tempColor = color5,
-            color5 = tempColor2,
-            tempColor2 = color4,
-            color4 = tempColor,
-            tempColor = color3,
-            color3 = tempColor2,
-            tempColor2 = color2,
-            color2 = tempColor,
-            color1 = tempColor2
-            // if(flip === false)
-            // {
-                setState({
-                    color1: color1,
-                    color2: color2,
-                    color3: color3,
-                    color4: color4,
-                    color5: color5,
-                    color6: color6,
-                    color7: color7,
-                })
-                flip = true;
-
-        }, 620);
-        if(globals.current_tab != "services")
-        {
-            clearInterval(interval);
-        }
-    }
-
     if (this.awake) {
       this.awake();
       
@@ -285,7 +205,76 @@ class Services2view extends React.PureComponent {
   }
 
   componentDidMount() {
-    console.log('GrandChild did mount.');
+    if(Platform.OS === 'ios')
+    {
+        this.interval = setInterval(() => { 
+            const { props, state } = this;
+            const setState = this.setState.bind(this);
+            console.log("logging");
+
+            tempColor = color7
+            color7 = color1,
+            tempColor2 = color6,
+            color6 = tempColor,
+            tempColor = color5,
+            color5 = tempColor2,
+            tempColor2 = color4,
+            color4 = tempColor,
+            tempColor = color3,
+            color3 = tempColor2,
+            tempColor2 = color2,
+            color2 = tempColor,
+            color1 = tempColor2
+            // if(flip === false)
+            // {
+                setState({
+                    color1: color1,
+                    color2: color2,
+                    color3: color3,
+                    color4: color4,
+                    color5: color5,
+                    color6: color6,
+                    color7: color7,
+                })
+        }, 220);
+    }
+    else if(Platform.OS === 'android')
+    {
+        this.interval = setInterval(() => { 
+            const { props, state } = this;
+            const setState = this.setState.bind(this);
+            console.log("logging");
+
+            tempColor = color7
+            color7 = color1,
+            tempColor2 = color6,
+            color6 = tempColor,
+            tempColor = color5,
+            color5 = tempColor2,
+            tempColor2 = color4,
+            color4 = tempColor,
+            tempColor = color3,
+            color3 = tempColor2,
+            tempColor2 = color2,
+            color2 = tempColor,
+            color1 = tempColor2
+            // if(flip === false)
+            // {
+                setState({
+                    color1: color1,
+                    color2: color2,
+                    color3: color3,
+                    color4: color4,
+                    color5: color5,
+                    color6: color6,
+                    color7: color7,
+                })
+        }, 620);
+    }
+  }
+
+  componentWillUnmount() {
+    clearInterval(clearInterval(this.interval));
   }
 
   updateColors()

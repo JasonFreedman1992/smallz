@@ -60,6 +60,29 @@ const styles = StyleSheet.create({
     width: imgwidth,
     marginBottom: 100
   },
+  pass1:
+  {
+    margin: 5,
+    marginLeft: sideMargins,
+    marginRight: sideMargins,
+    borderBottomColor: 'black',
+    borderBottomWidth: 1,
+    backgroundColor: `rgba(0, 0, 0, .25)`,
+    height: 36,
+    width: imgwidth,
+  },
+  pass2:
+  {
+    margin: 5,
+    marginLeft: sideMargins,
+    marginRight: sideMargins,
+    borderBottomColor: 'black',
+    borderBottomWidth: 1,
+    backgroundColor: `rgba(0, 0, 0, .25)`,
+    height: 36,
+    width: imgwidth,
+    marginBottom: 35
+  },
   slide1:
   {
     flex: 1,
@@ -68,6 +91,22 @@ const styles = StyleSheet.create({
     flexDirection: `column`
   },
   slide2:
+  {
+    flex: 1,
+    width: width,
+    alignItems: `flex-start`,
+    flexDirection: `column`,
+    justifyContent: `flex-end`
+  },
+  slide3:
+  {
+    flex: 1,
+    width: width,
+    alignItems: `flex-start`,
+    flexDirection: `column`,
+    justifyContent: `flex-end`
+  },
+  slide4:
   {
     flex: 1,
     width: width,
@@ -143,13 +182,20 @@ class Login extends React.PureComponent {
     super(props);
 
     this.state = {
+      current: "splash",
       text_login: "Continue",
       text_forgot: "Create Account",
       text_response: "",
       current_tab: "login",
       text_input_phone: "",
       text_input_pass: "",
-      color_response: "red"
+      color_response: "red",
+      text_input_pass_confirm1: "",
+      text_input_pass_confirm2: "",
+      text_input_phone_confirm: "",
+      text_input_email_confirm: "",
+      text_create_response: "",
+      text_forgot_response: "",
     };
     
     if (this.awake) {
@@ -159,27 +205,56 @@ class Login extends React.PureComponent {
 
   backButton()
   {
-    if(this.state.text_login === "Login")
+    if(this.state.current === "login")
     {
       this.refs.scroll.scrollTo({ x: 0, y: 0, animated: true });
       this.setState({
+        current: "splash",
         text_login: "Continue",
         text_forgot: "Create Account",
       })
     }
+    else if(this.state.current === "forgot")
+    {
+      this.refs.scroll.scrollTo({ x: width, y: 0, animated: true });
+      this.setState({
+        current: "login",
+        text_login: "Login",
+        text_forgot: "Forgot Password",
+      })
+    }
+    else if (this.state.current === "create")
+    {
+      this.refs.scroll.scrollTo({ x: 0, y: 0, animated: true });
+      this.setState({
+        current: "splash",
+        text_login: "Continue",
+        text_forgot: "Create Account",
+      })
+    }
+    // if(this.state.text_login === "Login")
+    // {
+    //   this.refs.scroll.scrollTo({ x: 0, y: 0, animated: true });
+    //   this.setState({
+    //     text_login: "Continue",
+    //     text_forgot: "Create Account",
+    //   })
+    // }
   }
 
   loginButton()
   {
-    if(this.state.text_login === "Continue")
+    
+    if(this.state.current === "splash")// text_login = "continue", text_forgot = "Create Account"
     {
-      this.refs.scroll.scrollTo({ x: width, y: 0, animated: true });
-      this.setState({
+        this.refs.scroll.scrollTo({ x: width, y: 0, animated: true });
+        this.setState({
+        current: "login",
         text_login: "Login",
         text_forgot: "Forgot Password"
       })
     }
-    else//(else if state.text_login === "Login")
+    else if(this.state.current === "login") //text_login = "login", text_forgot = "forgot password"
     {
       const item = {
         data: ""
@@ -241,30 +316,43 @@ class Login extends React.PureComponent {
         // if error
 
       })
-
-      this.setState({
-        
-      })
+    }
+    else if(this.state.current === "create")
+    {
+      // submit creation
+    }
+    else if(this.state.current === "forgot")
+    {
+      // send email reset
     }
   }
 
   forgotButton()
   {
-    if(this.state.text_forgot === "Create Account")
+    
+    if(this.state.current === "splash")// text_login = "continue", text_forgot = "Create Account"
     {
-      //this.props.navigation.navigate("skip");
-
-      this.refs.scroll.scrollTo({ x: 0 - width, y: 0, animated: true });
-      this.setState({
-        text_login: "Login",
-        text_forgot: "Forgot Password"
+        this.refs.scroll.scrollTo({ x: width * 3, y: 0, animated: true });
+        this.setState({
+        current: "create",
+        text_login: "Create",
+        text_forgot: ""
       })
     }
-    else//(else if state.text_forgot === "Forgot Password")
+    else if(this.state.current === "login")// text_login = "login", text_forgot = "forgot password"
     {
-      // handle forgot password
+      // fetch login data then navigate
+      this.refs.scroll.scrollTo({ x: width * 2, y: 0, animated: true });
+      this.setState({
+        current: "forgot",
+        text_login: "Send Email Reset",
+        text_forgot: "Send Text Login"
+      })
     }
-  
+    else if(this.state.current === "forgot")
+    {
+      
+    }
   }
 
   render() {
@@ -349,7 +437,170 @@ class Login extends React.PureComponent {
           </View>
 
         </View>
+
+        <View style={styles.slide3}>
+        <Text style={{paddingBottom: 50, textAlign: `center`, fontSize: 20, color: this.state.color_response, width: `100%`}}>
+            {state.text_response}
+          </Text>
+
+          <Text style={{fontSize: 30, marginLeft: sideMargins, marginRight: sideMargins,textAlign: `left`, color: `rgba(170, 142, 255, .65)`}}>
+            Email | Phone Number
+          </Text>
+          <View style={styles.accnt}>
+          <View style={styles.inputWrapper}>
+            <TextInput 
+              onFocus={()=>  setState({ text_forgot: "Create Account" })}
+              //onEndEditing
+              //onTouchStart={()=>  setState({ text_forgot: "Create Account" })}
+              onEndEditing={()=>  setState({ text_forgot: "Forgot Password" })}
+              onChangeText={(text) => {
+              setState({
+                text_input_phone: text
+              })
+              }}
+              underlineColorAndroid="transparent"
+              style={{color: `rgba(170, 142, 255, .85)`, 
+              width:'100%'}} 
+              fontSize={36} 
+              placefontSize={40} 
+              keyboardType={`default`}>
+
+            </TextInput>
+          </View>
+          </View>
+
+          <Text style={{fontSize: 30, marginLeft: sideMargins, marginRight: sideMargins,textAlign: `left`, color: `rgba(43, 255, 126, .65)`}}>
+            Secret Key (from text)
+          </Text>
+          <View style={styles.pass}>
+          <View style={styles.inputWrapper}>
+            <TextInput 
+              onTouchStart={()=>  setTimeout(() => {setState({ text_forgot: "Create Account" })}, 500)}
+              onEndEditing={()=>  setState({ text_forgot: "Forgot Password" })}
+              onChangeText={(text) => {
+              setState({
+                text_input_pass: text
+              })
+              }}
+              underlineColorAndroid="transparent"
+              style={{color: `rgba(43, 255, 126, .85)`, 
+              width:'100%'}} 
+              fontSize={36} 
+              keyboardType={`default`} 
+              secureTextEntry={true}>
+              
+            </TextInput>
+          </View>
+          </View>
+        </View>
         
+        <View style={styles.slide4}>
+
+        <Text style={{paddingBottom: 50, textAlign: `center`, fontSize: 20, color: this.state.color_response, width: `100%`}}>
+            {state.text_create_response}
+          </Text>
+
+          <Text style={{fontSize: 30, marginLeft: sideMargins, marginRight: sideMargins,textAlign: `left`, color: `rgba(170, 142, 255, .65)`}}>
+            Email
+          </Text>
+          <View style={styles.accnt}>
+          <View style={styles.inputWrapper}>
+            <TextInput 
+              onFocus={()=>  setState({ text_forgot: "Create Account" })}
+              //onEndEditing
+              //onTouchStart={()=>  setState({ text_forgot: "Create Account" })}
+              onEndEditing={()=>  setState({ text_forgot: "Forgot Password" })}
+              onChangeText={(text) => {
+              setState({
+                text_input_email_confirm: text
+              })
+              }}
+              underlineColorAndroid="transparent"
+              style={{color: `rgba(170, 142, 255, .85)`, 
+              width:'100%'}} 
+              fontSize={36} 
+              placefontSize={40} 
+              keyboardType={`default`}>
+
+            </TextInput>
+          </View>
+          </View>
+
+          <Text style={{fontSize: 30, marginLeft: sideMargins, marginRight: sideMargins,textAlign: `left`, color: `rgba(170, 142, 255, .65)`}}>
+            Phone Number
+          </Text>
+          <View style={styles.accnt}>
+          <View style={styles.inputWrapper}>
+            <TextInput 
+              onFocus={()=>  setState({ text_forgot: "Create Account" })}
+              //onEndEditing
+              //onTouchStart={()=>  setState({ text_forgot: "Create Account" })}
+              onEndEditing={()=>  setState({ text_forgot: "Forgot Password" })}
+              onChangeText={(text) => {
+              setState({
+                text_input_phone_confirm: text
+              })
+              }}
+              underlineColorAndroid="transparent"
+              style={{color: `rgba(170, 142, 255, .85)`, 
+              width:'100%'}} 
+              fontSize={36} 
+              placefontSize={40} 
+              keyboardType={`default`}>
+
+            </TextInput>
+          </View>
+          </View>
+
+          <Text style={{fontSize: 30, marginLeft: sideMargins, marginRight: sideMargins,textAlign: `left`, color: `rgba(43, 255, 126, .65)`}}>
+            Password
+          </Text>
+          <View style={styles.pass1}>
+          <View style={styles.inputWrapper}>
+            <TextInput 
+              onTouchStart={()=>  setTimeout(() => {setState({ text_forgot: "Create Account" })}, 500)}
+              onEndEditing={()=>  setState({ text_forgot: "Forgot Password" })}
+              onChangeText={(text) => {
+              setState({
+                text_input_pass_confirm1: text
+              })
+              }}
+              underlineColorAndroid="transparent"
+              style={{color: `rgba(43, 255, 126, .85)`, 
+              width:'100%'}} 
+              fontSize={36} 
+              keyboardType={`default`} 
+              secureTextEntry={true}>
+              
+            </TextInput>
+          </View>
+          </View>
+
+          <Text style={{fontSize: 30, marginLeft: sideMargins, marginRight: sideMargins,textAlign: `left`, color: `rgba(43, 255, 126, .65)`}}>
+            Confirm Password
+          </Text>
+          <View style={styles.pass2}>
+          <View style={styles.inputWrapper}>
+            <TextInput 
+              onTouchStart={()=>  setTimeout(() => {setState({ text_forgot: "Create Account" })}, 500)}
+              onEndEditing={()=>  setState({ text_forgot: "Forgot Password" })}
+              onChangeText={(text) => {
+              setState({
+                text_input_pass_confirm2: text
+              })
+              }}
+              underlineColorAndroid="transparent"
+              style={{color: `rgba(43, 255, 126, .85)`, 
+              width:'100%'}} 
+              fontSize={36} 
+              keyboardType={`default`} 
+              secureTextEntry={true}>
+              
+            </TextInput>
+          </View>
+          </View>
+
+        </View>
 	      </ScrollView>
             <View style={styles.s10f9ed22}>
               <View style={styles.sfbc6c123}>
@@ -387,7 +638,7 @@ class Login extends React.PureComponent {
         //
         
         }
-        {state.text_forgot === "Forgot Password" ? (
+        {state.text_forgot != "Create Account" ? (
         <View style={
           {
             position: 'absolute',
@@ -434,7 +685,7 @@ class Login extends React.PureComponent {
         //
 
         ) : null}
-        {state.text_forgot === "Forgot Password" ? (
+        {state.current === "login" ? (
         <View style={
           {
             position: 'absolute',
