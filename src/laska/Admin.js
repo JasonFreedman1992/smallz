@@ -116,6 +116,7 @@ class Admin extends React.PureComponent {
           <View style={styles.navContainerColumns}>
             <TouchableHighlight
               onPress={() => {
+                globals.current_tab = "customers";
                 setState({
                   current_tab: "customers"
                 });
@@ -133,6 +134,7 @@ class Admin extends React.PureComponent {
             </TouchableHighlight>
             <TouchableHighlight
               onPress={() => {
+                globals.current_tab = "current";
                 setState({
                   current_tab: "current"
                 });
@@ -150,6 +152,7 @@ class Admin extends React.PureComponent {
             </TouchableHighlight>
             <TouchableHighlight
               onPress={() => {
+                globals.current_tab = "quotes";
                 setState({
                   current_tab: "quotes"
                 });
@@ -167,6 +170,7 @@ class Admin extends React.PureComponent {
             </TouchableHighlight>
             <TouchableHighlight
               onPress={() => {
+                globals.current_tab = "analytics";
                 setState({
                   current_tab: "analytics"
                 });

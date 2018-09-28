@@ -113,6 +113,7 @@ class Skip extends React.PureComponent {
           <View style={styles.navContainerColumns}>
             <TouchableHighlight
               onPress={() => {
+                globals.current_tab = "status";
                 setState({
                   current_tab: "status"
                 });
@@ -130,6 +131,7 @@ class Skip extends React.PureComponent {
             </TouchableHighlight>
             <TouchableHighlight
               onPress={() => {
+                globals.current_tab = "quotes";
                 setState({
                   current_tab: "quotes"
                 });
@@ -147,6 +149,7 @@ class Skip extends React.PureComponent {
             </TouchableHighlight>
             <TouchableHighlight
               onPress={() => {
+                globals.current_tab = "services";
                 setState({
                   current_tab: "services"
                 });
@@ -164,6 +167,7 @@ class Skip extends React.PureComponent {
             </TouchableHighlight>
             <TouchableHighlight
               onPress={() => {
+                globals.current_tab = "contact";
                 setState({
                   current_tab: "contact"
                 });

@@ -254,7 +254,7 @@ class Login extends React.PureComponent {
     {
       //this.props.navigation.navigate("skip");
 
-      this.refs.scroll.scrollTo({ x: width * 2, y: 0, animated: true });
+      this.refs.scroll.scrollTo({ x: 0 - width, y: 0, animated: true });
       this.setState({
         text_login: "Login",
         text_forgot: "Forgot Password"
@@ -455,7 +455,7 @@ class Login extends React.PureComponent {
 
             })
             //this.props.navigation.navigate("skip");
-            this.props.navigation.navigate("admin");
+            this.props.navigation.navigate("client");
           }}
         style={{
           width: 50,

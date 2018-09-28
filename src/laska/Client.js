@@ -106,17 +106,19 @@ class Client extends React.PureComponent {
     const navigate = this.props.navigation;
     return (
         <Fragment>
+          {state.current_tab === "status" ? <Statusview /> : null}
           {state.current_tab === "history" ? <History navigation={navigate}/> : null}
           {state.current_tab === "quotes" ? <ClientQuotes navigation={navigate}/> : null}
-          {state.current_tab === "contact" ? <Contactview navigation={navigate}/> : null}
-          {state.current_tab === "status" ? <Statusview /> : null}
           {state.current_tab === "services" ? <Services2view /> : null}
+          {state.current_tab === "contact" ? <Contactview navigation={navigate}/> : null}
           <View style={styles.navContainerColumns}>
             <TouchableHighlight
               onPress={() => {
+                globals.current_tab = "status";
                 setState({
                   current_tab: "status"
                 });
+                
               }}
               style={styles.touchableStyle}
               underlayColor={`rgba(222, 222, 222, 1)`}
@@ -131,9 +133,11 @@ class Client extends React.PureComponent {
             </TouchableHighlight>
             <TouchableHighlight
               onPress={() => {
+                globals.current_tab = "history";
                 setState({
-                  current_tab: "History"
+                  current_tab: "history"
                 });
+                
               }}
               style={styles.touchableStyle}
               underlayColor={`rgba(222, 222, 222, 1)`}
@@ -148,6 +152,7 @@ class Client extends React.PureComponent {
             </TouchableHighlight>
             <TouchableHighlight
               onPress={() => {
+                globals.current_tab = "quotes";
                 setState({
                   current_tab: "quotes"
                 });
@@ -165,6 +170,7 @@ class Client extends React.PureComponent {
             </TouchableHighlight>
             <TouchableHighlight
               onPress={() => {
+                globals.current_tab = "services";
                 setState({
                   current_tab: "services"
                 });
@@ -182,6 +188,7 @@ class Client extends React.PureComponent {
             </TouchableHighlight>
             <TouchableHighlight
               onPress={() => {
+                globals.current_tab = "contact";
                 setState({
                   current_tab: "contact"
                 });

@@ -196,12 +196,12 @@ class Services2view extends React.PureComponent {
     this.state = {
         color1: "pink",
         color2: "purple",
-
     };
+
 
     if(Platform.OS === 'ios')
     {
-        setInterval(() => { 
+        let interval = setInterval(() => { 
             const { props, state } = this;
             const setState = this.setState.bind(this);
             console.log("logging");
@@ -231,12 +231,16 @@ class Services2view extends React.PureComponent {
                     color7: color7,
                 })
                 flip = true;
+            if(globals.current_tab != "services")
+            {
+                clearInterval(interval);
+            }
 
         }, 220);
     }
     else if(Platform.OS === 'android')
     {
-        setInterval(() => { 
+        let interval = setInterval(() => { 
             const { props, state } = this;
             const setState = this.setState.bind(this);
             console.log("logging");
@@ -268,6 +272,10 @@ class Services2view extends React.PureComponent {
                 flip = true;
 
         }, 620);
+        if(globals.current_tab != "services")
+        {
+            clearInterval(interval);
+        }
     }
 
     if (this.awake) {
@@ -276,10 +284,13 @@ class Services2view extends React.PureComponent {
     }
   }
 
+  componentDidMount() {
+    console.log('GrandChild did mount.');
+  }
+
   updateColors()
   {
     console.log("logging");
-
   }
 
   render() {
