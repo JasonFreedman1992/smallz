@@ -22,6 +22,16 @@ import Icon from "./_laska_/Icon";
 import img7c41f8ae from "./LogoMakr_24AXtg.png";
 import imgcadd08cd from "./BG.png";
 import Constants from "expo"
+import * as firebase from 'firebase';
+
+var config = {
+  apiKey: "AIzaSyAFwTrktqscrpN_n3BJ7NxcUwLwBYMjCqQ",
+  authDomain: "cecomputerrepair-6d460.firebaseapp.com",
+  databaseURL: "https://cecomputerrepair-6d460.firebaseio.com",
+  projectId: "cecomputerrepair-6d460",
+  storageBucket: "cecomputerrepair-6d460.appspot.com",
+  messagingSenderId: "968740266552"
+};
 
 let width = Dimensions.get('screen').width;
 
@@ -203,6 +213,57 @@ class Login extends React.PureComponent {
     }
   }
 
+  componentDidMount()
+  {
+    // with "import * as firebase from firebase"
+    if(!firebase.apps.length)
+    {
+      var app = firebase.initializeApp(config)
+      setTimeout(() => {
+        console.log(app.name);
+      }, 2500);
+    }
+
+    fetch(`https://us-central1-cecomputerrepair-6d460.cloudfunctions.net/phoneVerification`)
+    .then(response => response.json())
+      
+    .then(response => {
+      console.log(response);
+
+     })
+    .catch(() => {
+      setState({
+        current_tab: "events"
+      })
+      // if error occured log here
+
+    })
+            
+
+    // firebase.auth().signInAnonymously()
+    // .then((response) => {
+    //   console.log(response);
+    // })
+    // .catch((error) => {
+    //   console.log(error);
+    // });
+
+    // firebase.auth().signInWithEmailAndPassword("vibekatcher@gmail.com", "jason231")
+    // .then((response) => {
+    //   console.log(response);
+    //   console.log("success!");
+    // }, (error) => {
+    //   //catch error here
+    //   console.log(error);
+    // });
+
+    // firebase.auth().signInWithPhoneNumber("16163750944", false)
+    // .then(function (confirmationResult) {
+    //   // SMS sent. prompt user to type the code form the messsage, then sign the
+    //   // user in with confirmationResult.confirm(code);
+    // })
+  }
+
   backButton()
   {
     if(this.state.current === "login")
@@ -319,11 +380,14 @@ class Login extends React.PureComponent {
     }
     else if(this.state.current === "create")
     {
+
       // submit creation
     }
     else if(this.state.current === "forgot")
     {
       // send email reset
+      alert("An Email has been sent, please follow the reset instructions to retrieve your account.");
+
     }
   }
 
@@ -351,7 +415,7 @@ class Login extends React.PureComponent {
     }
     else if(this.state.current === "forgot")
     {
-      
+      // send text login
     }
   }
 
@@ -470,7 +534,7 @@ class Login extends React.PureComponent {
           </View>
 
           <Text style={{fontSize: 30, marginLeft: sideMargins, marginRight: sideMargins,textAlign: `left`, color: `rgba(43, 255, 126, .65)`}}>
-            Secret Key (from text)
+            Secret Key (text only)
           </Text>
           <View style={styles.pass}>
           <View style={styles.inputWrapper}>

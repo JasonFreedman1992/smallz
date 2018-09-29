@@ -12,7 +12,6 @@ import {LinearGradient} from "expo";
 import img60d4716c from "./chrispurplelogo.png";
 import img3d6da1b1 from "./chris.jpg";
 import Icon from "./_laska_/Icon";
-import TimerMixin from "react-timer-mixin";
 import imgcellphonelab from "./hollowtext.png";
 import imgjasonfreedmancode from "./LogoMakr_584eO.png";
 import imgjason from "./jason.png";
