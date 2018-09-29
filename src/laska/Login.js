@@ -224,17 +224,17 @@ class Login extends React.PureComponent {
       }, 2500);
     }
 
+
     fetch(`https://us-central1-cecomputerrepair-6d460.cloudfunctions.net/phoneVerification`)
     .then(response => response.json())
       
     .then(response => {
+
       console.log(response);
 
      })
     .catch(() => {
-      setState({
-        current_tab: "events"
-      })
+
       // if error occured log here
 
     })
