@@ -6,7 +6,9 @@ const globals = {
 
     current_tab: "login",
     services_open: false,
-    statusData: []
+    statusData: [],
+    block_quote: false,
+    quote_data: [],
 };
 
 

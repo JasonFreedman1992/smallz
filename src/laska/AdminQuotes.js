@@ -70,11 +70,12 @@ class AdminQuotes extends React.PureComponent {
         <ImageBackground source={imgcadd08cd} style={styles.scadd08cd}>
           <View style={styles.s397ad170}>
           <ScrollView>
-            {props.eventsData.map((repeatForItem, i) => (
+            {globals.quote_data.map((repeatForItem, i) => (
               <TouchableHighlight
                 style={styles.s44622035}
                 underlayColor={`rgba(255, 255, 255, 1)`}
                 key={`${i}-44622035-204b-428c-84fd-3560afae236d`}
+                any={repeatForItem}
                 onPress={() => {
                   navigate.navigate("login");
                 }}
@@ -85,9 +86,9 @@ class AdminQuotes extends React.PureComponent {
                     style={styles.s93176135}
                   >
                     <View style={styles.s732b811e}>
-                      <Text>City</Text>
-                      <Text>Distance</Text>
-                      <Text>Date</Text>
+                      <Text>{repeatForItem.body}</Text>
+                      <Text>{repeatForItem.phone}</Text>
+                      <Text>{repeatForItem.timeSent}</Text>
                     </View>
                   </ImageBackground>
                 </View>

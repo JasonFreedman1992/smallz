@@ -5,7 +5,6 @@ import API from "./_laska_/API.js";
 import globals from "./_laska_/globals.js";
 import withNavigationProp from "./_laska_/withNavigationProp.js";
 import { Platform, SafeAreaView, FlatList, TouchableHighlight, Image, Dimensions, View, Text, ScrollView, StyleSheet } from "react-native";
-import betterappslogo from "./LogoMakr_9r00Xk.png";
 import cecomputerslogo from "./LogoChris.jpg";
 import celphonelablogo from "./LogoMakr_1U89to.png";
 import {LinearGradient} from "expo";

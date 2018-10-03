@@ -12,9 +12,11 @@ import {
   TouchableHighlight,
   ScrollView,
   KeyboardAvoidingView,
-  ImageBackground
+  ImageBackground,
+  ActivityIndicator
 } from "react-native";
 import imgea5f27a3 from "./BG.png";
+import Icon from "./_laska_/Icon";
 
 const styles = StyleSheet.create({
   se1a46547: { flex: 1 },
@@ -252,14 +254,56 @@ const styles = StyleSheet.create({
     height: `100%`,
     maxWidth: `100%`,
     flex: 1
-  }
+  },
+  sa6743b22: {
+    height: 400,
+    margin: 20,
+    marginBottom: 20,
+    marginTop: 0,
+    alignItems: `center`,
+    backgroundColor: `rgba(0, 0, 0, 0.25)`,
+    flex: 1,
+    justifyContent: `center`
+  },
+  sa6743b23: {
+    height: 400,
+    margin: 20,
+    marginBottom: 20,
+    marginTop: 0,
+    alignItems: `center`,
+    backgroundColor: `rgba(0, 255, 46, 0.4)`,
+    flex: 1,
+    justifyContent: `center`
+  },
+  sa6743b24: {
+    height: 400,
+    margin: 20,
+    marginBottom: 20,
+    marginTop: 0,
+    alignItems: `center`,
+    backgroundColor: `rgba(255, 0, 0, 0.4)`,
+    flex: 1,
+    justifyContent: `center`
+  },
+  sb1470029: { color: `rgba(255, 255, 255, 1)`, fontSize: 65 },
+  sd1b9a1c5: {
+    color: `rgba(255, 255, 255, 1)`,
+    fontSize: 18,
+    fontWeight: `bold`
+  },
 });
+
 class ClientQuotes extends React.PureComponent {
   static navigationOptions = { title: "ClientQuotes" };
   constructor(props) {
     super(props);
 
-    this.state = {};
+    this.state = {
+      text_input_phone: "",
+      text_input_body: "",
+      current: "form",
+      block_quote: false
+    };
 
     if (this.awake) {
       this.awake();
@@ -267,7 +311,11 @@ class ClientQuotes extends React.PureComponent {
   }
 
   render() {
+    const { props, state } = this;
+    const setState = this.setState.bind(this);
+    const navigate = this.props.navigation;
     return (
+      
       <Fragment>
         <ImageBackground source={imgea5f27a3} style={styles.sea5f27a3}>
           <KeyboardAvoidingView behavior={`padding`} style={styles.s09604a47}>
@@ -383,6 +431,7 @@ class ClientQuotes extends React.PureComponent {
                     </View>
                   </View>
                 </View>
+                {state.current === "form" ? (
                 <View style={styles.sae2d423f}>
                   <View style={styles.sb892372f}>
                     <Text style={styles.s80c91560}>
@@ -398,6 +447,11 @@ class ClientQuotes extends React.PureComponent {
                       placeholder={`Email or Phone`}
                       underlineColorAndroid="transparent"
                       placeholderTextColor={`rgba(192, 86, 255, 1)`}
+                      onChangeText={(text) => {
+                        setState({
+                          text_input_phone: text
+                        })
+                      }}
                       style={styles.sa0fedb31}
                     />
                   </View>
@@ -408,6 +462,11 @@ class ClientQuotes extends React.PureComponent {
                     <TextInput
                       multiline={true}
                       blurOnSubmit={true}
+                      onChangeText={(text) => {
+                        setState({
+                          text_input_body: text
+                        })
+                      }}
                       onKeyPress={onKeyPress = ({nativeEvent}) => {
                         if(nativeEvent.key === 'Enter')
                         {
@@ -415,7 +474,7 @@ class ClientQuotes extends React.PureComponent {
                         }
                       }}
                       underlineColorAndroid="transparent"
-                      placeholder={`Description,  Model #, Issue`}
+                      placeholder={`Description, Model #, Issue, or just say hello!`}
                       placeholderTextColor={`rgba(64, 253, 103, 1)`}
                       style={styles.s287e1817}
                     />
@@ -423,12 +482,93 @@ class ClientQuotes extends React.PureComponent {
                   <View style={styles.s4545c6de}>
                     <TouchableHighlight
                       style={styles.se891af2a}
-                      onPress={() => {}}
+                      underlayColor={`rgba(222, 222, 222, 1)`}
+                      onPress={() => {
+                        //
+                        // on submit
+                        //
+                        if(this.state.block_quote !== true)
+                        {
+                          setState({
+                            block_quote: true
+                          })
+                          
+                          setTimeout(() =>{
+                            block_quote = false;
+                          }, 60000)
+
+                          setState({
+                            current: "loading"
+                          })
+
+                          {
+                            fetch('https://us-central1-cecomputerrepair-6d460.cloudfunctions.net/send_quote_request', {
+                              method: 'POST',
+                              headers: {
+                                'Accept': 'application/json',
+                                'Content-Type': 'application/json',
+                              },
+                              body: JSON.stringify({
+                                phone: this.state.text_input_phone,
+                                body: this.state.text_input_body
+                              })
+                            })
+                            // reponse to json
+                            .then(response => response.json())
+                                    
+                            .then(response => {
+                              if(response.body === "Auth")
+                              {
+                                setState({
+                                  current: "done"
+                                })
+                                setTimeout(() => {
+                                  setState({
+                                    current: "form"
+                                  })
+                                }, 2000)
+                              }
+                              else
+                              {
+                                setState({
+                                  current: "wrong"
+                                })
+                              }
+                            })
+                            .catch(error => {
+                              //
+                              //
+                              // if error
+                              //
+                              //
+                            })
+                          }
+                      }
+                  }}
                     >
                       <Text style={styles.s419c2aee}>Submit</Text>
                     </TouchableHighlight>
                   </View>
                 </View>
+                ) : null}
+                {state.current === "loading" ? (
+
+                <View style={styles.sa6743b22}>
+                  <ActivityIndicator size='large'/>
+                </View>
+                ) : null}
+                {state.current === "done" ? (
+                <View style={styles.sa6743b23}>
+                    <Icon iconIdentifier={`FontAwesome/check`} style={styles.sb1470029} />
+                    <Text style={styles.sd1b9a1c5}>Submitted</Text>
+                </View>
+                ) : null}
+                {state.current === "wrong" ? (
+                <View style={styles.sa6743b24}>
+                    <Icon iconIdentifier={`Entypo/cross`} style={styles.sb1470029} />
+                    <Text style={styles.sd1b9a1c5}>Sorry! Something went wrong.</Text>
+                </View>
+                ) : null}
               </View>
             </ScrollView>
           </KeyboardAvoidingView>
