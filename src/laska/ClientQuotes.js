@@ -494,7 +494,7 @@ class ClientQuotes extends React.PureComponent {
                           })
                           
                           setTimeout(() =>{
-                            block_quote = false;
+                            setState({block_quote: false});
                           }, 60000)
 
                           setState({
@@ -566,7 +566,7 @@ class ClientQuotes extends React.PureComponent {
                 {state.current === "wrong" ? (
                 <View style={styles.sa6743b24}>
                     <Icon iconIdentifier={`Entypo/cross`} style={styles.sb1470029} />
-                    <Text style={styles.sd1b9a1c5}>Sorry! Something went wrong.</Text>
+                    <Text style={styles.sd1b9a1c5}>Sorry! Something went wrong. =(</Text>
                 </View>
                 ) : null}
               </View>

@@ -7,6 +7,7 @@ import withNavigationProp from "./_laska_/withNavigationProp.js";
 import { Dimensions, ImageBackground, ScrollView, TouchableHighlight, Text, StyleSheet, View } from "react-native";
 import img93176135 from "./jubavrli.png";
 import imgcadd08cd from "./BG.png";
+const moment = require('moment');
 
 let height = Dimensions.get('window').height;
 
@@ -88,7 +89,7 @@ class AdminQuotes extends React.PureComponent {
                     <View style={styles.s732b811e}>
                       <Text>{repeatForItem.body}</Text>
                       <Text>{repeatForItem.phone}</Text>
-                      <Text>{repeatForItem.timeSent}</Text>
+                      <Text>{moment(repeatForItem.timeSent).format('MMMM Do YYYY, h:mm:ss a')}</Text>
                     </View>
                   </ImageBackground>
                 </View>
