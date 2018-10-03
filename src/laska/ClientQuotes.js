@@ -501,6 +501,7 @@ class ClientQuotes extends React.PureComponent {
                             current: "loading"
                           })
 
+                          
                           {
                             fetch('https://us-central1-cecomputerrepair-6d460.cloudfunctions.net/send_quote_request', {
                               method: 'POST',
