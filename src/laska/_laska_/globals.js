@@ -9,6 +9,8 @@ const globals = {
     statusData: [],
     block_quote: false,
     quote_data: [],
+    customer_data: [],
+    status_data: [],
 };
 
 

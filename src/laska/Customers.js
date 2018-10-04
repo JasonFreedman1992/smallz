@@ -6,6 +6,7 @@ import globals from "./_laska_/globals.js";
 import withNavigationProp from "./_laska_/withNavigationProp.js";
 import { Dimensions, ImageBackground, TouchableHighlight, ScrollView, Text, StyleSheet, View } from "react-native";
 import img93176135 from "./jubavrli.png";
+import Icon from "./_laska_/Icon";
 import imgcadd08cd from "./BG.png";
 
 let height = Dimensions.get('window').height;
@@ -31,6 +32,13 @@ const styles = StyleSheet.create({
       maxHeight: 199,
       width: `100%`
     },
+    s93176136: {
+      height: `100%`,
+      alignItems: 'center',
+      justifyContent: `center`,
+      maxHeight: 199,
+      width: `100%`
+    },
     sd4c6b84e: { flex: 1 },
     s44622035: { height: (height-85)/7.85 },
     s7fe23c89: { backgroundColor: `rgba(255, 255, 255, 1)`, flex: 1 },
@@ -44,7 +52,17 @@ const styles = StyleSheet.create({
         width: `100%`,
           backgroundColor: `rgba(0, 0, 0, .25)`,
           flex: 1,
-        }
+        },
+    s2f214928: { fontSize: 45, margin: 5, color: 'white' },
+    s44622037: { height: (height-85)/7.85 },
+    sd4c6b84: { flex: 1 },
+    s93176137: {
+      height: `100%`,
+      alignItems: 'center',
+      justifyContent: `center`,
+      maxHeight: 199,
+      width: `100%`
+    },
 });
 class Customers extends React.PureComponent {
   static navigationOptions = { title: "Customers" };
@@ -90,7 +108,27 @@ class Customers extends React.PureComponent {
                   </ImageBackground>
                 </View>
               </TouchableHighlight>
-            ))}
+            ))} {/* add new customer button */}
+              <TouchableHighlight
+              style={styles.s44622037}
+              underlayColor={`rgba(255, 255, 255, 1)`}
+              onPress={() => {
+
+              }}>
+              <View style={styles.sd4c6b84}>
+                <ImageBackground
+                  source={img93176135}
+                  style={styles.s93176137}
+                >
+
+                  <Icon
+                    iconIdentifier={`FontAwesome/plus`}
+                    style={styles.s2f214928}
+                  />
+
+                </ImageBackground>
+              </View>
+            </TouchableHighlight>
           </ScrollView>
           </View>
           </ImageBackground>
@@ -110,46 +148,6 @@ Customers.defaultProps = {
           place: "New York, New York",
           miles: 2600
         },
-        {
-          place: "Los Angeles, CA",
-          miles: 900
-        },
-        {
-          place: "San Francisco, CA",
-          miles: 750
-        },
-        {
-          place: "Atlanta, GA",
-          miles: 2000
-        },
-        {
-          place: "Detroit, MI",
-          miles: 1700
-        },
-        {
-          place: "Houston, TX",
-          miles: 1250
-        },
-        {
-          place: "Bellevue, WA",
-          miles: 50
-        },
-        {
-          place: "Miami, FL",
-          miles: 2900
-        },
-        {
-          place: "Grand Rapids, MI",
-          miles: 1600
-        },
-        {
-          place: "Phoenix, AZ",
-          miles: 1100
-        },
-        {
-          place: "Los Angeles, CA",
-          miles: 300
-        }
       ]
 
 };
