@@ -4,10 +4,10 @@ import API from "./_laska_/API.js";
 // eslint-disable-next-line no-unused-vars
 import globals from "./_laska_/globals.js";
 import withNavigationProp from "./_laska_/withNavigationProp.js";
-import { Dimensions, ImageBackground, TouchableHighlight, ScrollView, Text, StyleSheet, View } from "react-native";
+import { KeyboardAvoidingView, TextInput, Dimensions, ImageBackground, TouchableHighlight, ScrollView, Text, StyleSheet, View } from "react-native";
 import img93176135 from "./jubavrli.png";
-import Icon from "./_laska_/Icon";
 import imgcadd08cd from "./BG.png";
+import Icon from "./_laska_/Icon";
 
 let height = Dimensions.get('window').height;
 
@@ -28,16 +28,22 @@ const styles = StyleSheet.create({
     },
     s93176135: {
       height: `100%`,
-      justifyContent: `flex-end`,
+      alignItems: 'center',
+      justifyContent: `center`,
       maxHeight: 199,
       width: `100%`
     },
     s93176136: {
       height: `100%`,
-      alignItems: 'center',
-      justifyContent: `center`,
+      justifyContent: `flex-end`,
       maxHeight: 199,
       width: `100%`
+    },
+    s7ba85f25: {
+      color: `rgba(255, 255, 255, 1)`,
+      height: 20,
+      margin: 5,
+      width: '100%'
     },
     sd4c6b84e: { flex: 1 },
     s44622035: { height: (height-85)/7.85 },
@@ -48,20 +54,42 @@ const styles = StyleSheet.create({
         opacity: 1,
         width: `100%`
       },
-      s397ad170: {
-        width: `100%`,
-          backgroundColor: `rgba(0, 0, 0, .25)`,
-          flex: 1,
-        },
+    s397ad170: {
+      width: `100%`,
+        backgroundColor: `rgba(0, 0, 0, .25)`,
+        flex: 1,
+      },
+      sa2282081: { flex: 1 },
     s2f214928: { fontSize: 45, margin: 5, color: 'white' },
-    s44622037: { height: (height-85)/7.85 },
-    sd4c6b84: { flex: 1 },
-    s93176137: {
-      height: `100%`,
-      alignItems: 'center',
+    sf2f5c5b1: { flex: 1 },
+    s270ef303: { flex: 1 },
+    s8e82c08e: { backgroundColor: `rgba(0, 0, 0, 0.25)`, margin: 20 },
+    s8aa63795: { color: `rgba(255, 255, 255, 1)`, fontSize: 18, margin: 5 },
+    s3e2c715c: {
+      backgroundColor: `rgba(0, 0, 0, 0.25)`,
+      height: 210,
+      margin: 20,
+      marginTop: 0
+    },
+    sff493afb: { height: 100, width: '100%' },
+    sff493afc: { marginTop: 0, height: 100, width: '100%' },
+    s3c247739: {
+      alignItems: `center`,
+      backgroundColor: `rgba(255, 83, 83, 0.45)`,
+      flex: 1,
       justifyContent: `center`,
-      maxHeight: 199,
-      width: `100%`
+      margin: 10
+    },
+    sc4aa036b: {
+      alignItems: `center`,
+      backgroundColor: `rgba(175, 163, 233, 0.69)`,
+      flex: 1,
+      justifyContent: `center`,
+      margin: 10
+    },
+    s88b1bf09: {
+      color: 'white',
+      fontSize: 18
     },
 });
 class Customers extends React.PureComponent {
@@ -69,7 +97,10 @@ class Customers extends React.PureComponent {
   constructor(props) {
     super(props);
 
-    this.state = {};
+    this.state = {
+      current: "list",
+      submit_loading: false
+    };
 
     if (this.awake) {
       this.awake();
@@ -77,11 +108,14 @@ class Customers extends React.PureComponent {
   }
 
   render() {
-
+      
     const { props, state } = this;
+    const setState = this.setState.bind(this);
+    const navigate = this.props.navigation;
 
     return (
       <Fragment>
+        { state.current === "list" ? (
         <View style={styles.s7fe23c89}>
         <ImageBackground source={imgcadd08cd} style={styles.scadd08cd}>
           <View style={styles.s397ad170}>
@@ -91,14 +125,12 @@ class Customers extends React.PureComponent {
                 style={styles.s44622035}
                 underlayColor={`rgba(255, 255, 255, 1)`}
                 key={`${i}-44622035-204b-428c-84fd-3560afae236d`}
-                onPress={() => {
-                    
-                }}
+                onPress={() => {}}
               >
                 <View style={styles.sd4c6b84e}>
                   <ImageBackground
                     source={img93176135}
-                    style={styles.s93176135}
+                    style={styles.s93176136}
                   >
                     <View style={styles.s732b811e}>
                       <Text>City</Text>
@@ -108,24 +140,25 @@ class Customers extends React.PureComponent {
                   </ImageBackground>
                 </View>
               </TouchableHighlight>
-            ))} {/* add new customer button */}
-              <TouchableHighlight
-              style={styles.s44622037}
-              underlayColor={`rgba(255, 255, 255, 1)`}
-              onPress={() => {
-
-              }}>
-              <View style={styles.sd4c6b84}>
+            ))} {/* Add new Status button */}
+            <TouchableHighlight
+            style={styles.s44622035}
+            underlayColor={`rgba(255, 255, 255, 1)`}
+            onPress={() => {
+              setState({
+                current: "status",
+              })
+            }}>
+              <View style={styles.sd4c6b84e}>
                 <ImageBackground
                   source={img93176135}
-                  style={styles.s93176137}
+                  style={styles.s93176135}
                 >
 
                   <Icon
                     iconIdentifier={`FontAwesome/plus`}
                     style={styles.s2f214928}
                   />
-
                 </ImageBackground>
               </View>
             </TouchableHighlight>
@@ -133,6 +166,87 @@ class Customers extends React.PureComponent {
           </View>
           </ImageBackground>
         </View>
+      ) : null}
+      {state.current === "status" ? (
+        <ImageBackground source={imgcadd08cd} style={styles.scadd08cd}>
+          <KeyboardAvoidingView behavior={`padding`} style={styles.sf2f5c5b1}>
+            <ScrollView style={styles.s270ef303}>
+              <View style={styles.s8e82c08e}>
+                <View style={styles.sa2282081}>
+                  <Text style={styles.s8aa63795}>Name</Text>
+                  <TextInput
+                    placeholder={`Name`}
+                    placeholderTextColor={`rgba(255, 255, 255, 0.5)`}
+                    style={styles.s7ba85f25}
+                  />
+                </View>
+                <View style={styles.sa2282081}>
+                  <Text style={styles.s8aa63795}>Email</Text>
+                  <TextInput
+                    placeholder={`Email`}
+                    placeholderTextColor={`rgba(255, 255, 255, 0.5)`}
+                    style={styles.s7ba85f25}
+                  />
+                </View>
+                <View style={styles.sa2282081}>
+                  <Text style={styles.s8aa63795}>Phone Number</Text>
+                  <TextInput
+                    placeholder={`Phone #`}
+                    placeholderTextColor={`rgba(255, 255, 255, 0.5)`}
+                    style={styles.s7ba85f25}
+                  />
+                </View>
+                <View style={styles.sa2282081}>
+                  <Text style={styles.s8aa63795}>Level</Text>
+                  <TextInput
+                    placeholder={`Level`}
+                    placeholderTextColor={`rgba(255, 255, 255, 0.5)`}
+                    style={styles.s7ba85f25}
+                  />
+                </View>
+                <View style={styles.sa2282081}>
+                  <Text style={styles.s8aa63795}>Temporary Pin</Text>
+                  <TextInput
+                    placeholder={`Temporary Pin #`}
+                    placeholderTextColor={`rgba(255, 255, 255, 0.5)`}
+                    style={styles.s7ba85f25}
+                  />
+                </View>
+              </View>
+              {state.submit_loading === false ? (
+              <View style={styles.s3e2c715c}>
+                <View style={styles.sff493afb}>
+                  <TouchableHighlight
+                    style={styles.s3c247739}
+                    onPress={() => {
+                      setState({
+                        current: "list",
+                      })
+                    }}
+                    underlayColor={`rgba(255, 255, 255, .6)`}
+                  >
+                    <Text style={styles.s88b1bf09}>Cancel</Text>
+                  </TouchableHighlight>
+                </View>
+                <View style={styles.sff493afc}>
+                  <TouchableHighlight
+                    style={styles.sc4aa036b}
+                    onPress={() => {}}
+                    underlayColor={`rgba(255, 255, 255, .6)`}
+                  >
+                    <Text style={styles.s88b1bf09}>Submit</Text>
+                  </TouchableHighlight>
+                </View>
+              </View>
+              ) : null}
+              {state.submit_loading === true ? (
+               <View></View>
+
+              ): null}
+            </ScrollView>
+          </KeyboardAvoidingView>
+        </ImageBackground>
+      ): null}
       </Fragment>
     );
   }

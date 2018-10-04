@@ -6,8 +6,8 @@ import globals from "./_laska_/globals.js";
 import withNavigationProp from "./_laska_/withNavigationProp.js";
 import { Dimensions, ImageBackground, TouchableHighlight, ScrollView, Text, StyleSheet, View } from "react-native";
 import img93176135 from "./jubavrli.png";
-import imgcadd08cd from "./BG.png";
 import Icon from "./_laska_/Icon";
+import imgcadd08cd from "./BG.png";
 
 let height = Dimensions.get('window').height;
 
@@ -28,14 +28,14 @@ const styles = StyleSheet.create({
     },
     s93176135: {
       height: `100%`,
-      alignItems: 'center',
-      justifyContent: `center`,
+      justifyContent: `flex-end`,
       maxHeight: 199,
       width: `100%`
     },
     s93176136: {
       height: `100%`,
-      justifyContent: `flex-end`,
+      alignItems: 'center',
+      justifyContent: `center`,
       maxHeight: 199,
       width: `100%`
     },
@@ -48,12 +48,21 @@ const styles = StyleSheet.create({
         opacity: 1,
         width: `100%`
       },
-    s397ad170: {
-      width: `100%`,
-        backgroundColor: `rgba(0, 0, 0, .25)`,
-        flex: 1,
-      },
+      s397ad170: {
+        width: `100%`,
+          backgroundColor: `rgba(0, 0, 0, .25)`,
+          flex: 1,
+        },
     s2f214928: { fontSize: 45, margin: 5, color: 'white' },
+    s44622037: { height: (height-85)/7.85 },
+    sd4c6b84: { flex: 1 },
+    s93176137: {
+      height: `100%`,
+      alignItems: 'center',
+      justifyContent: `center`,
+      maxHeight: 199,
+      width: `100%`
+    },
 });
 class Current extends React.PureComponent {
   static navigationOptions = { title: "Current" };
@@ -68,7 +77,7 @@ class Current extends React.PureComponent {
   }
 
   render() {
-      
+
     const { props, state } = this;
 
     return (
@@ -82,12 +91,14 @@ class Current extends React.PureComponent {
                 style={styles.s44622035}
                 underlayColor={`rgba(255, 255, 255, 1)`}
                 key={`${i}-44622035-204b-428c-84fd-3560afae236d`}
-                onPress={() => {}}
+                onPress={() => {
+                    
+                }}
               >
                 <View style={styles.sd4c6b84e}>
                   <ImageBackground
                     source={img93176135}
-                    style={styles.s93176136}
+                    style={styles.s93176135}
                   >
                     <View style={styles.s732b811e}>
                       <Text>City</Text>
@@ -97,23 +108,24 @@ class Current extends React.PureComponent {
                   </ImageBackground>
                 </View>
               </TouchableHighlight>
-            ))} {/* Add new Status button */}
-            <TouchableHighlight
-            style={styles.s44622035}
-            underlayColor={`rgba(255, 255, 255, 1)`}
-            onPress={() => {
+            ))} {/* add new customer button */}
+              <TouchableHighlight
+              style={styles.s44622037}
+              underlayColor={`rgba(255, 255, 255, 1)`}
+              onPress={() => {
 
-            }}>
-              <View style={styles.sd4c6b84e}>
+              }}>
+              <View style={styles.sd4c6b84}>
                 <ImageBackground
                   source={img93176135}
-                  style={styles.s93176135}
+                  style={styles.s93176137}
                 >
 
                   <Icon
                     iconIdentifier={`FontAwesome/plus`}
                     style={styles.s2f214928}
                   />
+
                 </ImageBackground>
               </View>
             </TouchableHighlight>
