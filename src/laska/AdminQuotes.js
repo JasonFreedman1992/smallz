@@ -11,8 +11,6 @@ const moment = require('moment');
 
 let height = Dimensions.get('window').height;
 
-
-
 const styles = StyleSheet.create({
   sa7f27131: { color: `rgba(255, 255, 255, 1)`, fontSize: 30 },
   s50a58322: {
@@ -47,6 +45,15 @@ const styles = StyleSheet.create({
     width: `100%`,
       backgroundColor: `rgba(0, 0, 0, .25)`,
       flex: 1,
+    },
+    item_body: {
+      color: `rgba(64, 253, 103, 1)`
+    },
+    item_date: {
+      color: `rgba(255, 255, 255, 1)`
+    },
+    item_phone: {
+      color: `rgba(192, 186, 255, 1)`
     }
 });
 class AdminQuotes extends React.PureComponent {
@@ -87,9 +94,9 @@ class AdminQuotes extends React.PureComponent {
                     style={styles.s93176135}
                   >
                     <View style={styles.s732b811e}>
-                      <Text>{repeatForItem.body}</Text>
-                      <Text>{repeatForItem.phone}</Text>
-                      <Text>{moment(repeatForItem.timeSent).format('MMMM Do YYYY, h:mm:ss a')}</Text>
+                      <Text style={styles.item_phone}>Phone/Email: {repeatForItem.phone}</Text>
+                      <Text style={styles.item_body}>Body: {repeatForItem.body.substring(0,40)}</Text>
+                      <Text style={styles.item_date}>Date: {moment(repeatForItem.timeSent).format('MMMM Do YYYY, h:mm:ss a')}</Text>
                     </View>
                   </ImageBackground>
                 </View>

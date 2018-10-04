@@ -4,7 +4,7 @@ import API from "./_laska_/API.js";
 // eslint-disable-next-line no-unused-vars
 import globals from "./_laska_/globals.js";
 import withNavigationProp from "./_laska_/withNavigationProp.js";
-import { KeyboardAvoidingView, TextInput, Dimensions, ImageBackground, TouchableHighlight, ScrollView, Text, StyleSheet, View } from "react-native";
+import { ActivityIndicator, KeyboardAvoidingView, TextInput, Dimensions, ImageBackground, TouchableHighlight, ScrollView, Text, StyleSheet, View } from "react-native";
 import img93176135 from "./jubavrli.png";
 import imgcadd08cd from "./BG.png";
 import Icon from "./_laska_/Icon";
@@ -91,6 +91,42 @@ const styles = StyleSheet.create({
       color: 'white',
       fontSize: 18
     },
+    sa6743b22: {
+      height: 210,
+      margin: 20,
+      marginBottom: 20,
+      marginTop: 0,
+      alignItems: `center`,
+      backgroundColor: `rgba(0, 0, 0, 0.25)`,
+      flex: 1,
+      justifyContent: `center`
+    },
+    sa6743b23: {
+      height: 210,
+      margin: 20,
+      marginBottom: 20,
+      marginTop: 0,
+      alignItems: `center`,
+      backgroundColor: `rgba(0, 255, 46, 0.4)`,
+      flex: 1,
+      justifyContent: `center`
+    },
+    sa6743b24: {
+      height: 210,
+      margin: 20,
+      marginBottom: 20,
+      marginTop: 0,
+      alignItems: `center`,
+      backgroundColor: `rgba(255, 0, 0, 0.4)`,
+      flex: 1,
+      justifyContent: `center`
+    },
+    sb1470029: { color: `rgba(255, 255, 255, 1)`, fontSize: 65 },
+    sd1b9a1c5: {
+      color: `rgba(255, 255, 255, 1)`,
+      fontSize: 18,
+      fontWeight: `bold`
+    },
 });
 class Customers extends React.PureComponent {
   static navigationOptions = { title: "Customers" };
@@ -99,7 +135,7 @@ class Customers extends React.PureComponent {
 
     this.state = {
       current: "list",
-      submit_loading: false
+      bot_current: "form"
     };
 
     if (this.awake) {
@@ -213,12 +249,14 @@ class Customers extends React.PureComponent {
                   />
                 </View>
               </View>
-              {state.submit_loading === false ? (
+              {state.bot_current === "form" ? (
               <View style={styles.s3e2c715c}>
                 <View style={styles.sff493afb}>
                   <TouchableHighlight
                     style={styles.s3c247739}
                     onPress={() => {
+                      //
+                      // cancel
                       setState({
                         current: "list",
                       })
@@ -231,7 +269,32 @@ class Customers extends React.PureComponent {
                 <View style={styles.sff493afc}>
                   <TouchableHighlight
                     style={styles.sc4aa036b}
-                    onPress={() => {}}
+                    onPress={() => {
+                      //
+                      // submit
+                      setState({
+                        bot_current: "loading"
+                      })
+
+                      setTimeout(() => {
+                        setState({
+                          bot_current: "done"
+                        })
+                      }, 3000)
+
+                      setTimeout(() => {
+                        setState({
+                          bot_current: "wrong"
+                        })
+                      }, 6000)
+
+                      setTimeout(() => {
+                        setState({
+                          bot_current: "form"
+                        })
+                      }, 10000)
+
+                    }}
                     underlayColor={`rgba(255, 255, 255, .6)`}
                   >
                     <Text style={styles.s88b1bf09}>Submit</Text>
@@ -239,9 +302,23 @@ class Customers extends React.PureComponent {
                 </View>
               </View>
               ) : null}
-              {state.submit_loading === true ? (
-               <View></View>
+              {state.bot_current === "loading" ? (
+              <View style={styles.sa6743b22}>
+                <ActivityIndicator size='large'/>
+              </View>
+              ): null}
+              {state.bot_current === "done" ? (
+              <View style={styles.sa6743b23}>
+                  <Icon iconIdentifier={`FontAwesome/check`} style={styles.sb1470029} />
+                  <Text style={styles.sd1b9a1c5}>Submitted</Text>
+              </View>
 
+              ): null}
+              {state.bot_current === "wrong" ? (
+              <View style={styles.sa6743b24}>
+                  <Icon iconIdentifier={`Entypo/cross`} style={styles.sb1470029} />
+              <Text style={styles.sd1b9a1c5}>Sorry! Something went wrong. =(</Text>
+              </View>
               ): null}
             </ScrollView>
           </KeyboardAvoidingView>

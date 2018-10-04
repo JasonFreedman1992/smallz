@@ -118,38 +118,6 @@ History.defaultProps = {
           place: "San Francisco, CA",
           miles: 750
         },
-        {
-          place: "Atlanta, GA",
-          miles: 2000
-        },
-        {
-          place: "Detroit, MI",
-          miles: 1700
-        },
-        {
-          place: "Houston, TX",
-          miles: 1250
-        },
-        {
-          place: "Bellevue, WA",
-          miles: 50
-        },
-        {
-          place: "Miami, FL",
-          miles: 2900
-        },
-        {
-          place: "Grand Rapids, MI",
-          miles: 1600
-        },
-        {
-          place: "Phoenix, AZ",
-          miles: 1100
-        },
-        {
-          place: "Los Angeles, CA",
-          miles: 300
-        }
       ]
 
 };
