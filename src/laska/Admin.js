@@ -96,7 +96,7 @@ class Admin extends React.PureComponent {
 
     this.state = {
       current_tab: "customers",
-      color_customers: `rgba(202, 192, 241, 1)`,
+      color_customers: `rgba(64, 253, 103, 1)`,
       color_current: `rgba(202, 192, 241, 1)`,
       color_quotes: `rgba(202, 192, 241, 1)`,
       color_analytics: `rgba(202, 192, 241, 1)`,
@@ -169,6 +169,7 @@ class Admin extends React.PureComponent {
               </View>
             </TouchableHighlight>
             <TouchableHighlight
+            shouldRasterizeIOS={true} renderToHardwareTextureAndroid={true}
               onPress={() => {
                 globals.current_tab = "quotes";
                 setState({

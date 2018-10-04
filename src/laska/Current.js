@@ -4,7 +4,7 @@ import API from "./_laska_/API.js";
 // eslint-disable-next-line no-unused-vars
 import globals from "./_laska_/globals.js";
 import withNavigationProp from "./_laska_/withNavigationProp.js";
-import { TextInput, KeyboardAvoidingView, Dimensions, ImageBackground, TouchableHighlight, ScrollView, Text, StyleSheet, View } from "react-native";
+import { ActivityIndicator, TextInput, KeyboardAvoidingView, Dimensions, ImageBackground, TouchableHighlight, ScrollView, Text, StyleSheet, View } from "react-native";
 import img93176135 from "./jubavrli.png";
 import Icon from "./_laska_/Icon";
 import imgcadd08cd from "./BG.png";
@@ -41,8 +41,9 @@ const styles = StyleSheet.create({
     },
     sd4c6b84e: { flex: 1, backgroundColor:`rgba(74, 74, 110, 1)`,
   borderColor: `rgba(198, 76, 243, 1)`,
-  borderWidth: 2,
+  borderWidth: 1,
 },
+sff493afb: { height: 100, width: '100%' },
     s44622035: { height: (height-85)/7.85 },
     s7fe23c89: { backgroundColor: `rgba(255, 255, 255, 1)`, flex: 1 },
     scadd08cd: {
@@ -78,6 +79,67 @@ const styles = StyleSheet.create({
       margin: 5,
       width: '100%'
     },
+    sa6743b22: {
+      height: 210,
+      margin: 20,
+      marginBottom: 20,
+      marginTop: 0,
+      alignItems: `center`,
+      backgroundColor: `rgba(0, 0, 0, 0.25)`,
+      flex: 1,
+      justifyContent: `center`
+    },
+    sa6743b23: {
+      height: 210,
+      margin: 20,
+      marginBottom: 20,
+      marginTop: 0,
+      alignItems: `center`,
+      backgroundColor: `rgba(0, 255, 46, 0.4)`,
+      flex: 1,
+      justifyContent: `center`
+    },
+    sa6743b24: {
+      height: 210,
+      margin: 20,
+      marginBottom: 20,
+      marginTop: 0,
+      alignItems: `center`,
+      backgroundColor: `rgba(255, 0, 0, 0.4)`,
+      flex: 1,
+      justifyContent: `center`
+    },
+    sb1470029: { color: `rgba(255, 255, 255, 1)`, fontSize: 65 },
+    sd1b9a1c5: {
+      color: `rgba(255, 255, 255, 1)`,
+      fontSize: 18,
+      fontWeight: `bold`
+    },
+    s88b1bf09: {
+      color: 'white',
+      fontSize: 18
+    },
+    s3c247739: {
+      alignItems: `center`,
+      backgroundColor: `rgba(255, 83, 83, 0.45)`,
+      flex: 1,
+      justifyContent: `center`,
+      margin: 10
+    },
+    s3e2c715c: {
+      backgroundColor: `rgba(0, 0, 0, 0.25)`,
+      height: 210,
+      margin: 20,
+      marginTop: 0
+    },
+    sff493afc: { marginTop: 0, height: 100, width: '100%' },
+    sc4aa036b: {
+      alignItems: `center`,
+      backgroundColor: `rgba(175, 163, 233, 0.69)`,
+      flex: 1,
+      justifyContent: `center`,
+      margin: 10
+    },
 });
 class Current extends React.PureComponent {
   static navigationOptions = { title: "Current" };
@@ -97,6 +159,9 @@ class Current extends React.PureComponent {
   render() {
 
     const { props, state } = this;
+
+    const setState = this.setState.bind(this);
+    const navigate = this.props.navigation;
 
     return (
       <Fragment>
@@ -129,7 +194,7 @@ class Current extends React.PureComponent {
             ))} 
               <TouchableHighlight
               style={styles.s44622037}
-              underlayColor={`rgba(255, 255, 255, 1)`}
+              underlayColor={`rgba(255, 255, 255, .5)`}
               onPress={() => {
                 this.setState({
                   current: "status",
@@ -137,7 +202,7 @@ class Current extends React.PureComponent {
               }}>
               <View style={styles.sd4c6b84}>
                 <ImageBackground
-                  source={img93176135}
+                  
                   style={styles.s93176137}
                 >
 
@@ -201,6 +266,78 @@ class Current extends React.PureComponent {
                   />
                 </View>
               </View>
+              {state.bot_current === "form" ? (
+              <View style={styles.s3e2c715c}>
+                <View style={styles.sff493afb}>
+                  <TouchableHighlight
+                  shouldRasterizeIOS={true} renderToHardwareTextureAndroid={true}
+                    style={styles.s3c247739}
+                    onPress={() => {
+                      //
+                      // cancel
+                      setState({
+                        current: "list",
+                      })
+                    }}
+                    underlayColor={`rgba(255, 255, 255, .6)`}
+                  >
+                    <Text style={styles.s88b1bf09}>Cancel</Text>
+                  </TouchableHighlight>
+                </View>
+                <View style={styles.sff493afc}>
+                  <TouchableHighlight
+                    style={styles.sc4aa036b}
+                    onPress={() => {
+                      //
+                      // submit
+                      setState({
+                        bot_current: "loading"
+                      })
+
+                      setTimeout(() => {
+                        setState({
+                          bot_current: "done"
+                        })
+                      }, 3000)
+
+                      setTimeout(() => {
+                        setState({
+                          bot_current: "wrong"
+                        })
+                      }, 6000)
+
+                      setTimeout(() => {
+                        setState({
+                          bot_current: "form"
+                        })
+                      }, 10000)
+
+                    }}
+                    underlayColor={`rgba(255, 255, 255, .6)`}
+                  >
+                    <Text style={styles.s88b1bf09}>Submit</Text>
+                  </TouchableHighlight>
+                </View>
+              </View>
+              ) : null}
+              {state.bot_current === "loading" ? (
+              <View style={styles.sa6743b22}>
+                <ActivityIndicator size='large'/>
+              </View>
+              ): null}
+              {state.bot_current === "done" ? (
+              <View style={styles.sa6743b23}>
+                  <Icon iconIdentifier={`FontAwesome/check`} style={styles.sb1470029} />
+                  <Text style={styles.sd1b9a1c5}>Submitted</Text>
+              </View>
+
+              ): null}
+              {state.bot_current === "wrong" ? (
+              <View style={styles.sa6743b24}>
+                  <Icon iconIdentifier={`Entypo/cross`} style={styles.sb1470029} />
+              <Text style={styles.sd1b9a1c5}>Sorry! Something went wrong. =(</Text>
+              </View>
+              ): null}
             </ScrollView>
           </KeyboardAvoidingView>
         </ImageBackground>
@@ -221,6 +358,18 @@ Current.defaultProps = {
         {
           place: "New York, New York",
           miles: 2600
+        },
+        {
+          place: "Seattle, WA",
+          miles: 50
+        },
+        {
+          place: "New York, New York",
+          miles: 2600
+        },
+        {
+          place: "Seattle, WA",
+          miles: 50
         },
       ]
 

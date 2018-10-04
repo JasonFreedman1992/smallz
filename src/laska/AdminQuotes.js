@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
   },
   sd4c6b84e: { flex: 1, backgroundColor:`rgba(74, 74, 110, 1)`,
   borderColor: `rgba(198, 76, 243, 1)`,
-  borderWidth: 2,
+  borderWidth: 1,
 },
   s44622035: { height: (height-85)/7.85 },
   s7fe23c89: { backgroundColor: `rgba(255, 255, 255, 1)`, flex: 1 },

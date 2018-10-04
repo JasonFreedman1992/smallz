@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
     },
     sd4c6b84e: { flex: 1, backgroundColor:`rgba(74, 74, 110, 1)`,
   borderColor: `rgba(198, 76, 243, 1)`,
-  borderWidth: 2,
+  borderWidth: 1,
 },
     s44622035: { height: (height-85)/7.85 },
     s7fe23c89: { backgroundColor: `rgba(255, 255, 255, 1)`, flex: 1 },
@@ -141,7 +141,13 @@ class Customers extends React.PureComponent {
 
     this.state = {
       current: "list",
-      bot_current: "form"
+      bot_current: "form",
+      text_input_name: "",
+      text_input_phone: "",
+      text_input_email: "",
+      text_input_level: "",
+      text_input_pin: ""
+
     };
 
     if (this.awake) {
@@ -184,15 +190,15 @@ class Customers extends React.PureComponent {
             ))} 
             <TouchableHighlight
             style={styles.s44622035}
-            underlayColor={`rgba(255, 255, 255, 1)`}
+            underlayColor={`rgba(255, 255, 255, .5)`}
             onPress={() => {
               setState({
                 current: "status",
               })
             }}>
-              <View style={styles.sd4c6b84e}>
+              <View style={styles.sd4c6b84}>
                 <ImageBackground
-                  source={img93176135}
+                  
                   style={styles.s93176135}
                 >
 
@@ -220,6 +226,11 @@ class Customers extends React.PureComponent {
                     placeholder={`Name`}
                     placeholderTextColor={`rgba(255, 255, 255, 0.5)`}
                     style={styles.s7ba85f25}
+                    onChangeText={(text) => {
+                      setState({
+                        text_input_name: text
+                      })
+                    }}
                   />
                 </View>
                 <View style={styles.sa2282081}>
@@ -228,6 +239,11 @@ class Customers extends React.PureComponent {
                     placeholder={`Email`}
                     placeholderTextColor={`rgba(255, 255, 255, 0.5)`}
                     style={styles.s7ba85f25}
+                    onChangeText={(text) => {
+                      setState({
+                        text_input_email: text
+                      })
+                    }}
                   />
                 </View>
                 <View style={styles.sa2282081}>
@@ -236,6 +252,11 @@ class Customers extends React.PureComponent {
                     placeholder={`Phone #`}
                     placeholderTextColor={`rgba(255, 255, 255, 0.5)`}
                     style={styles.s7ba85f25}
+                    onChangeText={(text) => {
+                      setState({
+                        text_input_phone: text
+                      })
+                    }}
                   />
                 </View>
                 <View style={styles.sa2282081}>
@@ -244,6 +265,11 @@ class Customers extends React.PureComponent {
                     placeholder={`Level`}
                     placeholderTextColor={`rgba(255, 255, 255, 0.5)`}
                     style={styles.s7ba85f25}
+                    onChangeText={(text) => {
+                      setState({
+                        text_input_level: text
+                      })
+                    }}
                   />
                 </View>
                 <View style={styles.sa2282081}>
@@ -252,6 +278,11 @@ class Customers extends React.PureComponent {
                     placeholder={`Temporary Pin #`}
                     placeholderTextColor={`rgba(255, 255, 255, 0.5)`}
                     style={styles.s7ba85f25}
+                    onChangeText={(text) => {
+                      setState({
+                        text_input_pin: text
+                      })
+                    }}
                   />
                 </View>
               </View>
@@ -280,6 +311,12 @@ class Customers extends React.PureComponent {
                       // submit
                       setState({
                         bot_current: "loading"
+                      })
+
+                      fetch('https://us-central1-cecomputerrepair-6d460.cloudfunctions.net/create_cust_request', {
+                      
+                      
+
                       })
 
                       setTimeout(() => {
