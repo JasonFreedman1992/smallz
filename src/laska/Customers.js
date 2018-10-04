@@ -314,9 +314,30 @@ class Customers extends React.PureComponent {
                       })
 
                       fetch('https://us-central1-cecomputerrepair-6d460.cloudfunctions.net/create_cust_request', {
-                      
-                      
+                        method: 'POST',
+                        headers: {
+                          'Accept': 'application/json',
+                          'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                          name: this.state.text_input_name,
+                          email: this.state.text_input_email,
+                          phone: this.state.text_input_phone,
+                          level: this.state.text_input_level,
+                          pin: this.state.text_input_pin
+                        })
+                      })
+                      .then(response => response.json())
 
+                      .then(response => {
+                        if(response.body === "Auth")
+                        {
+
+                        }
+                        else //if response.body === "Denied"
+                        {
+                          
+                        }
                       })
 
                       setTimeout(() => {
