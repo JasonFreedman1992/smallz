@@ -45,7 +45,10 @@ const styles = StyleSheet.create({
       margin: 5,
       width: '100%'
     },
-    sd4c6b84e: { flex: 1 },
+    sd4c6b84e: { flex: 1, backgroundColor:`rgba(74, 74, 110, 1)`,
+  borderColor: `rgba(198, 76, 243, 1)`,
+  borderWidth: 2,
+},
     s44622035: { height: (height-85)/7.85 },
     s7fe23c89: { backgroundColor: `rgba(255, 255, 255, 1)`, flex: 1 },
     scadd08cd: {
@@ -127,6 +130,9 @@ const styles = StyleSheet.create({
       fontSize: 18,
       fontWeight: `bold`
     },
+    wrap: {
+      flex: 1
+    }
 });
 class Customers extends React.PureComponent {
   static navigationOptions = { title: "Customers" };
@@ -165,7 +171,6 @@ class Customers extends React.PureComponent {
               >
                 <View style={styles.sd4c6b84e}>
                   <ImageBackground
-                    source={img93176135}
                     style={styles.s93176136}
                   >
                     <View style={styles.s732b811e}>
@@ -176,7 +181,7 @@ class Customers extends React.PureComponent {
                   </ImageBackground>
                 </View>
               </TouchableHighlight>
-            ))} {/* Add new Status button */}
+            ))} 
             <TouchableHighlight
             style={styles.s44622035}
             underlayColor={`rgba(255, 255, 255, 1)`}
@@ -204,6 +209,7 @@ class Customers extends React.PureComponent {
         </View>
       ) : null}
       {state.current === "status" ? (
+        <View style={styles.wrap}>
         <ImageBackground source={imgcadd08cd} style={styles.scadd08cd}>
           <KeyboardAvoidingView behavior={`padding`} style={styles.sf2f5c5b1}>
             <ScrollView style={styles.s270ef303}>
@@ -323,6 +329,7 @@ class Customers extends React.PureComponent {
             </ScrollView>
           </KeyboardAvoidingView>
         </ImageBackground>
+        </View>
       ): null}
       </Fragment>
     );

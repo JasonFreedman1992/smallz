@@ -32,7 +32,10 @@ const styles = StyleSheet.create({
     maxHeight: 199,
     width: `100%`
   },
-  sd4c6b84e: { flex: 1 },
+  sd4c6b84e: { flex: 1, backgroundColor:`rgba(74, 74, 110, 1)`,
+  borderColor: `rgba(198, 76, 243, 1)`,
+  borderWidth: 2,
+},
   s44622035: { height: (height-85)/7.85 },
   s7fe23c89: { backgroundColor: `rgba(255, 255, 255, 1)`, flex: 1 },
   scadd08cd: {
@@ -89,10 +92,7 @@ class AdminQuotes extends React.PureComponent {
                 }}
               >
                 <View style={styles.sd4c6b84e}>
-                  <ImageBackground
-                    source={img93176135}
-                    style={styles.s93176135}
-                  >
+                  <ImageBackground style={styles.s93176135}>
                     <View style={styles.s732b811e}>
                       <Text style={styles.item_phone}>Phone/Email: {repeatForItem.phone}</Text>
                       <Text style={styles.item_body}>Body: {repeatForItem.body.substring(0,40)}</Text>

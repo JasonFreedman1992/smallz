@@ -54,13 +54,6 @@ const styles = StyleSheet.create({
     backgroundColor: `rgba(202, 192, 241, 1)`,
     flex: 1
   },
-  touchableStyle:
-  {
-    backgroundColor: `rgba(202, 192, 241, 1)`,
-    alignItems: `center`,
-    flex: 1,
-    alignItems:`center`
-  }
 });
 
 registerForPushNotifications = async () => {
@@ -93,6 +86,11 @@ class Client extends React.PureComponent {
 
     this.state = {
       current_tab: "status",
+      color_status: `rgba(202, 192, 241, 1)`,
+      color_history: `rgba(202, 192, 241, 1)`,
+      color_quote: `rgba(202, 192, 241, 1)`,
+      color_services: `rgba(202, 192, 241, 1)`,
+      color_contact: `rgba(202, 192, 241, 1)`
     };
 
     if (this.awake) {
@@ -115,13 +113,23 @@ class Client extends React.PureComponent {
             <TouchableHighlight
               onPress={() => {
                 globals.current_tab = "status";
+                color_status = `rgba(64, 253, 103, 1)`;
                 setState({
-                  current_tab: "status"
+                  current_tab: "status",
+                  color_status: `rgba(64, 253, 103, 1)`,
+                  color_history: `rgba(202, 192, 241, 1)`,
+                  color_quote: `rgba(202, 192, 241, 1)`,
+                  color_services: `rgba(202, 192, 241, 1)`,
+                  color_contact: `rgba(202, 192, 241, 1)`
                 });
                 
               }}
-              style={styles.touchableStyle}
-              underlayColor={`rgba(222, 222, 222, 1)`}
+              
+              style={{
+                backgroundColor:this.state.color_status,
+                alignItems: `center`,
+                flex: 1,}}
+              underlayColor={`rgba(64, 253, 103, 1)`}
             >
               <View style={styles.s396f5657}>
                 <Icon
@@ -135,12 +143,20 @@ class Client extends React.PureComponent {
               onPress={() => {
                 globals.current_tab = "history";
                 setState({
-                  current_tab: "history"
+                  current_tab: "history",
+                  color_status: `rgba(202, 192, 241, 1)`,
+                  color_history: `rgba(64, 253, 103, 1)`,
+                  color_quote: `rgba(202, 192, 241, 1)`,
+                  color_services: `rgba(202, 192, 241, 1)`,
+                  color_contact: `rgba(202, 192, 241, 1)`
                 });
                 
               }}
-              style={styles.touchableStyle}
-              underlayColor={`rgba(222, 222, 222, 1)`}
+              style={{
+                backgroundColor:this.state.color_history,
+                alignItems: `center`,
+                flex: 1,}}
+              underlayColor={`rgba(64, 253, 103, 1)`}
             >
               <View style={styles.s16466d16}>
                 <Icon
@@ -154,11 +170,19 @@ class Client extends React.PureComponent {
               onPress={() => {
                 globals.current_tab = "quotes";
                 setState({
-                  current_tab: "quotes"
+                  current_tab: "quotes",
+                  color_status: `rgba(202, 192, 241, 1)`,
+                  color_history: `rgba(202, 192, 241, 1)`,
+                  color_quote: `rgba(64, 253, 103, 1)`,
+                  color_services: `rgba(202, 192, 241, 1)`,
+                  color_contact: `rgba(202, 192, 241, 1)`
                 });
               }}
-              style={styles.touchableStyle}
-              underlayColor={`rgba(222, 222, 222, 1)`}
+              style={{
+                backgroundColor:this.state.color_quote,
+                alignItems: `center`,
+                flex: 1,}}
+              underlayColor={`rgba(64, 253, 103, 1)`}
             >
               <View style={styles.s16466d16}>
                 <Icon
@@ -172,11 +196,19 @@ class Client extends React.PureComponent {
               onPress={() => {
                 globals.current_tab = "services";
                 setState({
-                  current_tab: "services"
+                  current_tab: "services",
+                  color_status: `rgba(202, 192, 241, 1)`,
+                  color_history: `rgba(202, 192, 241, 1)`,
+                  color_quote: `rgba(202, 192, 241, 1)`,
+                  color_services: `rgba(64, 253, 103, 1)`,
+                  color_contact: `rgba(202, 192, 241, 1)`
                 });
               }}
-              style={styles.touchableStyle}
-              underlayColor={`rgba(222, 222, 222, 1)`}
+              style={{
+                backgroundColor:this.state.color_services,
+                alignItems: `center`,
+                flex: 1,}}
+              underlayColor={`rgba(64, 253, 103, 1)`}
             >
               <View style={styles.sfad5c90a}>
                 <Icon
@@ -190,11 +222,19 @@ class Client extends React.PureComponent {
               onPress={() => {
                 globals.current_tab = "contact";
                 setState({
-                  current_tab: "contact"
+                  current_tab: "contact",
+                  color_status: `rgba(202, 192, 241, 1)`,
+                  color_history: `rgba(202, 192, 241, 1)`,
+                  color_quote: `rgba(202, 192, 241, 1)`,
+                  color_services: `rgba(202, 192, 241, 1)`,
+                  color_contact: `rgba(64, 253, 103, 1)`
                 });
               }}
-              style={styles.touchableStyle}
-              underlayColor={`rgba(222, 222, 222, 1)`}
+              style={{
+                backgroundColor:this.state.color_contact,
+                alignItems: `center`,
+                flex: 1,}}
+              underlayColor={`rgba(64, 253, 103, 1)`}
             >
               <View style={styles.s16466d16}>
                 <Icon

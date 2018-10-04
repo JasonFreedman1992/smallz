@@ -96,6 +96,10 @@ class Admin extends React.PureComponent {
 
     this.state = {
       current_tab: "customers",
+      color_customers: `rgba(202, 192, 241, 1)`,
+      color_current: `rgba(202, 192, 241, 1)`,
+      color_quotes: `rgba(202, 192, 241, 1)`,
+      color_analytics: `rgba(202, 192, 241, 1)`,
     };
 
     if (this.awake) {
@@ -118,11 +122,18 @@ class Admin extends React.PureComponent {
               onPress={() => {
                 globals.current_tab = "customers";
                 setState({
-                  current_tab: "customers"
+                  current_tab: "customers",
+                  color_customers: `rgba(64, 253, 103, 1)`,
+                  color_current: `rgba(202, 192, 241, 1)`,
+                  color_quotes: `rgba(202, 192, 241, 1)`,
+                  color_analytics: `rgba(202, 192, 241, 1)`,
                 });
               }}
-              style={styles.touchableStyle}
-              underlayColor={`rgba(222, 222, 222, 1)`}
+              style={{
+                backgroundColor:this.state.color_customers,
+                alignItems: `center`,
+                flex: 1,}}
+              underlayColor={`rgba(64, 253, 103, 1)`}
             >
               <View style={styles.s396f5657}>
                 <Icon
@@ -136,11 +147,18 @@ class Admin extends React.PureComponent {
               onPress={() => {
                 globals.current_tab = "current";
                 setState({
-                  current_tab: "current"
+                  current_tab: "current",
+                  color_customers: `rgba(202, 192, 241, 1)`,
+                  color_current: `rgba(64, 253, 103, 1)`,
+                  color_quotes: `rgba(202, 192, 241, 1)`,
+                  color_analytics: `rgba(202, 192, 241, 1)`,
                 });
               }}
-              style={styles.touchableStyle}
-              underlayColor={`rgba(222, 222, 222, 1)`}
+              style={{
+                backgroundColor:this.state.color_current,
+                alignItems: `center`,
+                flex: 1,}}
+              underlayColor={`rgba(64, 253, 103, 1)`}
             >
               <View style={styles.s16466d16}>
                 <Icon
@@ -154,11 +172,18 @@ class Admin extends React.PureComponent {
               onPress={() => {
                 globals.current_tab = "quotes";
                 setState({
-                  current_tab: "quotes"
+                  current_tab: "quotes",
+                  color_customers: `rgba(202, 192, 241, 1)`,
+                  color_current: `rgba(202, 192, 241, 1)`,
+                  color_quotes: `rgba(64, 253, 103, 1)`,
+                  color_analytics: `rgba(202, 192, 241, 1)`,
                 });
               }}
-              style={styles.touchableStyle}
-              underlayColor={`rgba(222, 222, 222, 1)`}
+              style={{
+                backgroundColor:this.state.color_quotes,
+                alignItems: `center`,
+                flex: 1,}}
+              underlayColor={`rgba(64, 253, 103, 1)`}
             >
               <View style={styles.sfad5c90a}>
                 <Icon
@@ -172,11 +197,18 @@ class Admin extends React.PureComponent {
               onPress={() => {
                 globals.current_tab = "analytics";
                 setState({
-                  current_tab: "analytics"
+                  current_tab: "analytics",
+                  color_customers: `rgba(202, 192, 241, 1)`,
+                  color_current: `rgba(202, 192, 241, 1)`,
+                  color_quotes: `rgba(202, 192, 241, 1)`,
+                  color_analytics: `rgba(64, 253, 103, 1)`,
                 });
               }}
-              style={styles.touchableStyle}
-              underlayColor={`rgba(222, 222, 222, 1)`}
+              style={{
+                backgroundColor:this.state.color_analytics,
+                alignItems: `center`,
+                flex: 1,}}
+              underlayColor={`rgba(64, 253, 103, 1)`}
             >
               <View style={styles.s16466d16}>
                 <Icon
