@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
   sa7f27131: { color: `rgba(255, 255, 255, 1)`, fontSize: 30 },
   s50a58322: {
     alignItems: `center`,
-    backgroundColor: `rgba(0, 0, 0, 1)`,
+    
     flex: 1,
     justifyContent: `center`
   },
@@ -39,9 +39,9 @@ const styles = StyleSheet.create({
   borderWidth: 1,
 },
   s44622035: { height: (height-85)/7.85 },
-  s7fe23c89: { backgroundColor: `rgba(255, 255, 255, 1)`, flex: 1 },
+  s7fe23c89: { flex: 1},
   scadd08cd: {
-    backgroundColor: `rgba(0, 0, 0, 1)`,
+    
     height: `100%`,
     opacity: 1,
     width: `100%`
@@ -70,7 +70,7 @@ const styles = StyleSheet.create({
     sa0cf86e2: { backgroundColor: `rgba(0, 0, 0, .25)`, flex: 1, margin: 5 },
     s9be9753c: { flex: 1 },
     s1c4ded82: { height: `100%`, width: `100%` },
-    s7181d70a: { alignItems: `center`, flex: 1, justifyContent: `center` },
+    s7181d70a: { alignItems: `center`, flex: 1, justifyContent: `center`, backgroundColor: 'rgba(0,0,0,.25)' },
     s3c247739: {
       alignItems: `center`,
       backgroundColor: `rgba(255, 83, 83, 0.45)`,
@@ -205,7 +205,7 @@ class AdminQuotes extends React.PureComponent {
       <Fragment>
         { state.current === "list" ? (
         <View style={styles.s7fe23c89}>
-        <ImageBackground source={imgcadd08cd} style={styles.scadd08cd}>
+        <ImageBackground style={styles.scadd08cd}>
           <View style={styles.s397ad170}>
           <ScrollView
             refreshControl={

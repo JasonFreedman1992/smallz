@@ -15,12 +15,14 @@ import Analytics from "./Analytics.js";
 import Current from "./Current.js";
 import Customers from "./Customers.js";
 import AdminQuotes from "./AdminQuotes.js";
+import imgcadd08cd from "./BG.png";
 import {
   StyleSheet,
   Text,
   View,
   TouchableHighlight,
-  SafeAreaView
+  SafeAreaView,
+  ImageBackground,
 } from "react-native";
 import { Permissions, Notifications } from "expo";
 
@@ -113,6 +115,7 @@ class Admin extends React.PureComponent {
     const navigate = this.props.navigation;
     return (
         <Fragment>
+          <ImageBackground source={imgcadd08cd} style={{backgroundColor: 'rgba(0, 0, 0, 1)', flex: 1}}>
           {state.current_tab === "customers" ? <Customers navigation={navigate}/> : null}
           {state.current_tab === "current" ? <Current /> : null}
           {state.current_tab === "quotes" ? <AdminQuotes navigation={navigate}/> : null}
@@ -220,6 +223,7 @@ class Admin extends React.PureComponent {
               </View>
             </TouchableHighlight>
           </View>
+        </ImageBackground>
       </Fragment>
     );
   }
