@@ -4,9 +4,10 @@ import API from "./_laska_/API.js";
 // eslint-disable-next-line no-unused-vars
 import globals from "./_laska_/globals.js";
 import withNavigationProp from "./_laska_/withNavigationProp.js";
-import { RefreshControl, Dimensions, ImageBackground, ScrollView, TouchableHighlight, Text, StyleSheet, View } from "react-native";
+import { ActivityIndicator, KeyboardAvoidingView, RefreshControl, Dimensions, ImageBackground, ScrollView, TouchableHighlight, Text, StyleSheet, View } from "react-native";
 import img93176135 from "./jubavrli.png";
 import imgcadd08cd from "./BG.png";
+import Icon from "./_laska_/Icon";
 const moment = require('moment');
 
 
@@ -58,7 +59,81 @@ const styles = StyleSheet.create({
     },
     item_phone: {
       color: `rgba(192, 186, 255, 1)`
-    }
+    },
+    sedd01e1e: { color: `rgba(192, 186, 255, 1)`, fontSize: 18, margin: 5 },
+    sb6797fe4: { backgroundColor: `rgba(0, 0, 0, .25)`, flex: 1, margin: 20 },
+    sdf566e0f: { color: `rgba(192, 186, 255, 1)`, fontSize: 18, margin: 5 },
+    s59a65273: { backgroundColor: `rgba(0, 0, 0, .25)`, flex: 1, margin: 5 },
+    sc1cfa38d: { color: `rgba(64, 253, 103, 1)`, fontSize: 18, margin: 5 },
+    sa6ccf43c: { backgroundColor: `rgba(0, 0, 0, .25)`, flex: 1, margin: 5 },
+    sbb37430a: { color: `rgba(255, 255, 255, 1)`, fontSize: 18, margin: 5 },
+    sa0cf86e2: { backgroundColor: `rgba(0, 0, 0, .25)`, flex: 1, margin: 5 },
+    s9be9753c: { flex: 1 },
+    s1c4ded82: { height: `100%`, width: `100%` },
+    s7181d70a: { alignItems: `center`, flex: 1, justifyContent: `center` },
+    s3c247739: {
+      alignItems: `center`,
+      backgroundColor: `rgba(255, 83, 83, 0.45)`,
+      flex: 1,
+      justifyContent: `center`,
+      margin: 10
+    },
+    sff493afb: { height: 100, width: '100%' },
+    s3e2c715c: {
+      backgroundColor: `rgba(0, 0, 0, 0.25)`,
+      height: 210,
+      margin: 20,
+      marginTop: 0
+    },
+    sff493afc: { marginTop: 0, height: 100, width: '100%' },
+    sc4aa036b: {
+      alignItems: `center`,
+      backgroundColor: `rgba(175, 163, 233, 0.69)`,
+      flex: 1,
+      justifyContent: `center`,
+      margin: 10
+    },
+    s88b1bf09: {
+      color: 'white',
+      fontSize: 18
+    },
+    sa6743b22: {
+      height: 210,
+      margin: 20,
+      marginBottom: 20,
+      marginTop: 0,
+      alignItems: `center`,
+      backgroundColor: `rgba(0, 0, 0, 0.25)`,
+      flex: 1,
+      justifyContent: `center`
+    },
+    sa6743b23: {
+      height: 210,
+      margin: 20,
+      marginBottom: 20,
+      marginTop: 0,
+      alignItems: `center`,
+      backgroundColor: `rgba(0, 255, 46, 0.4)`,
+      flex: 1,
+      justifyContent: `center`
+    },
+    sa6743b24: {
+      height: 210,
+      margin: 20,
+      marginBottom: 20,
+      marginTop: 0,
+      alignItems: `center`,
+      backgroundColor: `rgba(255, 0, 0, 0.4)`,
+      flex: 1,
+      justifyContent: `center`
+    },
+    sb1470029: { color: `rgba(255, 255, 255, 1)`, fontSize: 65 },
+    sd1b9a1c5: {
+      color: `rgba(255, 255, 255, 1)`,
+      fontSize: 18,
+      fontWeight: `bold`
+    },
+
 });
 class AdminQuotes extends React.PureComponent {
   static navigationOptions = { title: "AdminQuotes" };
@@ -66,7 +141,10 @@ class AdminQuotes extends React.PureComponent {
     super(props);
 
     this.state = {
-      refreshing: false
+      current: "list",
+      refreshing: false,
+      bot_current: "form",
+      response_reason: "Marked as read!!",
     };
 
     if (this.awake) {
@@ -120,10 +198,12 @@ class AdminQuotes extends React.PureComponent {
 
   render() {
     const { props, state } = this;
+    const setState = this.setState.bind(this);
     const navigate = this.props.navigation;
 
     return (
       <Fragment>
+        { state.current === "list" ? (
         <View style={styles.s7fe23c89}>
         <ImageBackground source={imgcadd08cd} style={styles.scadd08cd}>
           <View style={styles.s397ad170}>
@@ -142,7 +222,10 @@ class AdminQuotes extends React.PureComponent {
                 key={`${i}-44622035-204b-428c-84fd-3560afae236d`}
                 any={repeatForItem}
                 onPress={() => {
-                  navigate.navigate("login");
+                  this.setState({
+                    current: "article"
+                  })
+                  //navigate.navigate("login");
                 }}
               >
                 <View style={styles.sd4c6b84e}>
@@ -160,6 +243,99 @@ class AdminQuotes extends React.PureComponent {
           </View>
             </ImageBackground>
         </View>
+        ) : null}
+        { state.current === "article" ? (
+          <View style={styles.s7181d70a}>
+            <ImageBackground source={imgcadd08cd} style={styles.s1c4ded82}>
+              <KeyboardAvoidingView style={styles.s9be9753c}>
+                <ScrollView>
+                  <View>
+                    <View style={styles.sb6797fe4}>
+                      <Text style={styles.sedd01e1e}>Phone/Email:</Text>
+                      <Text style={styles.sdf566e0f}>Name:</Text>
+                      <Text style={styles.sc1cfa38d}>
+                        Body: what if this was so big thati t got so big that
+                        itwas off to the side
+                      </Text>
+                      <Text style={styles.sbb37430a}>Date:</Text>
+                    </View>
+                  </View>
+                  {state.bot_current === "form" ? (
+                    <View style={styles.s3e2c715c}>
+                      <View style={styles.sff493afb}>
+                        <TouchableHighlight
+                        shouldRasterizeIOS={true} renderToHardwareTextureAndroid={true}
+                          style={styles.s3c247739}
+                          onPress={() => {
+                            //
+                            // cancel
+                            setState({
+                              current: "list",
+                            })
+                          }}
+                          underlayColor={`rgba(255, 255, 255, .6)`}
+                        >
+                          <Text style={styles.s88b1bf09}>Cancel</Text>
+                        </TouchableHighlight>
+                      </View>
+                      <View style={styles.sff493afc}>
+                        <TouchableHighlight
+                          style={styles.sc4aa036b}
+                          onPress={() => {
+                            //
+                            // submit
+                            setState({
+                              bot_current: "loading"
+                            })
+
+                            setTimeout(() => {
+                              setState({
+                                bot_current: "done"
+                              })
+                            },3000)
+
+                            setTimeout(() => {
+                              setState({
+                                bot_current: "wrong"
+                              })
+                            }, 6000)
+
+                            setTimeout(() => {
+                              setState({
+                                bot_current: "form"
+                              })
+                            }, 9000)
+                          }}
+                          underlayColor={`rgba(255, 255, 255, .6)`}
+                        >
+                          <Text style={styles.s88b1bf09}>Mark as Read</Text>
+                        </TouchableHighlight>
+                      </View>
+                    </View>
+                    ) : null}
+                    {state.bot_current === "loading" ? (
+                    <View style={styles.sa6743b22}>
+                      <ActivityIndicator size='large'/>
+                    </View>
+                    ): null}
+                    {state.bot_current === "done" ? (
+                    <View style={styles.sa6743b23}>
+                        <Icon iconIdentifier={`FontAwesome/check`} style={styles.sb1470029} />
+                        <Text style={styles.sd1b9a1c5}>{this.state.response_reason}</Text>
+                    </View>
+
+                    ): null}
+                    {state.bot_current === "wrong" ? (
+                    <View style={styles.sa6743b24}>
+                        <Icon iconIdentifier={`Entypo/cross`} style={styles.sb1470029} />
+                    <Text style={styles.sd1b9a1c5}>Sorry! Something went wrong. =(</Text>
+                    </View>
+                    ): null}
+                </ScrollView>
+              </KeyboardAvoidingView>
+            </ImageBackground>
+          </View>
+        ) : null}
       </Fragment>
     );
   }
