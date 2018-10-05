@@ -502,7 +502,7 @@ class ClientQuotes extends React.PureComponent {
                           })
 
                           
-                          {
+
                             fetch('https://us-central1-cecomputerrepair-6d460.cloudfunctions.net/send_quote_request', {
                               method: 'POST',
                               headers: {
@@ -543,7 +543,7 @@ class ClientQuotes extends React.PureComponent {
                               //
                               //
                             })
-                          }
+
                       }
                   }}
                     >

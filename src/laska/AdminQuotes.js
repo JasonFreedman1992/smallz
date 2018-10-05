@@ -4,10 +4,11 @@ import API from "./_laska_/API.js";
 // eslint-disable-next-line no-unused-vars
 import globals from "./_laska_/globals.js";
 import withNavigationProp from "./_laska_/withNavigationProp.js";
-import { Dimensions, ImageBackground, ScrollView, TouchableHighlight, Text, StyleSheet, View } from "react-native";
+import { RefreshControl, Dimensions, ImageBackground, ScrollView, TouchableHighlight, Text, StyleSheet, View } from "react-native";
 import img93176135 from "./jubavrli.png";
 import imgcadd08cd from "./BG.png";
 const moment = require('moment');
+
 
 let height = Dimensions.get('window').height;
 
@@ -64,11 +65,57 @@ class AdminQuotes extends React.PureComponent {
   constructor(props) {
     super(props);
 
-    this.state = {};
+    this.state = {
+      refreshing: false
+    };
 
     if (this.awake) {
       this.awake();
     }
+  }
+
+  _onRefresh = () => {
+
+    this.setState({
+      refreshing: true
+    })
+
+    fetch('https://us-central1-cecomputerrepair-6d460.cloudfunctions.net/quote_data_request', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        phone: "chris",
+      })
+    })
+    // reponse to json
+    .then(response => response.json())
+    .then(response => {
+      if(response.body === "Auth")
+      {
+        console.log(response);
+        //console.log(response.reason);
+        globals.quote_data = response.reason;
+        this.setState({
+          refreshing: false
+        })
+      }
+      else // response.body === "Denied"
+      {
+        console.log(response1);
+        this.setState({
+          refreshing: false
+        })
+      }
+    })
+    .catch(error1 => {
+      console.log(error1);
+      this.setState({
+        refreshing: false
+      })
+    });
   }
 
   render() {
@@ -80,7 +127,14 @@ class AdminQuotes extends React.PureComponent {
         <View style={styles.s7fe23c89}>
         <ImageBackground source={imgcadd08cd} style={styles.scadd08cd}>
           <View style={styles.s397ad170}>
-          <ScrollView>
+          <ScrollView
+            refreshControl={
+              <RefreshControl
+              refreshing={this.state.refreshing}
+              onRefresh={this._onRefresh}
+              />
+            }
+          >
             {globals.quote_data.map((repeatForItem, i) => (
               <TouchableHighlight
                 style={styles.s44622035}

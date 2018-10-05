@@ -4,7 +4,7 @@ import API from "./_laska_/API.js";
 // eslint-disable-next-line no-unused-vars
 import globals from "./_laska_/globals.js";
 import withNavigationProp from "./_laska_/withNavigationProp.js";
-import { ActivityIndicator, TextInput, KeyboardAvoidingView, Dimensions, ImageBackground, TouchableHighlight, ScrollView, Text, StyleSheet, View } from "react-native";
+import { RefreshControl, ActivityIndicator, TextInput, KeyboardAvoidingView, Dimensions, ImageBackground, TouchableHighlight, ScrollView, Text, StyleSheet, View } from "react-native";
 import img93176135 from "./jubavrli.png";
 import Icon from "./_laska_/Icon";
 import imgcadd08cd from "./BG.png";
@@ -171,11 +171,55 @@ class Current extends React.PureComponent {
       text_input_email: "",
       text_input_phone: "",
       response_reason: "",
+      refreshing: false
     };
 
     if (this.awake) {
       this.awake();
     }
+  }
+
+  _onRefresh = () => {
+
+    this.setState({
+      refreshing: true
+    })
+    fetch('https://us-central1-cecomputerrepair-6d460.cloudfunctions.net/order_data_request', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        admin: "Chris",
+      })
+    })
+    // reponse to json
+    .then(response2 => response2.json())
+    .then(response2 => {
+      if(response2.body === "Auth")
+      {
+        globals.current_data = response2.reason;
+        this.setState({
+          refreshing: false
+        })
+        //this.props.navigation.navigate("admin");
+      }
+      else
+      {
+        console.log(response2.reason);
+        this.setState({
+          refreshing: false
+        })
+      }
+
+    })
+    .catch(error2 => {
+      console.log("Error, ", error2);
+      this.setState({
+        refreshing: false
+      })
+    })
   }
 
   render() {
@@ -191,7 +235,14 @@ class Current extends React.PureComponent {
         <View style={styles.s7fe23c89}>
         <ImageBackground source={imgcadd08cd} style={styles.scadd08cd}>
           <View style={styles.s397ad170}>
-          <ScrollView>
+          <ScrollView
+            refreshControl={
+              <RefreshControl
+              refreshing={this.state.refreshing}
+              onRefresh={this._onRefresh}
+              />
+            }
+            >
             {globals.current_data.map((repeatForItem, i) => (
               <TouchableHighlight
                 style={styles.s44622035}
