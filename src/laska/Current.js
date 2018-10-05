@@ -4,7 +4,7 @@ import API from "./_laska_/API.js";
 // eslint-disable-next-line no-unused-vars
 import globals from "./_laska_/globals.js";
 import withNavigationProp from "./_laska_/withNavigationProp.js";
-import { RefreshControl, ActivityIndicator, TextInput, KeyboardAvoidingView, Dimensions, ImageBackground, TouchableHighlight, ScrollView, Text, StyleSheet, View } from "react-native";
+import { Picker, RefreshControl, ActivityIndicator, TextInput, KeyboardAvoidingView, Dimensions, ImageBackground, TouchableHighlight, ScrollView, Text, StyleSheet, View } from "react-native";
 import img93176135 from "./jubavrli.png";
 import Icon from "./_laska_/Icon";
 import imgcadd08cd from "./BG.png";
@@ -301,7 +301,14 @@ class Current extends React.PureComponent {
               <View style={styles.s8e82c08e}>
                 <View style={styles.sa2282081}>
                   <Text style={styles.s8aa63795}>Item</Text>
-                  <TextInput
+                  <Picker
+                    selectedValue={this.state.language}
+                    style={{ height: 50, width: 100 }}
+                    onValueChange={(itemValue, itemIndex) => this.setState({language: itemValue})}>
+                    <Picker.Item label="Java" value="java" />
+                    <Picker.Item label="JavaScript" value="js" />
+                  </Picker>
+                  {/* <TextInput
                     placeholder={`Item`}
                     placeholderTextColor={`rgba(255, 255, 255, 0.5)`}
                     style={styles.s7ba85f25}
@@ -310,7 +317,7 @@ class Current extends React.PureComponent {
                         text_input_item: text
                       })
                     }}
-                  />
+                  /> */}
                 </View>
                 <View style={styles.sa2282081}>
                   <Text style={styles.s8aa63795}>Description</Text>
