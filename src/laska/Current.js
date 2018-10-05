@@ -8,6 +8,7 @@ import { ActivityIndicator, TextInput, KeyboardAvoidingView, Dimensions, ImageBa
 import img93176135 from "./jubavrli.png";
 import Icon from "./_laska_/Icon";
 import imgcadd08cd from "./BG.png";
+const moment = require('moment');
 
 let height = Dimensions.get('window').height;
 
@@ -38,6 +39,15 @@ const styles = StyleSheet.create({
       justifyContent: `center`,
       maxHeight: 199,
       width: `100%`
+    },
+    item_body: {
+      color: `rgba(64, 253, 103, 1)`
+    },
+    item_date: {
+      color: `rgba(255, 255, 255, 1)`
+    },
+    item_phone: {
+      color: `rgba(192, 186, 255, 1)`
     },
     sd4c6b84e: { flex: 1, backgroundColor:`rgba(74, 74, 110, 1)`,
   borderColor: `rgba(198, 76, 243, 1)`,
@@ -77,6 +87,12 @@ sff493afb: { height: 100, width: '100%' },
       color: `rgba(255, 255, 255, 1)`,
       height: 20,
       margin: 5,
+      width: '100%'
+    },
+    s7ba85f26: {
+      color: `rgba(255, 255, 255, 1)`,
+      margin: 5,
+      flex: .35,
       width: '100%'
     },
     sa6743b22: {
@@ -148,7 +164,13 @@ class Current extends React.PureComponent {
 
     this.state = {
       current: "list",
-      bot_current: "form"
+      bot_current: "form",
+      text_input_item: "",
+      text_input_description: "",
+      text_input_name: "",
+      text_input_email: "",
+      text_input_phone: "",
+      response_reason: "",
     };
 
     if (this.awake) {
@@ -170,7 +192,7 @@ class Current extends React.PureComponent {
         <ImageBackground source={imgcadd08cd} style={styles.scadd08cd}>
           <View style={styles.s397ad170}>
           <ScrollView>
-            {props.eventsData.map((repeatForItem, i) => (
+            {globals.current_data.map((repeatForItem, i) => (
               <TouchableHighlight
                 style={styles.s44622035}
                 underlayColor={`rgba(255, 255, 255, 1)`}
@@ -184,9 +206,10 @@ class Current extends React.PureComponent {
                     style={styles.s93176135}
                   >
                     <View style={styles.s732b811e}>
-                      <Text>City</Text>
-                      <Text>Distance</Text>
-                      <Text>Date</Text>
+                    <Text style={styles.item_phone}>Item: {repeatForItem.item}</Text>
+                    <Text style={styles.item_phone}>Description: {repeatForItem.description}</Text>
+                      <Text style={styles.item_body}>Name: {repeatForItem.name.substring(0,40)}</Text>
+                      <Text style={styles.item_date}>Start Date: {moment(repeatForItem.timeSent).format('MMMM Do YYYY, h:mm:ss a')}</Text>
                     </View>
                   </ImageBackground>
                 </View>
@@ -226,43 +249,78 @@ class Current extends React.PureComponent {
             <ScrollView style={styles.s270ef303}>
               <View style={styles.s8e82c08e}>
                 <View style={styles.sa2282081}>
-                  <Text style={styles.s8aa63795}>Name</Text>
+                  <Text style={styles.s8aa63795}>Item</Text>
+                  <TextInput
+                    placeholder={`Item`}
+                    placeholderTextColor={`rgba(255, 255, 255, 0.5)`}
+                    style={styles.s7ba85f25}
+                    onChangeText={(text) => {
+                      setState({
+                        text_input_item: text
+                      })
+                    }}
+                  />
+                </View>
+                <View style={styles.sa2282081}>
+                  <Text style={styles.s8aa63795}>Description</Text>
+                  <TextInput
+                    multiline={true}
+                    blurOnSubmit={true}
+                    onChangeText={(text) => {
+                      setState({
+                        text_input_description: text,
+                        //text_input_body: text
+                      })
+                    }}
+                    onKeyPress={onKeyPress = ({nativeEvent}) => {
+                      if(nativeEvent.key === 'Enter')
+                      {
+
+                      }
+                    }}
+                    underlineColorAndroid="transparent"
+                    placeholder={`Description`}
+                    placeholderTextColor={`rgba(255, 255, 255, 0.5)`}
+                    style={styles.s7ba85f26}
+                  />
+                </View>
+                <View style={styles.sa2282081}>
+                  <Text style={styles.s8aa63795}>Name (Optional)</Text>
                   <TextInput
                     placeholder={`Name`}
                     placeholderTextColor={`rgba(255, 255, 255, 0.5)`}
                     style={styles.s7ba85f25}
+                    onChangeText={(text) => {
+                      setState({
+                        text_input_name: text,
+                      })
+                    }}
                   />
                 </View>
                 <View style={styles.sa2282081}>
-                  <Text style={styles.s8aa63795}>Email</Text>
+                  <Text style={styles.s8aa63795}>Email (Optional)</Text>
                   <TextInput
                     placeholder={`Email`}
                     placeholderTextColor={`rgba(255, 255, 255, 0.5)`}
                     style={styles.s7ba85f25}
+                    onChangeText={(text) => {
+                      setState({
+                        text_input_email: text,
+                      })
+                    }}
                   />
                 </View>
                 <View style={styles.sa2282081}>
-                  <Text style={styles.s8aa63795}>Phone Number</Text>
+                  <Text style={styles.s8aa63795}>Phone Number (Optional)</Text>
                   <TextInput
                     placeholder={`Phone #`}
                     placeholderTextColor={`rgba(255, 255, 255, 0.5)`}
                     style={styles.s7ba85f25}
-                  />
-                </View>
-                <View style={styles.sa2282081}>
-                  <Text style={styles.s8aa63795}>Item</Text>
-                  <TextInput
-                    placeholder={`Level`}
-                    placeholderTextColor={`rgba(255, 255, 255, 0.5)`}
-                    style={styles.s7ba85f25}
-                  />
-                </View>
-                <View style={styles.sa2282081}>
-                  <Text style={styles.s8aa63795}>Temporary Pin</Text>
-                  <TextInput
-                    placeholder={`Temporary Pin #`}
-                    placeholderTextColor={`rgba(255, 255, 255, 0.5)`}
-                    style={styles.s7ba85f25}
+                    onChangeText={(text) => {
+                      setState({
+                        text_input_phone: text,
+                      })
+                    }}
                   />
                 </View>
               </View>
@@ -294,24 +352,55 @@ class Current extends React.PureComponent {
                         bot_current: "loading"
                       })
 
-                      setTimeout(() => {
-                        setState({
-                          bot_current: "done"
+                      fetch('https://us-central1-cecomputerrepair-6d460.cloudfunctions.net/create_order_request', {
+                        method: 'POST',
+                        headers: {
+                          'Accept': 'application/json',
+                          'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                          item: this.state.text_input_item,
+                          description: this.state.text_input_description,
+                          name: this.state.text_input_name,
+                          email: this.state.text_input_email,
+                          phone: this.state.text_input_phone,
                         })
-                      }, 3000)
+                      })
+                      // reponse to json
+                      .then(response => response.json())
+                              
+                      .then(response => {
+                        console.log("loggin response")
+                        console.log(response);
+                        if(response.body === "Auth")
+                        {
+                          setState({
+                            response_reason: response.reason1,
+                            bot_current: "done"
+                          })
 
-                      setTimeout(() => {
-                        setState({
-                          bot_current: "wrong"
-                        })
-                      }, 6000)
+                          setTimeout(() => {
+                            setState({
+                              bot_current: "form"
+                            })
+                          }, 15000)
+                        }
+                        else
+                        {
+                          setState({
+                            bot_current: "wrong"
+                          })
 
-                      setTimeout(() => {
-                        setState({
-                          bot_current: "form"
-                        })
-                      }, 10000)
+                          setTimeout(() => {
+                            setState({
+                              bot_current: "form"
+                            })
+                          }, 3000)
+                        }
+                      })
+                      .catch(error => {
 
+                      })
                     }}
                     underlayColor={`rgba(255, 255, 255, .6)`}
                   >
@@ -328,7 +417,7 @@ class Current extends React.PureComponent {
               {state.bot_current === "done" ? (
               <View style={styles.sa6743b23}>
                   <Icon iconIdentifier={`FontAwesome/check`} style={styles.sb1470029} />
-                  <Text style={styles.sd1b9a1c5}>Submitted</Text>
+                  <Text style={styles.sd1b9a1c5}>{this.state.response_reason}</Text>
               </View>
 
               ): null}
