@@ -11,6 +11,7 @@ const globals = {
     quote_data: [],
     customer_data: [],
     status_data: [],
+    current_data: [],
 };
 
 
