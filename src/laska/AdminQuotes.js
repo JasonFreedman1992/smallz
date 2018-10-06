@@ -16,6 +16,7 @@ let height = Dimensions.get('window').height;
 currentBody = "";
 currentPhone = "";
 currentTimeSent = "";
+currentId = "";
 
 const styles = StyleSheet.create({
   sa7f27131: { color: `rgba(255, 255, 255, 1)`, fontSize: 30 },
@@ -238,6 +239,7 @@ class AdminQuotes extends React.PureComponent {
                   currentBody = repeatForItem.body;
                   currentPhone = repeatForItem.phone;
                   currentTimeSent = repeatForItem.timeSent;
+                  currentId = repeatForItem.id;
                   this.setState({
                     current: "article"
                   })
@@ -250,6 +252,7 @@ class AdminQuotes extends React.PureComponent {
                       <Text style={styles.item_phone}>Phone/Email: {repeatForItem.phone}</Text>
                       <Text style={styles.item_body}>Body: {repeatForItem.body.substring(0,40)}</Text>
                       <Text style={styles.item_date}>Date: {moment(repeatForItem.timeSent).format('MMMM Do YYYY, h:mm:ss a')}</Text>
+                      <Text style={styles.item_date}>ID: {repeatForItem.id}</Text>
                     </View>
                   </ImageBackground>
                 </View>

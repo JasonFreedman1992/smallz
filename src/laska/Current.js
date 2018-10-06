@@ -21,6 +21,7 @@ currentNotes = "";
 currentPhone = "";
 currentTimeSent = "";
 currentTimeFinished = "";
+currentCharges = [];
 
 const styles = StyleSheet.create({
     sa7f27131: { color: `rgba(255, 255, 255, 1)`, fontSize: 30 },
@@ -165,14 +166,38 @@ sff493afb: { height: 100, width: '100%' },
       justifyContent: `center`,
       margin: 10
     },
+    item_body12: {
+      color: `rgba(192, 186, 255, 1)`, margin: 5, fontSize: 18
+    },
     item_body2: {
       color: `rgba(64, 253, 103, 1)`, margin: 5, fontSize: 18
+    },
+    item_body23: {
+      color: `rgba(64, 253, 103, 1)`, margin: 5, fontSize: 18, flex: 1
+    },
+    item_body29: {
+      color: `rgba(192, 186, 255, 1)`, margin: 5, fontSize: 18, flex: 0
+    },
+    item_body25: {
+      color: `rgba(64, 253, 103, 1)`, margin: 5, fontSize: 18, flex: 0
     },
     item_date2: {
       color: `rgba(255, 255, 255, 1)`, margin: 5, fontSize: 18
     },
+    item_date23: {
+      color: `rgba(255, 255, 255, 1)`, margin: 5, fontSize: 18, flex: 1
+    },
     item_phone2: {
       color: `rgba(192, 186, 255, 1)`, margin: 5, fontSize: 18
+    },
+    item_phone23: {
+      color: `rgba(192, 186, 255, 1)`, margin: 5, fontSize: 18, flex: 1
+    },
+    item_phone27: {
+      color: `rgba(192, 186, 255, 1)`, margin: 5, fontSize: 18, flex: 1, marginTop: 0
+    },
+    item_phone3: {
+      color: `rgba(255, 255, 255, 1)`, margin: 5, fontSize: 18
     },
     s7181d70a: { alignItems: `center`, flex: 1, justifyContent: `center` },
     s1c4ded82: { height: `100%`, width: `100%` },
@@ -186,6 +211,9 @@ sff493afb: { height: 100, width: '100%' },
     sa6ccf43c: { backgroundColor: `rgba(0, 0, 0, .25)`, flex: 1, margin: 5 },
     sbb37430a: { color: `rgba(255, 255, 255, 1)`, fontSize: 18, margin: 5 },
     sa0cf86e2: { backgroundColor: `rgba(0, 0, 0, .25)`, flex: 1, margin: 5 },
+    column: {
+      flex: 1, flexDirection: `row`
+    }
 });
 class Current extends React.PureComponent {
   static navigationOptions = { title: "Current" };
@@ -269,18 +297,24 @@ class Current extends React.PureComponent {
               <KeyboardAvoidingView style={styles.s9be9753c}>
                 <ScrollView>
                     <View style={styles.sf02d78e4}>
-                        <Text style={styles.item_phone2}>Item: {currentItem}</Text>
-                        <Text style={styles.item_body2}>Description: {currentDescription}}</Text>
-                        <Text style={styles.item_phone2}>Name: {currentName}</Text>
-                        <Text style={styles.item_phone2}>Notes:</Text>
+                        <View style={styles.column}><Text style={styles.item_body2}>Item:</Text><TextInput style={styles.item_phone23}>{currentItem}</TextInput></View>
+                        <View style={styles.column}><Text style={styles.item_body2}>Description:</Text><TextInput multiline={true} style={styles.item_phone27}>{currentDescription}</TextInput></View>
+                        <View style={styles.column}><Text style={styles.item_body2}>Name:</Text><TextInput style={styles.item_phone23}>{currentName}</TextInput></View>
+                        <View style={styles.column}><Text style={styles.item_body2}>Notes:</Text><TextInput placeholderTextColor="grey" placeholder="Note" style={styles.item_body29}></TextInput></View>
                         {currentNotes.map((repeatForItem, i) => (
-                          <Text style={styles.item_body2}>{repeatForItem}</Text>
+                          <View style={styles.column}><TextInput style={styles.item_phone23}>{repeatForItem}</TextInput></View>
                         ))}
-                        <Text style={styles.item_phone2}>Email: {currentEmail}</Text>
-                        <Text style={styles.item_phone2}>Phone: {currentPhone}</Text>
-                        <Text style={styles.item_phone2}>Sign-up Date: {moment(currentTimeSent).format('MMMM Do YYYY, h:mm:ss a')}</Text>
-                        <Text style={styles.item_phone2}>Finish Date: {currentTimeFinished}</Text>
-                        <Text style={styles.item_body2}>ID: {currentId}</Text>
+                        <View style={styles.column}><Text style={styles.item_body2}>Charges:</Text><TextInput placeholderTextColor="grey" placeholder="Item" style={styles.item_body29}></TextInput><TextInput placeholderTextColor="grey" placeholder="Price" style={styles.item_body29}></TextInput></View>
+                        {currentCharges.map((repeatForItem, i) => (
+                          <View style={styles.column}><TextInput style={styles.item_body29}>{repeatForItem.item}</TextInput>
+                          <Text style={styles.item_phone3}>$</Text><TextInput style={styles.item_phone23}>{repeatForItem.price}</TextInput>
+                          </View>
+                        ))}
+                        <View style={styles.column}><Text style={styles.item_body2}>Email: </Text><TextInput style={styles.item_phone23}>{currentEmail}</TextInput></View>
+                        <View style={styles.column}><Text style={styles.item_body2}>Phone: </Text><TextInput style={styles.item_phone23}>{currentPhone}</TextInput></View>
+                        <Text style={styles.item_body12}>Sign-up Date: {moment(currentTimeSent).format('MMMM Do YYYY, h:mm:ss a')}</Text>
+                        <Text style={styles.item_body12}>Finish Date: {currentTimeFinished}</Text>
+                        <Text style={styles.item_body12}>ID: {currentId}</Text>
                     </View>
                   {state.article_bot_current === "form" ? (
                     <View style={styles.s3e2c715c}>
@@ -330,7 +364,7 @@ class Current extends React.PureComponent {
                           }}
                           underlayColor={`rgba(255, 255, 255, .6)`}
                         >
-                          <Text style={styles.s88b1bf09}>Mark as Read</Text>
+                          <Text style={styles.s88b1bf09}>Save Changes</Text>
                         </TouchableHighlight>
                       </View>
                     </View>
@@ -386,7 +420,8 @@ class Current extends React.PureComponent {
                   currentId = repeatForItem.id
                   currentTimeSent = repeatForItem.timeSent
                   currentTimeFinished = repeatForItem.timeFinished
-
+                  currentCharges = repeatForItem.charges
+                  
                     setState({
                       current: "article"
                     })
