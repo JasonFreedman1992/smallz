@@ -13,6 +13,10 @@ const moment = require('moment');
 
 let height = Dimensions.get('window').height;
 
+currentBody = "";
+currentPhone = "";
+currentTimeSent = "";
+
 const styles = StyleSheet.create({
   sa7f27131: { color: `rgba(255, 255, 255, 1)`, fontSize: 30 },
   s50a58322: {
@@ -133,6 +137,15 @@ const styles = StyleSheet.create({
       fontSize: 18,
       fontWeight: `bold`
     },
+        item_body2: {
+      color: `rgba(64, 253, 103, 1)`, margin: 5, fontSize: 18
+    },
+    item_date2: {
+      color: `rgba(255, 255, 255, 1)`, margin: 5, fontSize: 18
+    },
+    item_phone2: {
+      color: `rgba(192, 186, 255, 1)`, margin: 5, fontSize: 18
+    },
 
 });
 class AdminQuotes extends React.PureComponent {
@@ -222,6 +235,9 @@ class AdminQuotes extends React.PureComponent {
                 key={`${i}-44622035-204b-428c-84fd-3560afae236d`}
                 any={repeatForItem}
                 onPress={() => {
+                  currentBody = repeatForItem.body;
+                  currentPhone = repeatForItem.phone;
+                  currentTimeSent = repeatForItem.timeSent;
                   this.setState({
                     current: "article"
                   })
@@ -251,13 +267,9 @@ class AdminQuotes extends React.PureComponent {
                 <ScrollView>
                   <View>
                     <View style={styles.sb6797fe4}>
-                      <Text style={styles.sedd01e1e}>Phone/Email:</Text>
-                      <Text style={styles.sdf566e0f}>Name:</Text>
-                      <Text style={styles.sc1cfa38d}>
-                        Body: what if this was so big thati t got so big that
-                        itwas off to the side
-                      </Text>
-                      <Text style={styles.sbb37430a}>Date:</Text>
+                      <Text style={styles.item_phone2}>Phone/Email: {currentPhone}</Text>
+                      <Text style={styles.item_body2}>Body: {currentBody}</Text>
+                      <Text style={styles.item_phone2}>Date Sent: {currentTimeSent}</Text>
                     </View>
                   </View>
                   {state.bot_current === "form" ? (

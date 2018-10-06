@@ -12,6 +12,16 @@ const moment = require('moment');
 
 let height = Dimensions.get('window').height;
 
+currentDescription = "";
+currentEmail = "";
+currentId = "";
+currentItem = "";
+currentName = "";
+currentNotes = "";
+currentPhone = "";
+currentTimeSent = "";
+currentTimeFinished = "";
+
 const styles = StyleSheet.create({
     sa7f27131: { color: `rgba(255, 255, 255, 1)`, fontSize: 30 },
     s50a58322: {
@@ -155,6 +165,15 @@ sff493afb: { height: 100, width: '100%' },
       justifyContent: `center`,
       margin: 10
     },
+    item_body2: {
+      color: `rgba(64, 253, 103, 1)`, margin: 5, fontSize: 18
+    },
+    item_date2: {
+      color: `rgba(255, 255, 255, 1)`, margin: 5, fontSize: 18
+    },
+    item_phone2: {
+      color: `rgba(192, 186, 255, 1)`, margin: 5, fontSize: 18
+    },
     s7181d70a: { alignItems: `center`, flex: 1, justifyContent: `center` },
     s1c4ded82: { height: `100%`, width: `100%` },
     s9be9753c: { flex: 1 },
@@ -250,13 +269,18 @@ class Current extends React.PureComponent {
               <KeyboardAvoidingView style={styles.s9be9753c}>
                 <ScrollView>
                     <View style={styles.sf02d78e4}>
-                        <Text style={styles.sedd01e1e}>Phone/Email:</Text>
-                        <Text style={styles.sdf566e0f}>Name:</Text>
-                        <Text style={styles.sc1cfa38d}>
-                          Body: what if this was so big thati t got so big that
-                          itwas off to the side
-                        </Text>
-                        <Text style={styles.sbb37430a}>Date:</Text>
+                        <Text style={styles.item_phone2}>Item: {currentItem}</Text>
+                        <Text style={styles.item_body2}>Description: {currentDescription}}</Text>
+                        <Text style={styles.item_phone2}>Name: {currentName}</Text>
+                        <Text style={styles.item_phone2}>Notes:</Text>
+                        {currentNotes.map((repeatForItem, i) => (
+                          <Text style={styles.item_body2}>{repeatForItem}</Text>
+                        ))}
+                        <Text style={styles.item_phone2}>Email: {currentEmail}</Text>
+                        <Text style={styles.item_phone2}>Phone: {currentPhone}</Text>
+                        <Text style={styles.item_phone2}>Sign-up Date: {moment(currentTimeSent).format('MMMM Do YYYY, h:mm:ss a')}</Text>
+                        <Text style={styles.item_phone2}>Finish Date: {currentTimeFinished}</Text>
+                        <Text style={styles.item_body2}>ID: {currentId}</Text>
                     </View>
                   {state.article_bot_current === "form" ? (
                     <View style={styles.s3e2c715c}>
@@ -353,6 +377,16 @@ class Current extends React.PureComponent {
                 underlayColor={`rgba(255, 255, 255, 1)`}
                 key={`${i}-44622035-204b-428c-84fd-3560afae236d`}
                 onPress={() => {
+                  currentDescription = repeatForItem.description;
+                  currentEmail = repeatForItem.email;
+                  currentName = repeatForItem.name;
+                  currentPhone = repeatForItem.phone;
+                  currentItem = repeatForItem.item;
+                  currentNotes = repeatForItem.notes;
+                  currentId = repeatForItem.id
+                  currentTimeSent = repeatForItem.timeSent
+                  currentTimeFinished = repeatForItem.timeFinished
+
                     setState({
                       current: "article"
                     })
