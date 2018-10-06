@@ -39,7 +39,7 @@ let color7 = "pink";
 const styles = StyleSheet.create({
     slide1: 
     {
-        backgroundColor: '#000000',
+        backgroundColor: `rgba(0, 0, 0, .35)`,
         
         width: width,
         justifyContent: 'center',
@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
     },
     slide2: 
     {
-        backgroundColor: '#ffffff',
+        backgroundColor: `rgba(0, 0, 0, .35)`,
         
         width: width,
         justifyContent: 'center',
@@ -55,7 +55,7 @@ const styles = StyleSheet.create({
     },
     slide3: 
     {
-        backgroundColor: '#ffffff',
+        backgroundColor: `rgba(0, 0, 0, .35)`,
         
         width: width,
         justifyContent: 'center',
@@ -134,7 +134,7 @@ const styles = StyleSheet.create({
         width: 100
       },
       s222ad388: {
-        color: `rgba(141, 54, 255, 1)`,
+        color: `rgba(64, 253, 103, 1)`,
         fontSize: 24,
         fontWeight: `900`,
         marginBottom: 20,
@@ -149,7 +149,7 @@ const styles = StyleSheet.create({
         width: 330
       },
       sb44318da: {
-        color: `rgba(141, 54, 255, 1)`,
+        color: `rgba(64, 253, 103, 1)`,
         fontSize: 24,
         fontWeight: `900`,
         marginBottom: 20,
@@ -158,9 +158,9 @@ const styles = StyleSheet.create({
       sfe57bb66: { color: `rgba(255, 255, 255, 1)`, fontSize: 18, marginBottom: 20 },
       sb9d0a020: { alignItems: `center`, margin: 20 },
       s50cd3d52ContentContainerStyle: { alignItems: `center` },
-      s50cd3d52: { backgroundColor: `rgba(0, 0, 0, 1)` },
+      s50cd3d52: { /*backgroundColor: `rgba(0, 0, 0, 1)`*/ },
       sbf9e8383: {
-        backgroundColor: `rgba(255, 255, 255, 1)`,
+        //backgroundColor: `rgba(255, 255, 255, 1)`,
         flex: 1,
         width: `100%`
       },
@@ -438,7 +438,7 @@ class Services2view extends React.PureComponent {
                         source={img3d6da1b1}
                         style={styles.s3d6da1b1}
                     />
-                    <Text style={styles.sb44318da}>Chris Esponda</Text>
+                    <Text style={styles.sb44318da}>Jay Castillo</Text>
                     <Text style={styles.sfe57bb66}>
                         Chris Esponda is the owner of C.E. Computer Repairs. 
                         Chris manages, fulfills orders, and is the staple friendly

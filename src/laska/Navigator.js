@@ -54,7 +54,7 @@ class Navigator extends React.PureComponent {
   }
 
   awake() {
-    const { navigate, goBack } = this.props.navigation || {};
+    const { reset, navigate, goBack } = this.props.navigation || {};
   }
 
   render() {

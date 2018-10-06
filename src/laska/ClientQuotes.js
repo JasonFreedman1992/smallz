@@ -250,7 +250,6 @@ const styles = StyleSheet.create({
   sc600dfe5: { flex: 1 },
   s09604a47: { flex: 1 },
   sea5f27a3: {
-    backgroundColor: `rgba(0, 0, 0, 1)`,
     height: `100%`,
     maxWidth: `100%`,
     flex: 1
@@ -317,7 +316,7 @@ class ClientQuotes extends React.PureComponent {
     return (
       
       <Fragment>
-        <ImageBackground source={imgea5f27a3} style={styles.sea5f27a3}>
+        <ImageBackground style={styles.sea5f27a3}>
           <KeyboardAvoidingView behavior={`padding`} style={styles.s09604a47}>
             <ScrollView style={styles.sc600dfe5}>
               <View>

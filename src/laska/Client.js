@@ -12,12 +12,14 @@ import Services2view from "./Services2view.js";
 import History from "./History.js";
 import ClientQuotes from "./ClientQuotes.js";
 import Icon from "./_laska_/Icon";
+import imgcadd08cd from "./BG.png";
 import {
   StyleSheet,
   Text,
   View,
   TouchableHighlight,
-  SafeAreaView
+  SafeAreaView,
+  ImageBackground,
 } from "react-native";
 import { Permissions, Notifications } from "expo";
 
@@ -54,6 +56,11 @@ const styles = StyleSheet.create({
     backgroundColor: `rgba(202, 192, 241, 1)`,
     flex: 1
   },
+  backz:
+  {
+    flex: 1,
+    backgroundColor: `rgba(0, 0, 0, 1)`
+  }
 });
 
 registerForPushNotifications = async () => {
@@ -104,6 +111,7 @@ class Client extends React.PureComponent {
     const navigate = this.props.navigation;
     return (
         <Fragment>
+          <ImageBackground source={imgcadd08cd} style={styles.backz}>
           {state.current_tab === "status" ? <Statusview /> : null}
           {state.current_tab === "history" ? <History navigation={navigate}/> : null}
           {state.current_tab === "quotes" ? <ClientQuotes navigation={navigate}/> : null}
@@ -245,6 +253,7 @@ class Client extends React.PureComponent {
               </View>
             </TouchableHighlight>
           </View>
+          </ImageBackground>
       </Fragment>
     );
   }

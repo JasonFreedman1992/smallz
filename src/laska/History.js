@@ -34,9 +34,8 @@ const styles = StyleSheet.create({
     sd4c6b84e: { flex: 1 },
     s44622035: { height: (height-85)/7.85, backgroundColor: `rgba(74, 74, 110, 1)`,  borderColor: `rgba(198, 76, 243, 1)`,
     borderWidth: 1, },
-    s7fe23c89: { backgroundColor: `rgba(255, 255, 255, 1)`, flex: 1 },
+    s7fe23c89: { flex: 1 },
     scadd08cd: {
-        backgroundColor: `rgba(0, 0, 0, 1)`,
         height: `100%`,
         opacity: 1,
         width: `100%`
@@ -66,7 +65,7 @@ class History extends React.PureComponent {
     return (
       <Fragment>
         <View style={styles.s7fe23c89}>
-          <ImageBackground source={imgcadd08cd} style={styles.scadd08cd}>
+          <ImageBackground style={styles.scadd08cd}>
             <View style={styles.s397ad170}>
               <ScrollView>
                 {props.eventsData.map((repeatForItem, i) => (
