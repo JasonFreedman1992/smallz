@@ -11,7 +11,7 @@ import {LinearGradient} from "expo";
 import img60d4716c from "./chrispurplelogo.png";
 import img3d6da1b1 from "./chris.jpg";
 import Icon from "./_laska_/Icon";
-import imgcellphonelab from "./hollowtext.png";
+import imgcellphonelab from "./Logom.png";
 import imgjasonfreedmancode from "./LogoMakr_584eO.png";
 import imgjason from "./jason.png";
 
@@ -451,9 +451,7 @@ class Services2view extends React.PureComponent {
                     </View>
                 </ScrollView>
                 </View>
-             
             </View>
-
             <View style={styles.slide3}>
 
                 <View style={styles.sbf9e8383}>
@@ -502,9 +500,8 @@ class Services2view extends React.PureComponent {
                     />
                     <Text style={styles.s222ad388}>Jason Freedman Code</Text>
                     <Text style={styles.s543fbc82}>
-                        Providing desktop, laptop, and cel-phone repairs, diagnostics,
-                        and consulting to the Lynnwood and Seattle areas for 5+ years.
-                        As of 2018 CE Computer Repairs is proud to be offering mobile and web apps!
+                        Jasonfreedmancode.com is the website of Freelance developer Jason Freedman, whom is partnered with Chris and Jay
+                        to help bring software solutions to the table.
                     </Text>
                     <Image
                         resizeMode={`contain`}
@@ -514,7 +511,8 @@ class Services2view extends React.PureComponent {
                     <Text style={styles.sb44318da}>Jason Freedman</Text>
                     <Text style={styles.sfe57bb66}>
                     Jason Freedman is very fit in the
-                    nerd-cave. Forever sworn to craft websites and mobile apps until
+                    nerd-cave. He writes code at the speed of light, debugs massive data piplines with such
+                    elegance, and even goes for runs.  He is forever sworn to craft websites and mobile apps until
                     his fingers fall off.
                     </Text>
                     </View>

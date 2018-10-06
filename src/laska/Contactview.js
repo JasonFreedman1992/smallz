@@ -5,7 +5,7 @@ import API from "./_laska_/API.js";
 import globals from "./_laska_/globals.js";
 import withNavigationProp from "./_laska_/withNavigationProp.js";
 import Icon from "./_laska_/Icon";
-import { StyleSheet, Text, View, TouchableHighlight } from "react-native";
+import { Linking, StyleSheet, Text, View, TouchableHighlight } from "react-native";
 
 const styles = StyleSheet.create({
   s74860ae4: { color: `rgba(59, 89, 152, 1)`, fontSize: 40 },
@@ -91,7 +91,9 @@ class Contactview extends React.PureComponent {
       <Fragment>
         <View style={styles.s0ac6189a}>
           <View style={styles.s96368d72}>
-            <TouchableHighlight style={styles.s147db180} onPress={() => {}}>
+            <TouchableHighlight style={styles.s147db180} onPress={() => {
+              Linking.openURL('https://www.facebook.com/CEComputerRepair/');
+            }}>
               <View style={styles.s93af10a8}>
                 <Icon
                   iconIdentifier={`FontAwesome/facebook`}
@@ -100,7 +102,9 @@ class Contactview extends React.PureComponent {
                 <Text style={styles.s9e4df402}>FB</Text>
               </View>
             </TouchableHighlight>
-            <TouchableHighlight style={styles.s1e73dd22} onPress={() => {}}>
+            <TouchableHighlight style={styles.s1e73dd22} onPress={() => {
+              Linking.openURL('https://www.instagram.com/cecomputerrepairs/');
+            }}>
               <View style={styles.s58ba6bf7}>
                 <Icon
                   iconIdentifier={`FontAwesome/instagram`}
@@ -110,7 +114,7 @@ class Contactview extends React.PureComponent {
               </View>
             </TouchableHighlight>
             <TouchableHighlight style={styles.sb9be6d83} onPress={() => {
-              navigate.navigate("login");
+              Linking.openURL('https://www.yelp.com/biz/ce-computer-repair-lynnwood');
             }}>
               <View style={styles.s75e14fe2}>
                 <Icon
