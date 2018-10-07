@@ -154,7 +154,7 @@ sff493afb: { height: 100, width: '100%' },
     },
     s3e2c715c: {
       backgroundColor: `rgba(0, 0, 0, 0.25)`,
-      height: 210,
+      height: 410,
       margin: 20,
       marginTop: 0
     },
@@ -162,6 +162,20 @@ sff493afb: { height: 100, width: '100%' },
     sc4aa036b: {
       alignItems: `center`,
       backgroundColor: `rgba(175, 163, 233, 0.69)`,
+      flex: 1,
+      justifyContent: `center`,
+      margin: 10
+    },
+    sc4aa036c: {
+      alignItems: `center`,
+      backgroundColor: `rgba(55, 63, 103, 0.79)`,
+      flex: 1,
+      justifyContent: `center`,
+      margin: 10
+    },
+    sc4aa036d: {
+      alignItems: `center`,
+      backgroundColor: `rgba(105, 63, 85, 0.79)`,
       flex: 1,
       justifyContent: `center`,
       margin: 10
@@ -250,17 +264,6 @@ class Current extends React.PureComponent {
       currentCharges: [],
 
     };
-
-    // currentDescription = "";
-    // currentEmail = "";
-    // currentId = "";
-    // currentItem = "";
-    // currentName = "";
-    // currentNotes = "";
-    // currentPhone = "";
-    // currentTimeSent = "";
-    // currentTimeFinished = "";
-    // currentCharges = [];
 
     if (this.awake) {
       this.awake();
@@ -457,16 +460,35 @@ class Current extends React.PureComponent {
                           style={styles.sc4aa036b}
                           onPress={() => {
 
-                            const charge = {
-                              price: state.currentNewChargePrice,
-                              item: state.currentNewChargeItem
-                            }
-
                             setState({
                               article_bot_current: "loading",
-                              currentCharges: state.currentCharges.push(charge),
-                              currentNotes: state.currentNotes.push(state.currentNewNote)
                             })
+
+
+                            if(state.currentNewChargePrice !== "" && state.currentNewChargeItem !== "")
+                            {
+                              const charge = {
+                                price: state.currentNewChargePrice,
+                                item: state.currentNewChargeItem
+                              }
+                              setState({
+                                currentCharges: state.currentCharges.push(charge),
+                                
+                              })
+                            }
+
+                            if(state.currentNewNote !== "")
+                            {
+                              setState({
+                                currentNotes: state.currentNotes.push(state.currentNewNote)
+                              })
+                            }
+
+                            // setState({
+                            //   article_bot_current: "loading",
+                            //   currentCharges: state.currentCharges.push(charge),
+                            //   currentNotes: state.currentNotes.push(state.currentNewNote)
+                            // })
                             
                             setTimeout(() => {
                               setState({
@@ -503,58 +525,219 @@ class Current extends React.PureComponent {
                             .then(response => {
                               if(response.body === "Auth")
                               {
-                                setTimeout(() => {
-                                  setState({
-                                    article_bot_current: "done"
-                                  })
-                                },3000)
-    
-                                setTimeout(() => {
-                                  setState({
-                                    article_bot_current: "wrong"
-                                  })
-                                }, 6000)
-    
+                                setState({
+                                  article_bot_current: "done"
+                                })
+
                                 setTimeout(() => {
                                   setState({
                                     article_bot_current: "form"
                                   })
-                                }, 9000)
+                                }, 2000)
                               }
                               else
                               {
-
+                                setState({
+                                  article_bot_current: "wrong"
+                                })
+                                setTimeout(() => {
+                                  setState({
+                                    article_bot_current: "form"
+                                  })
+                                }, 2000)
                               }
                             })
                             .catch(error => {
                               console.log("error: ", error);
                             })
-
-                            //
-                            // submit
-
-
-                            // setTimeout(() => {
-                            //   setState({
-                            //     article_bot_current: "done"
-                            //   })
-                            // },3000)
-
-                            // setTimeout(() => {
-                            //   setState({
-                            //     article_bot_current: "wrong"
-                            //   })
-                            // }, 6000)
-
-                            // setTimeout(() => {
-                            //   setState({
-                            //     article_bot_current: "form"
-                            //   })
-                            // }, 9000)
                           }}
                           underlayColor={`rgba(255, 255, 255, .6)`}
                         >
                           <Text style={styles.s88b1bf09}>Save Changes</Text>
+                        </TouchableHighlight>
+                      </View>
+                      <View style={styles.sff493afc}>
+                        <TouchableHighlight
+                          style={styles.sc4aa036c}
+                          onPress={() => {
+
+                            setState({
+                              article_bot_current: "loading",
+                            })
+
+
+                            if(state.currentNewChargePrice !== "" && state.currentNewChargeItem !== "")
+                            {
+                              const charge = {
+                                price: state.currentNewChargePrice,
+                                item: state.currentNewChargeItem
+                              }
+                              setState({
+                                currentCharges: state.currentCharges.push(charge),
+                                
+                              })
+                            }
+
+                            if(state.currentNewNote !== "")
+                            {
+                              setState({
+                                currentNotes: state.currentNotes.push(state.currentNewNote)
+                              })
+                            }
+
+                            // setState({
+                            //   article_bot_current: "loading",
+                            //   currentCharges: state.currentCharges.push(charge),
+                            //   currentNotes: state.currentNotes.push(state.currentNewNote)
+                            // })
+                            
+                            setTimeout(() => {
+                              setState({
+                                currentNewChargeItem: "",
+                                currentNewChargePrice: "",
+                                currentNewNote: "",
+                              })
+                            },500)
+
+                            fetch('https://us-central1-cecomputerrepair-6d460.cloudfunctions.net/update_order_to_phone', {
+                              method: 'POST',
+                              headers: {
+                                'Accept': 'application/json',
+                                'Content-Type': 'application/json',
+                              },
+                              body: JSON.stringify({
+                                id: state.currentId,
+                                phone: state.currentPhone,
+                              })
+                            })
+                            // reponse to json
+                            .then(response => response.json())
+                                    
+                            .then(response => {
+                              if(response.body === "Auth")
+                              {
+                                setState({
+                                  article_bot_current: "done"
+                                })
+
+                                setTimeout(() => {
+                                  setState({
+                                    article_bot_current: "form"
+                                  })
+                                }, 2000)
+                              }
+                              else
+                              {
+                                setState({
+                                  article_bot_current: "wrong"
+                                })
+                                setTimeout(() => {
+                                  setState({
+                                    article_bot_current: "form"
+                                  })
+                                }, 2000)
+                              }
+                            })
+                            .catch(error => {
+                              console.log("error: ", error);
+                            })
+                          }}
+                          underlayColor={`rgba(255, 255, 255, .6)`}
+                        >
+                          <Text style={styles.s88b1bf09}>Save Changes to Phone</Text>
+                        </TouchableHighlight>
+                      </View>
+                      <View style={styles.sff493afc}>
+                        <TouchableHighlight
+                          style={styles.sc4aa036d}
+                          onPress={() => {
+
+                            setState({
+                              article_bot_current: "loading"
+                            })
+
+
+                            if(state.currentNewChargePrice !== "" && state.currentNewChargeItem !== "")
+                            {
+                              const charge = {
+                                price: state.currentNewChargePrice,
+                                item: state.currentNewChargeItem
+                              }
+                              setState({
+                                currentCharges: state.currentCharges.push(charge),
+                                
+                              })
+                            }
+
+                            if(state.currentNewNote !== "")
+                            {
+                              setState({
+                                currentNotes: state.currentNotes.push(state.currentNewNote)
+                              })
+                            }
+
+                            // setState({
+                            //   article_bot_current: "loading",
+                            //   currentCharges: state.currentCharges.push(charge),
+                            //   currentNotes: state.currentNotes.push(state.currentNewNote)
+                            // })
+                            
+                            setTimeout(() => {
+                              setState({
+                                currentNewChargeItem: "",
+                                currentNewChargePrice: "",
+                                currentNewNote: "",
+                              })
+                            },500)
+
+                            
+
+                            fetch('https://us-central1-cecomputerrepair-6d460.cloudfunctions.net/delete_order', {
+                              method: 'POST',
+                              headers: {
+                                'Accept': 'application/json',
+                                'Content-Type': 'application/json',
+                              },
+                              body: JSON.stringify({
+                                id: state.currentId,
+                              })
+                            })
+                            // reponse to json
+                            .then(response => response.json())
+                                    
+                            .then(response => {
+
+                              if(response.body === "Auth")
+                              {
+                                setState({
+                                  article_bot_current: "done"
+                                })
+
+                                setTimeout(() => {
+                                  setState({
+                                    article_bot_current: "form"
+                                  })
+                                }, 2000)
+                              }
+                              else
+                              {
+                                setState({
+                                  article_bot_current: "wrong"
+                                })
+                                setTimeout(() => {
+                                  setState({
+                                    article_bot_current: "form"
+                                  })
+                                }, 2000)
+                              }
+                            })
+                            .catch(error => {
+                              console.log("error: ", error);
+                            })
+                          }}
+                          underlayColor={`rgba(255, 255, 255, .6)`}
+                        >
+                          <Text style={styles.s88b1bf09}>Mark as Finished</Text>
                         </TouchableHighlight>
                       </View>
                     </View>
