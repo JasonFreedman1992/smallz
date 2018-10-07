@@ -252,7 +252,6 @@ class AdminQuotes extends React.PureComponent {
                       <Text style={styles.item_phone}>Phone/Email: {repeatForItem.phone}</Text>
                       <Text style={styles.item_body}>Body: {repeatForItem.body.substring(0,40)}</Text>
                       <Text style={styles.item_date}>Date: {moment(repeatForItem.timeSent).format('MMMM Do YYYY, h:mm:ss a')}</Text>
-                      <Text style={styles.item_date}>ID: {repeatForItem.id}</Text>
                     </View>
                   </ImageBackground>
                 </View>
@@ -273,6 +272,7 @@ class AdminQuotes extends React.PureComponent {
                       <Text style={styles.item_phone2}>Phone/Email: {currentPhone}</Text>
                       <Text style={styles.item_body2}>Body: {currentBody}</Text>
                       <Text style={styles.item_phone2}>Date Sent: {currentTimeSent}</Text>
+                      <Text style={styles.item_phone2}>ID: {currentId}</Text>
                     </View>
                   </View>
                   {state.bot_current === "form" ? (
@@ -297,29 +297,57 @@ class AdminQuotes extends React.PureComponent {
                         <TouchableHighlight
                           style={styles.sc4aa036b}
                           onPress={() => {
-                            //
-                            // submit
+
                             setState({
                               bot_current: "loading"
                             })
-
-                            setTimeout(() => {
-                              setState({
-                                bot_current: "done"
+                            //
+                            // submit
+                            fetch('https://us-central1-cecomputerrepair-6d460.cloudfunctions.net/delete_quote', {
+                              method: 'POST',
+                              headers: {
+                                'Accept': 'application/json',
+                                'Content-Type': 'application/json',
+                              },
+                              body: JSON.stringify({
+                                id: currentId
                               })
-                            },3000)
+                            })
+                            // reponse to json
+                            .then(response => response.json())
+                                    
+                            .then(response => {
+                              console.log(response);
+                              if(response.body === "Auth")
+                              {
+                                setState({
+                                  bot_current: "done"
+                                })
 
-                            setTimeout(() => {
-                              setState({
-                                bot_current: "wrong"
-                              })
-                            }, 6000)
+                                setTimeout(() => {
+                                  setState({
+                                    bot_current: "form"
+                                  })
+                                }, 2000)
+                              }
+                              else
+                              {
+                                setState({
+                                  bot_current: "wrong"
+                                })
 
-                            setTimeout(() => {
-                              setState({
-                                bot_current: "form"
-                              })
-                            }, 9000)
+                              setTimeout(() => {
+                                setState({
+                                  bot_current: "form"
+                                })
+                              }, 2000)
+                              }
+                            })
+                            .catch(error => {
+                              console.log("error: " + error);
+                              console.log("response: " + response)
+                            })
+
                           }}
                           underlayColor={`rgba(255, 255, 255, .6)`}
                         >

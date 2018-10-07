@@ -9,6 +9,7 @@ import cecomputerslogo from "./LogoChris.jpg";
 import celphonelablogo from "./LogoMakr_1U89to.png";
 import {LinearGradient} from "expo";
 import img60d4716c from "./chrispurplelogo.png";
+import jay from "./jaycastillo.jpg"
 import img3d6da1b1 from "./chris.jpg";
 import Icon from "./_laska_/Icon";
 import imgcellphonelab from "./Logom.png";
@@ -142,9 +143,23 @@ const styles = StyleSheet.create({
       },
       s543fbc82: { color: `rgba(255, 255, 255, 1)`, fontSize: 18, marginBottom: 20 },
       s3d6da1b1: {
-        height: 200,
+        height: 250,
         marginBottom: 20,
-        maxHeight: 260,
+        maxHeight: 310,
+        maxWidth: 620,
+        width: 330
+      },
+      s3d6da1bx: {
+        height: 280,
+        marginBottom: 20,
+        maxHeight: 340,
+        maxWidth: 620,
+        width: 330
+      },
+      s3d6da1bz: {
+        height: 330,
+        marginBottom: 20,
+        maxHeight: 330,
         maxWidth: 620,
         width: 330
       },
@@ -435,8 +450,8 @@ class Services2view extends React.PureComponent {
                     </Text>
                     <Image
                         resizeMode={`contain`}
-                        source={img3d6da1b1}
-                        style={styles.s3d6da1b1}
+                        source={jay}
+                        style={styles.s3d6da1bz}
                     />
                     <Text style={styles.sb44318da}>Jay Castillo</Text>
                     <Text style={styles.sfe57bb66}>
@@ -506,7 +521,7 @@ class Services2view extends React.PureComponent {
                     <Image
                         resizeMode={`contain`}
                         source={imgjason}
-                        style={styles.s3d6da1b1}
+                        style={styles.s3d6da1bx}
                     />
                     <Text style={styles.sb44318da}>Jason Freedman</Text>
                     <Text style={styles.sfe57bb66}>

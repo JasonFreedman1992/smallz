@@ -199,6 +199,9 @@ sff493afb: { height: 100, width: '100%' },
     item_phone3: {
       color: `rgba(255, 255, 255, 1)`, margin: 5, fontSize: 18
     },
+    item_phone37: {
+      color: `rgba(255, 255, 255, 1)`, margin: 5, marginRight: 0, fontSize: 18
+    },
     s7181d70a: { alignItems: `center`, flex: 1, justifyContent: `center` },
     s1c4ded82: { height: `100%`, width: `100%` },
     s9be9753c: { flex: 1 },
@@ -230,8 +233,34 @@ class Current extends React.PureComponent {
       text_input_phone: "",
       response_reason: "",
       refreshing: false,
-      article_bot_current: "form"
+      article_bot_current: "form",
+
+      currentNewNote: "",
+      currentNewChargePrice: 0,
+      currentNewChargeItem: "",
+      currentDescription: "",
+      currentEmail: "",
+      currentId: "",
+      currentItem: "",
+      currentName: "",
+      currentNotes: [],
+      currentPhone: "",
+      currentTimeSent: "",
+      currentTimeFinished: "",
+      currentCharges: [],
+
     };
+
+    // currentDescription = "";
+    // currentEmail = "";
+    // currentId = "";
+    // currentItem = "";
+    // currentName = "";
+    // currentNotes = "";
+    // currentPhone = "";
+    // currentTimeSent = "";
+    // currentTimeFinished = "";
+    // currentCharges = [];
 
     if (this.awake) {
       this.awake();
@@ -281,12 +310,101 @@ class Current extends React.PureComponent {
     })
   }
 
+  textInputHandle(i, text, notei)
+  {
+    switch(i)
+    {
+      case 0:
+
+        this.setState({
+          currentItem: text
+        })
+
+        break;
+
+      case 1:
+
+        this.setState({
+          currentDescription: text
+        })
+      
+        break;
+
+      case 2:
+
+        this.setState({
+          currentName: text
+        })
+
+        break;
+
+      case 3:
+
+        this.setState({
+          currentNewNote: text
+        })
+      
+        break;
+
+      case 4:
+        const currentNotes = this.state.currentNotes
+        currentNotes[notei] = text 
+        this.setState({
+          currentNotes: currentNotes
+        })
+        break;
+
+      case 5:
+        this.setState({
+          currentNewChargeItem: text,
+        })
+        break;
+
+      case 6:
+        this.setState({
+          currentNewChargePrice: text,
+        })
+        break;
+
+      case 7:
+        const currentCharges1 = this.state.currentCharges;
+        currentCharges1[notei].item = text;
+        this.setState({
+          currentCharges: currentCharges1
+        })
+        break;
+
+      case 8:
+        const currentCharges2 = this.state.currentCharges;
+        currentCharges2[notei].price = text;
+        this.setState({
+          currentCharges: currentCharges2
+        })
+        break;
+      case 9:
+        
+        this.setState({
+          currentEmail: text
+        })
+
+        break;
+      case 10:
+        
+      this.setState({
+        currentPhone: text
+      })
+
+        break;
+    }
+  }
+
   render() {
 
     const { props, state } = this;
 
     const setState = this.setState.bind(this);
     const navigate = this.props.navigation;
+    
 
     return (
       <Fragment>
@@ -297,24 +415,24 @@ class Current extends React.PureComponent {
               <KeyboardAvoidingView style={styles.s9be9753c}>
                 <ScrollView>
                     <View style={styles.sf02d78e4}>
-                        <View style={styles.column}><Text style={styles.item_body2}>Item:</Text><TextInput style={styles.item_phone23}>{currentItem}</TextInput></View>
-                        <View style={styles.column}><Text style={styles.item_body2}>Description:</Text><TextInput multiline={true} style={styles.item_phone27}>{currentDescription}</TextInput></View>
-                        <View style={styles.column}><Text style={styles.item_body2}>Name:</Text><TextInput style={styles.item_phone23}>{currentName}</TextInput></View>
-                        <View style={styles.column}><Text style={styles.item_body2}>Notes:</Text><TextInput placeholderTextColor="grey" placeholder="Note" style={styles.item_body29}></TextInput></View>
+                        <View style={styles.column}><Text style={styles.item_body2}>Item:</Text><TextInput onChangeText={(text) => {this.textInputHandle(0, text, 0)}} style={styles.item_phone23} value={state.currentItem}></TextInput></View>
+                        <View style={styles.column}><Text style={styles.item_body2}>Description:</Text><TextInput onChangeText={(text) => {this.textInputHandle(1, text, 0)}} multiline={true} style={styles.item_phone27} value={state.currentDescription}></TextInput></View>
+                        <View style={styles.column}><Text style={styles.item_body2}>Name:</Text><TextInput onChangeText={(text) => {this.textInputHandle(2, text, 0)}} style={styles.item_phone23} value={state.currentName} ></TextInput></View>
+                        <View style={styles.column}><Text style={styles.item_body2}>Notes:</Text><TextInput value={state.currentNewNote} onChangeText={(text) => {this.textInputHandle(3, text, 0)}} placeholderTextColor="grey" placeholder="Note" style={styles.item_body29}></TextInput></View>
                         {currentNotes.map((repeatForItem, i) => (
-                          <View style={styles.column}><TextInput style={styles.item_phone23}>{repeatForItem}</TextInput></View>
+                          <View style={styles.column}><TextInput onChangeText={(text) => {this.textInputHandle(4, text, i)}} style={styles.item_phone23} value={repeatForItem}></TextInput></View>
                         ))}
-                        <View style={styles.column}><Text style={styles.item_body2}>Charges:</Text><TextInput placeholderTextColor="grey" placeholder="Item" style={styles.item_body29}></TextInput><TextInput placeholderTextColor="grey" placeholder="Price" style={styles.item_body29}></TextInput></View>
+                        <View style={styles.column}><Text style={styles.item_body2}>Charges:</Text><TextInput onChangeText={(text) => {this.textInputHandle(5, text, 0)}} value={state.currentNewChargeItem} placeholderTextColor="grey" placeholder="Item" style={styles.item_body29}></TextInput><TextInput  onChangeText={(text) => {this.textInputHandle(6, text, 0)}} value={state.currentNewChargePrice} placeholderTextColor="grey" placeholder="Price" style={styles.item_body29}></TextInput></View>
                         {currentCharges.map((repeatForItem, i) => (
-                          <View style={styles.column}><TextInput style={styles.item_body29}>{repeatForItem.item}</TextInput>
-                          <Text style={styles.item_phone3}>$</Text><TextInput style={styles.item_phone23}>{repeatForItem.price}</TextInput>
+                          <View style={styles.column}><TextInput  onChangeText={(text) => {this.textInputHandle(7, text, i)}} value={repeatForItem.item} style={styles.item_body29}></TextInput>
+                          <Text style={styles.item_phone37}>$</Text><TextInput  onChangeText={(text) => {this.textInputHandle(8, text, i)}} value={repeatForItem.price} style={styles.item_phone23}></TextInput>
                           </View>
                         ))}
-                        <View style={styles.column}><Text style={styles.item_body2}>Email: </Text><TextInput style={styles.item_phone23}>{currentEmail}</TextInput></View>
-                        <View style={styles.column}><Text style={styles.item_body2}>Phone: </Text><TextInput style={styles.item_phone23}>{currentPhone}</TextInput></View>
-                        <Text style={styles.item_body12}>Sign-up Date: {moment(currentTimeSent).format('MMMM Do YYYY, h:mm:ss a')}</Text>
-                        <Text style={styles.item_body12}>Finish Date: {currentTimeFinished}</Text>
-                        <Text style={styles.item_body12}>ID: {currentId}</Text>
+                        <View style={styles.column}><Text style={styles.item_body2}>Email: </Text><TextInput onChangeText={(text) => {this.textInputHandle(9, text, 0)}} value={state.currentEmail} style={styles.item_phone23}></TextInput></View>
+                        <View style={styles.column}><Text style={styles.item_body2}>Phone: </Text><TextInput onChangeText={(text) => {this.textInputHandle(10, text, 0)}} value={state.currentPhone} style={styles.item_phone23}></TextInput></View>
+                        <Text style={styles.item_body12}>Sign-up Date: {moment(state.currentTimeSent).format('MMMM Do YYYY, h:mm:ss a')}</Text>
+                        <Text style={styles.item_body12}>Finish Date: {state.currentTimeFinished}</Text>
+                        <Text style={styles.item_body12}>ID: {state.currentId}</Text>
                     </View>
                   {state.article_bot_current === "form" ? (
                     <View style={styles.s3e2c715c}>
@@ -338,29 +456,101 @@ class Current extends React.PureComponent {
                         <TouchableHighlight
                           style={styles.sc4aa036b}
                           onPress={() => {
-                            //
-                            // submit
+
+                            const charge = {
+                              price: state.currentNewChargePrice,
+                              item: state.currentNewChargeItem
+                            }
+
                             setState({
-                              article_bot_current: "loading"
+                              article_bot_current: "loading",
+                              currentCharges: state.currentCharges.push(charge),
+                              currentNotes: state.currentNotes.push(state.currentNewNote)
+                            })
+                            
+                            setTimeout(() => {
+                              setState({
+                                currentNewChargeItem: "",
+                                currentNewChargePrice: "",
+                                currentNewNote: "",
+                              })
+                            },500)
+
+                            
+
+                            fetch('https://us-central1-cecomputerrepair-6d460.cloudfunctions.net/update_order', {
+                              method: 'POST',
+                              headers: {
+                                'Accept': 'application/json',
+                                'Content-Type': 'application/json',
+                              },
+                              body: JSON.stringify({
+                                item: state.currentItem,
+                                description:state.currentDescription,
+                                name: state.currentName,
+                                notes: state.currentNotes,
+                                charges: state.currentCharges,
+                                email: state.currentEmail,
+                                id: state.currentId,
+                                phone: state.currentPhone,
+                                timeSent: state.currentTimeSent,
+                                timeFinished: state.currentTimeFinished
+                              })
+                            })
+                            // reponse to json
+                            .then(response => response.json())
+                                    
+                            .then(response => {
+                              if(response.body === "Auth")
+                              {
+                                setTimeout(() => {
+                                  setState({
+                                    article_bot_current: "done"
+                                  })
+                                },3000)
+    
+                                setTimeout(() => {
+                                  setState({
+                                    article_bot_current: "wrong"
+                                  })
+                                }, 6000)
+    
+                                setTimeout(() => {
+                                  setState({
+                                    article_bot_current: "form"
+                                  })
+                                }, 9000)
+                              }
+                              else
+                              {
+
+                              }
+                            })
+                            .catch(error => {
+                              console.log("error: ", error);
                             })
 
-                            setTimeout(() => {
-                              setState({
-                                article_bot_current: "done"
-                              })
-                            },3000)
+                            //
+                            // submit
 
-                            setTimeout(() => {
-                              setState({
-                                article_bot_current: "wrong"
-                              })
-                            }, 6000)
 
-                            setTimeout(() => {
-                              setState({
-                                article_bot_current: "form"
-                              })
-                            }, 9000)
+                            // setTimeout(() => {
+                            //   setState({
+                            //     article_bot_current: "done"
+                            //   })
+                            // },3000)
+
+                            // setTimeout(() => {
+                            //   setState({
+                            //     article_bot_current: "wrong"
+                            //   })
+                            // }, 6000)
+
+                            // setTimeout(() => {
+                            //   setState({
+                            //     article_bot_current: "form"
+                            //   })
+                            // }, 9000)
                           }}
                           underlayColor={`rgba(255, 255, 255, .6)`}
                         >
@@ -423,7 +613,17 @@ class Current extends React.PureComponent {
                   currentCharges = repeatForItem.charges
                   
                     setState({
-                      current: "article"
+                      current: "article",
+                      currentDescription: repeatForItem.description,
+                      currentEmail: repeatForItem.email,
+                      currentName: repeatForItem.name,
+                      currentPhone: repeatForItem.phone,
+                      currentItem: repeatForItem.item,
+                      currentNotes: repeatForItem.notes,
+                      currentId: repeatForItem.id,
+                      currentTimeSent: repeatForItem.timeSent,
+                      currentTimeFinished: repeatForItem.timeFinished,
+                      currentCharges: repeatForItem.charges
                     })
                 }}
               >
