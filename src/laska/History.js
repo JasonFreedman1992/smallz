@@ -51,11 +51,74 @@ class History extends React.PureComponent {
   constructor(props) {
     super(props);
 
-    this.state = {};
+    this.state = {
+      currentPhone: "",
+      currentName: "",
+      current_history: "",
+      current: "list",
+      refreshing: "",
+    };
 
     if (this.awake) {
       this.awake();
     }
+  }
+
+  onRefresh = () => {
+
+    this.setState({
+      refreshing: true
+    })
+
+      fetch('https://us-central1-cecomputerrepair-6d460.cloudfunctions.net/get_cust_history', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        phone: currentPhone
+      })
+    })
+    .then(response => response.json())
+
+    .then(response => {
+      console.log(response.reason);
+      if(response.body === "Auth")
+      {
+        this.setState({
+          current_history: response.reason,
+          refreshing: false,
+        })
+
+        //state.current_client_history = response.reason;
+          setState({
+            article2_name: currentName,
+            article2_phone: currentPhone,
+          })
+      }
+      else //if response.body === "Denied"
+      {
+        console.log("wrong 1");
+        this.setState({
+          refreshing: false
+        })
+
+        this.setState({
+          refreshing: false
+        })
+      }
+    })
+    .catch(error => {
+      console.log("wrong 2");
+      console.log(response);
+      console.log("wrong 2");
+      console.log(error);
+      this.setState({
+        refreshing: false
+        //article_bot2_current: "wrong"
+      })
+    })
   }
 
   render() {
@@ -64,6 +127,7 @@ class History extends React.PureComponent {
 
     return (
       <Fragment>
+      {state.current === "list" ? (
         <View style={styles.s7fe23c89}>
           <ImageBackground style={styles.scadd08cd}>
             <View style={styles.s397ad170}>
@@ -90,6 +154,12 @@ class History extends React.PureComponent {
             </View>
           </ImageBackground>
         </View>
+      ): null}
+      {state.current === "article" ? (
+        <View>
+          
+        </View>
+      ): null}
       </Fragment>
     );
   }
