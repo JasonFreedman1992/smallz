@@ -19,6 +19,7 @@ currentPhone = "";
 currentTimeSent = "";
 currentTimeFinished = "";
 currentCharges = [];
+total = 0;
 
 let height = Dimensions.get('window').height;
 
@@ -253,10 +254,13 @@ sff493afb: { height: 100, width: '100%' },
       color: `rgba(192, 186, 255, 1)`, margin: 5, fontSize: 18
     },
     item_phone23: {
-      color: `rgba(192, 186, 255, 1)`, margin: 5, fontSize: 18, flex: 1
+      color: `rgba(192, 186, 255, 1)`, margin: 5, fontSize: 18, flex: 1, marginTop: 0
     },
     item_phone27: {
       color: `rgba(192, 186, 255, 1)`, margin: 5, fontSize: 18, flex: 1, marginTop: 0
+    },
+    item_phone28: {
+      color: `rgba(192, 186, 255, 1)`, margin: 5, fontSize: 18, flex: 0, marginTop: 0
     },
     item_phone3: {
       color: `rgba(255, 255, 255, 1)`, margin: 5, fontSize: 18
@@ -367,6 +371,15 @@ class History extends React.PureComponent {
     })
   }
 
+  total(charges)
+  {
+    let total = 0;
+    charges.forEach(data => {
+      total = total + parseInt(data.price);
+    })
+      return `Total: ${total}`;
+  }
+
   render() {
 
     const { props, state } = this;
@@ -441,24 +454,27 @@ class History extends React.PureComponent {
               <KeyboardAvoidingView style={styles.s9be9753c}>
                 <ScrollView>
                     <View style={styles.sf02d78e4}>
-                        <View style={styles.column}><Text style={styles.item_body2}>Item:</Text><TextInput onChangeText={(text) => {this.textInputHandle(0, text, 0)}} style={styles.item_phone23} value={state.currentItem}></TextInput></View>
-                        <View style={styles.column}><Text style={styles.item_body2}>Description:</Text><TextInput onChangeText={(text) => {this.textInputHandle(1, text, 0)}} multiline={true} style={styles.item_phone27} value={state.currentDescription}></TextInput></View>
-                        <View style={styles.column}><Text style={styles.item_body2}>Name:</Text><TextInput onChangeText={(text) => {this.textInputHandle(2, text, 0)}} style={styles.item_phone23} value={state.currentName} ></TextInput></View>
-                        <View style={styles.column}><Text style={styles.item_body2}>Notes:</Text><TextInput value={state.currentNewNote} onChangeText={(text) => {this.textInputHandle(3, text, 0)}} placeholderTextColor="grey" placeholder="Note" style={styles.item_body29}></TextInput></View>
+                        <View style={styles.column}><Text style={styles.item_body2}>Item:</Text><TextInput selectTextOnFocus={true} editable={false} multiline={true}  style={styles.item_phone23} value={state.currentItem}></TextInput></View>
+                        <View style={styles.column}><Text style={styles.item_body2}>Description:</Text><TextInput selectTextOnFocus={true} editable={false} multiline={true} style={styles.item_phone27} value={state.currentDescription}></TextInput></View>
+                        <View style={styles.column}><Text style={styles.item_body2}>Name:</Text><TextInput selectTextOnFocus={true} editable={false} multiline={true} style={styles.item_phone23} value={state.currentName} ></TextInput></View>
+                        <View style={{ flexDirection: 'row', flex: 1, borderColor: 'white', height: 2, borderWidth: 1, margin: 1, marginLeft: 5, marginRight: 5}}></View>
+                        <View style={styles.column}><Text style={styles.item_body2}>Notes:</Text></View>
                         {currentNotes.map((repeatForItem, i) => (
-                          <View style={styles.column}><TextInput onChangeText={(text) => {this.textInputHandle(4, text, i)}} style={styles.item_phone23} value={repeatForItem}></TextInput></View>
+                          <View style={styles.column}><TextInput multiline={true} selectTextOnFocus={true} editable={false} style={styles.item_phone23} value={repeatForItem}></TextInput></View>
                         ))}
-                        <View style={styles.column}><Text style={styles.item_body2}>Charges:</Text><TextInput onChangeText={(text) => {this.textInputHandle(5, text, 0)}} value={state.currentNewChargeItem} placeholderTextColor="grey" placeholder="Item" style={styles.item_body29}></TextInput><TextInput  onChangeText={(text) => {this.textInputHandle(6, text, 0)}} value={state.currentNewChargePrice} placeholderTextColor="grey" placeholder="Price" style={styles.item_body29}></TextInput></View>
-                        {currentCharges.map((repeatForItem, i) => (
-                          <View style={styles.column}><TextInput  onChangeText={(text) => {this.textInputHandle(7, text, i)}} value={repeatForItem.item} style={styles.item_body29}></TextInput>
-                          <Text style={styles.item_phone37}>$</Text><TextInput  onChangeText={(text) => {this.textInputHandle(8, text, i)}} value={repeatForItem.price} style={styles.item_phone23}></TextInput>
+                        <View style={{ flexDirection: 'row', flex: 1, borderColor: 'white', height: 2, borderWidth: 1, margin: 1, marginLeft: 5, marginRight: 5}}></View>
+                        <View style={styles.column}><Text style={styles.item_body2}>Charges:</Text></View>
+                        {currentCharges.map((repeatForItem, i) => ( 
+                          <View style={styles.column}><TextInput multiline={true} selectTextOnFocus={true} editable={false} value={`${repeatForItem.item}: $${repeatForItem.price}`} style={styles.item_phone28}></TextInput>
                           </View>
                         ))}
-                        <View style={styles.column}><Text style={styles.item_body2}>Email: </Text><TextInput onChangeText={(text) => {this.textInputHandle(9, text, 0)}} value={state.currentEmail} style={styles.item_phone23}></TextInput></View>
-                        <View style={styles.column}><Text style={styles.item_body2}>Phone: </Text><TextInput onChangeText={(text) => {this.textInputHandle(10, text, 0)}} value={state.currentPhone} style={styles.item_phone23}></TextInput></View>
-                        <Text style={styles.item_body12}>Sign-up Date: {moment(state.currentTimeSent).format('MMMM Do YYYY, h:mm:ss a')}</Text>
-                        <Text style={styles.item_body12}>Finish Date: {state.currentTimeFinished}</Text>
-                        <Text style={styles.item_body12}>ID: {state.currentId}</Text>
+                        <TextInput multiline={true} selectTextOnFocus={true} editable={false} value={ this.total(currentCharges) } style={styles.item_phone28}></TextInput>
+                        <View style={{ flexDirection: 'row', flex: 1, borderColor: 'white', height: 2, borderWidth: 1, margin: 1, marginLeft: 5, marginRight: 5}}></View>
+                        <View style={styles.column}><Text style={styles.item_body2}>Email: </Text><TextInput multiline={true} selectTextOnFocus={true} editable={false} value={state.currentEmail} style={styles.item_phone23}></TextInput></View>
+                        <View style={styles.column}><Text style={styles.item_body2}>Phone: </Text><TextInput multiline={true} selectTextOnFocus={true} editable={false} value={state.currentPhone} style={styles.item_phone23}></TextInput></View>
+                        <TextInput multiline={true} selectTextOnFocus={true} editable={false} style={styles.item_body12}>Start Date: {moment(state.currentTimeSent).format('MMMM Do YYYY, h:mm:ss a')}</TextInput>
+                        <TextInput multiline={true} selectTextOnFocus={true} editable={false} style={styles.item_body12}>Finish Date: {state.currentTimeFinished}</TextInput>
+                        <TextInput multiline={true} selectTextOnFocus={true} editable={false} style={styles.item_body12}>ID: {state.currentId}</TextInput>
                     </View>
                   {state.article_bot_current === "form" ? (
                     <View style={styles.s3e2c715c}>
