@@ -4,9 +4,21 @@ import API from "./_laska_/API.js";
 // eslint-disable-next-line no-unused-vars
 import globals from "./_laska_/globals.js";
 import withNavigationProp from "./_laska_/withNavigationProp.js";
-import { Dimensions, ImageBackground, TouchableHighlight, ScrollView, Text, StyleSheet, View } from "react-native";
+import { TextInput, ActivityIndicator, RefreshControl, KeyboardAvoidingView, Dimensions, ImageBackground, TouchableHighlight, ScrollView, Text, StyleSheet, View } from "react-native";
 import img93176135 from "./jubavrli.png";
 import imgcadd08cd from "./BG.png";
+const moment = require('moment');
+
+currentDescription = "";
+currentEmail = "";
+currentId = "";
+currentItem = "";
+currentName = "";
+currentNotes = "";
+currentPhone = "";
+currentTimeSent = "";
+currentTimeFinished = "";
+currentCharges = [];
 
 let height = Dimensions.get('window').height;
 
@@ -31,6 +43,15 @@ const styles = StyleSheet.create({
       maxHeight: 199,
       width: `100%`
     },
+    item_body: {
+      color: `rgba(64, 253, 103, 1)`
+    },
+    item_date: {
+      color: `rgba(255, 255, 255, 1)`
+    },
+    item_phone: {
+      color: `rgba(192, 186, 255, 1)`
+    },
     sd4c6b84e: { flex: 1 },
     s44622035: { height: (height-85)/7.85, backgroundColor: `rgba(74, 74, 110, 1)`,  borderColor: `rgba(198, 76, 243, 1)`,
     borderWidth: 1, },
@@ -44,7 +65,220 @@ const styles = StyleSheet.create({
         width: `100%`,
           backgroundColor: `rgba(0, 0, 0, .25)`,
           flex: 1,
-        }
+        },
+        //
+        //
+        //
+        //
+        //
+        //
+    sa7f27131: { color: `rgba(255, 255, 255, 1)`, fontSize: 30 },
+    s50a58322: {
+      alignItems: `center`,
+      backgroundColor: `rgba(0, 0, 0, 1)`,
+      flex: 1,
+      justifyContent: `center`
+    },
+    s732b811e: {
+      backgroundColor: `rgba(74, 74, 110, 1)`,
+      flex: 1,
+      justifyContent: `flex-end`,
+      overflow: `hidden`,
+      position: `absolute`
+    },
+    s93176135: {
+      height: `100%`,
+      justifyContent: `flex-end`,
+      maxHeight: 199,
+      width: `100%`
+    },
+    s93176136: {
+      height: `100%`,
+      alignItems: 'center',
+      justifyContent: `center`,
+      maxHeight: 199,
+      width: `100%`
+    },
+    item_body: {
+      color: `rgba(64, 253, 103, 1)`
+    },
+    item_date: {
+      color: `rgba(255, 255, 255, 1)`
+    },
+    item_phone: {
+      color: `rgba(192, 186, 255, 1)`
+    },
+    sd4c6b84e: { flex: 1, backgroundColor:`rgba(74, 74, 110, 1)`,
+  borderColor: `rgba(198, 76, 243, 1)`,
+  borderWidth: 1,
+},
+sff493afb: { height: 100, width: '100%' },
+    s44622035: { height: (height-85)/7.85 },
+    s7fe23c89: { flex: 1 },
+    scadd08cd: {
+        height: `100%`,
+        opacity: 1,
+        width: `100%`
+      },
+      s397ad170: {
+        width: `100%`,
+          backgroundColor: `rgba(0, 0, 0, .25)`,
+          flex: 1,
+        },
+    s2f214928: { fontSize: 45, margin: 5, color: 'white' },
+    s44622037: { height: (height-85)/7.85 },
+    sd4c6b84: { flex: 1 },
+    s93176137: {
+      height: `100%`,
+      alignItems: 'center',
+      justifyContent: `center`,
+      maxHeight: 199,
+      width: `100%`
+    },
+    s8aa63795: { color: `rgba(255, 255, 255, 1)`, fontSize: 18, margin: 5 },
+    sa2282081: { flex: 1 },
+    s8e82c08e: { backgroundColor: `rgba(0, 0, 0, 0.25)`, margin: 20 },
+    s270ef303: { flex: 1 },
+    sf2f5c5b1: { flex: 1 },
+    wrap: { flex: 1 },
+    s7ba85f25: {
+      color: `rgba(255, 255, 255, 1)`,
+      height: 20,
+      margin: 5,
+      width: '100%'
+    },
+    s7ba85f26: {
+      color: `rgba(255, 255, 255, 1)`,
+      margin: 5,
+      flex: .35,
+      width: '100%'
+    },
+    sa6743b22: {
+      height: 210,
+      margin: 20,
+      marginBottom: 20,
+      marginTop: 0,
+      alignItems: `center`,
+      backgroundColor: `rgba(0, 0, 0, 0.25)`,
+      flex: 1,
+      justifyContent: `center`
+    },
+    sa6743b23: {
+      height: 210,
+      margin: 20,
+      marginBottom: 20,
+      marginTop: 0,
+      alignItems: `center`,
+      backgroundColor: `rgba(0, 255, 46, 0.4)`,
+      flex: 1,
+      justifyContent: `center`
+    },
+    sa6743b24: {
+      height: 210,
+      margin: 20,
+      marginBottom: 20,
+      marginTop: 0,
+      alignItems: `center`,
+      backgroundColor: `rgba(255, 0, 0, 0.4)`,
+      flex: 1,
+      justifyContent: `center`
+    },
+    sb1470029: { color: `rgba(255, 255, 255, 1)`, fontSize: 65 },
+    sd1b9a1c5: {
+      color: `rgba(255, 255, 255, 1)`,
+      fontSize: 18,
+      fontWeight: `bold`
+    },
+    s88b1bf09: {
+      color: 'white',
+      fontSize: 18
+    },
+    s3c247739: {
+      alignItems: `center`,
+      backgroundColor: `rgba(255, 83, 83, 0.45)`,
+      flex: 1,
+      justifyContent: `center`,
+      margin: 10
+    },
+    s3e2c715c: {
+      backgroundColor: `rgba(0, 0, 0, 0.25)`,
+      height: 410,
+      margin: 20,
+      marginTop: 0
+    },
+    sff493afc: { marginTop: 0, height: 100, width: '100%' },
+    sc4aa036b: {
+      alignItems: `center`,
+      backgroundColor: `rgba(175, 163, 233, 0.69)`,
+      flex: 1,
+      justifyContent: `center`,
+      margin: 10
+    },
+    sc4aa036c: {
+      alignItems: `center`,
+      backgroundColor: `rgba(55, 63, 103, 0.79)`,
+      flex: 1,
+      justifyContent: `center`,
+      margin: 10
+    },
+    sc4aa036d: {
+      alignItems: `center`,
+      backgroundColor: `rgba(105, 63, 85, 0.79)`,
+      flex: 1,
+      justifyContent: `center`,
+      margin: 10
+    },
+    item_body12: {
+      color: `rgba(192, 186, 255, 1)`, margin: 5, fontSize: 18
+    },
+    item_body2: {
+      color: `rgba(64, 253, 103, 1)`, margin: 5, fontSize: 18
+    },
+    item_body23: {
+      color: `rgba(64, 253, 103, 1)`, margin: 5, fontSize: 18, flex: 1
+    },
+    item_body29: {
+      color: `rgba(192, 186, 255, 1)`, margin: 5, fontSize: 18, flex: 0
+    },
+    item_body25: {
+      color: `rgba(64, 253, 103, 1)`, margin: 5, fontSize: 18, flex: 0
+    },
+    item_date2: {
+      color: `rgba(255, 255, 255, 1)`, margin: 5, fontSize: 18
+    },
+    item_date23: {
+      color: `rgba(255, 255, 255, 1)`, margin: 5, fontSize: 18, flex: 1
+    },
+    item_phone2: {
+      color: `rgba(192, 186, 255, 1)`, margin: 5, fontSize: 18
+    },
+    item_phone23: {
+      color: `rgba(192, 186, 255, 1)`, margin: 5, fontSize: 18, flex: 1
+    },
+    item_phone27: {
+      color: `rgba(192, 186, 255, 1)`, margin: 5, fontSize: 18, flex: 1, marginTop: 0
+    },
+    item_phone3: {
+      color: `rgba(255, 255, 255, 1)`, margin: 5, fontSize: 18
+    },
+    item_phone37: {
+      color: `rgba(255, 255, 255, 1)`, margin: 5, marginRight: 0, fontSize: 18
+    },
+    s7181d70a: { alignItems: `center`, flex: 1, justifyContent: `center` },
+    s1c4ded82: { height: `100%`, width: `100%` },
+    s9be9753c: { flex: 1 },
+    sf02d78e4: { backgroundColor: `rgba(0, 0, 0, .25)`, flex: 1, margin: 20 },
+    sedd01e1e: { color: `rgba(192, 186, 255, 1)`, fontSize: 18, margin: 5 },
+    sb6797fe4: { backgroundColor: `rgba(0, 0, 0, .25)`, flex: 1, margin: 5 },
+    sdf566e0f: { color: `rgba(192, 186, 255, 1)`, fontSize: 18, margin: 5 },
+    s59a65273: { backgroundColor: `rgba(0, 0, 0, .25)`, flex: 1, margin: 5 },
+    sc1cfa38d: { color: `rgba(64, 253, 103, 1)`, fontSize: 18, margin: 5 },
+    sa6ccf43c: { backgroundColor: `rgba(0, 0, 0, .25)`, flex: 1, margin: 5 },
+    sbb37430a: { color: `rgba(255, 255, 255, 1)`, fontSize: 18, margin: 5 },
+    sa0cf86e2: { backgroundColor: `rgba(0, 0, 0, .25)`, flex: 1, margin: 5 },
+    column: {
+      flex: 1, flexDirection: `row`
+    }
 });
 class History extends React.PureComponent {
   static navigationOptions = { title: "History" };
@@ -54,7 +288,7 @@ class History extends React.PureComponent {
     this.state = {
       current_history: "",
       current: "list",
-      refreshing: "",
+      refreshing: false,
 
       currentNewNote: "",
       currentNewChargePrice: 0,
@@ -143,13 +377,31 @@ class History extends React.PureComponent {
         <View style={styles.s7fe23c89}>
           <ImageBackground style={styles.scadd08cd}>
             <View style={styles.s397ad170}>
-              <ScrollView>
+              <ScrollView
+                refreshControl={
+                  <RefreshControl
+                  refreshing={this.state.refreshing}
+                  onRefresh={this._onRefresh}
+                  />
+                }
+                >
                 {globals.current_history.map((repeatForItem, i) => (
                   <TouchableHighlight
                     style={styles.s44622035}
                     underlayColor={`rgba(255, 255, 255, 1)`}
                     key={`${i}-44622035-204b-428c-84fd-3560afae236d`}
                     onPress={() => {
+
+                      currentDescription = repeatForItem.description;
+                      currentEmail = repeatForItem.email;
+                      currentName = repeatForItem.name;
+                      currentPhone = repeatForItem.phone;
+                      currentItem = repeatForItem.item;
+                      currentNotes = repeatForItem.notes;
+                      currentId = repeatForItem.id
+                      currentTimeSent = repeatForItem.timeSent
+                      currentTimeFinished = repeatForItem.timeFinished
+                      currentCharges = repeatForItem.charges
 
                       this.setState({
                         current: "article",
@@ -169,10 +421,11 @@ class History extends React.PureComponent {
                   >
                     <View style={styles.sd4c6b84e}>
                         <View style={styles.s732b811e}>
-                          <Text>City</Text>
-                          <Text>Distance</Text>
-                          <Text>Date</Text>
-                        </View>
+                        <Text style={styles.item_phone}>Item: {repeatForItem.item}</Text>
+                        <Text style={styles.item_phone}>Description: {repeatForItem.description}</Text>
+                        <Text style={styles.item_body}>Name: {repeatForItem.name.substring(0,40)}</Text>
+                        <Text style={styles.item_date}>Start Date: {moment(repeatForItem.timeSent).format('MMMM Do YYYY, h:mm:ss a')}</Text>
+                    </View>
                     </View>
                   </TouchableHighlight>
                 ))}
