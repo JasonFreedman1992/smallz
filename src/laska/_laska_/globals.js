@@ -13,6 +13,7 @@ const globals = {
     status_data: [],
     current_data: [],
     history_data: [],
+    current_client_history: []
 };
 
 

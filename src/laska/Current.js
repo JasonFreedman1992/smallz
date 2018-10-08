@@ -614,6 +614,7 @@ class Current extends React.PureComponent {
                             .then(response => response.json())
                                     
                             .then(response => {
+                              console.log(response);
                               if(response.body === "Auth")
                               {
                                 setState({
@@ -644,7 +645,7 @@ class Current extends React.PureComponent {
                           }}
                           underlayColor={`rgba(255, 255, 255, .6)`}
                         >
-                          <Text style={styles.s88b1bf09}>Save Changes to Phone</Text>
+                          <Text style={styles.s88b1bf09}>Save ID to Phone</Text>
                         </TouchableHighlight>
                       </View>
                       <View style={styles.sff493afc}>
