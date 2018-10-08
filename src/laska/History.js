@@ -375,9 +375,9 @@ class History extends React.PureComponent {
   {
     let total = 0;
     charges.forEach(data => {
-      total = total + parseInt(data.price);
+      total = total + parseFloat(data.price);
     })
-      return `Total: ${total}`;
+      return `Total: $${total}`;
   }
 
   render() {
