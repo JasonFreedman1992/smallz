@@ -230,7 +230,7 @@ sff493afb: { height: 100, width: '100%' },
       margin: 10
     },
     item_body12: {
-      color: `rgba(192, 186, 255, 1)`, margin: 5, fontSize: 18
+      color: `rgba(192, 186, 255, 1)`, margin: 5, fontSize: 18, marginTop: 0
     },
     item_body2: {
       color: `rgba(64, 253, 103, 1)`, margin: 5, fontSize: 18
@@ -380,6 +380,17 @@ class History extends React.PureComponent {
       return `Total: $${total}`;
   }
 
+  warranty(date)
+  {
+    let warrantyDate;
+
+    var obj = moment(date).add(60, 'days');
+
+
+
+    return(moment(obj).format('MMMM Do YYYY'));
+  }
+
   render() {
 
     const { props, state } = this;
@@ -456,7 +467,6 @@ class History extends React.PureComponent {
                     <View style={styles.sf02d78e4}>
                         <View style={styles.column}><Text style={styles.item_body2}>Item:</Text><TextInput selectTextOnFocus={true} editable={false} multiline={true}  style={styles.item_phone23} value={state.currentItem}></TextInput></View>
                         <View style={styles.column}><Text style={styles.item_body2}>Description:</Text><TextInput selectTextOnFocus={true} editable={false} multiline={true} style={styles.item_phone27} value={state.currentDescription}></TextInput></View>
-                        <View style={styles.column}><Text style={styles.item_body2}>Name:</Text><TextInput selectTextOnFocus={true} editable={false} multiline={true} style={styles.item_phone23} value={state.currentName} ></TextInput></View>
                         <View style={{ flexDirection: 'row', flex: 1, borderColor: 'white', height: 2, borderWidth: 1, margin: 1, marginLeft: 5, marginRight: 5}}></View>
                         <View style={styles.column}><Text style={styles.item_body2}>Notes:</Text></View>
                         {currentNotes.map((repeatForItem, i) => (
@@ -470,10 +480,12 @@ class History extends React.PureComponent {
                         ))}
                         <TextInput multiline={true} selectTextOnFocus={true} editable={false} value={ this.total(currentCharges) } style={styles.item_phone28}></TextInput>
                         <View style={{ flexDirection: 'row', flex: 1, borderColor: 'white', height: 2, borderWidth: 1, margin: 1, marginLeft: 5, marginRight: 5}}></View>
+                        <View style={styles.column}><Text style={styles.item_body2}>Name:</Text><TextInput selectTextOnFocus={true} editable={false} multiline={true} style={styles.item_phone23} value={state.currentName} ></TextInput></View>
                         <View style={styles.column}><Text style={styles.item_body2}>Email: </Text><TextInput multiline={true} selectTextOnFocus={true} editable={false} value={state.currentEmail} style={styles.item_phone23}></TextInput></View>
                         <View style={styles.column}><Text style={styles.item_body2}>Phone: </Text><TextInput multiline={true} selectTextOnFocus={true} editable={false} value={state.currentPhone} style={styles.item_phone23}></TextInput></View>
-                        <TextInput multiline={true} selectTextOnFocus={true} editable={false} style={styles.item_body12}>Start Date: {moment(state.currentTimeSent).format('MMMM Do YYYY, h:mm:ss a')}</TextInput>
-                        <TextInput multiline={true} selectTextOnFocus={true} editable={false} style={styles.item_body12}>Finish Date: {state.currentTimeFinished}</TextInput>
+                        <Text style={styles.item_body2}>Received: </Text><Text style={{color: `rgba(192, 186, 255, 1)`, fontSize: 18, margin: 5}}>{moment(state.currentTimeSent).format('MMMM Do YYYY, h:mm:ss a')}</Text>
+                        <Text style={styles.item_body2}>Returned: </Text><Text style={{color: `rgba(192, 186, 255, 1)`, fontSize: 18, margin: 5}}>{moment(state.currentTimeFinished).format('MMMM Do YYYY, h:mm:ss a')} </Text>
+                        <Text style={styles.item_body2}>Under Warranty Until: </Text><Text style={{color: `rgba(192, 186, 255, 1)`, fontSize: 18, margin: 5}}>{this.warranty(state.currentTimeFinished)}</Text>
                         <TextInput multiline={true} selectTextOnFocus={true} editable={false} style={styles.item_body12}>ID: {state.currentId}</TextInput>
                     </View>
                   {state.article_bot_current === "form" ? (
