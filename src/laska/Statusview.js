@@ -85,7 +85,7 @@ class Statusview extends React.PureComponent {
         <View style={styles.sc7c80744}>
           <View style={styles.s3e9e1bda}>
             <TextInput 
-            keyboardType={`numeric`}
+            keyboardType={`default`}
             underlineColorAndroid="transparent"
             onChangeText={newText => {
               setState({
@@ -112,8 +112,7 @@ class Statusview extends React.PureComponent {
                     'Content-Type': 'application/json',
                   },
                   body: JSON.stringify({
-                    token: "1231234",
-                    body: "body tho"
+                    //id: status_input
                   })
                 })
                 .then(response => {

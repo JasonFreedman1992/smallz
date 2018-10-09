@@ -221,9 +221,7 @@ class Services2view extends React.PureComponent {
     if(Platform.OS === 'ios')
     {
         this.interval = setInterval(() => { 
-            const { props, state } = this;
             const setState = this.setState.bind(this);
-            console.log("logging");
 
             tempColor = color7
             color7 = color1,
@@ -254,9 +252,7 @@ class Services2view extends React.PureComponent {
     else if(Platform.OS === 'android')
     {
         this.interval = setInterval(() => { 
-            const { props, state } = this;
             const setState = this.setState.bind(this);
-            console.log("logging");
 
             tempColor = color7
             color7 = color1,
@@ -376,25 +372,6 @@ class Services2view extends React.PureComponent {
                     </View>
                 </ScrollView>
                 </View>
-                {/*<Image
-                resizeMode={`contain`}
-                source={betterappslogo}
-                style={styles.image}
-                />
-                <TouchableHighlight underlayColor={`rgba(222, 222, 222, 1)`} 
-                    style={styles.touchHighlight}
-                    onPress={() => {
-
-                    }}>
-                    <LinearGradient
-                        colors={['#FA0089', '#3b5998']}
-                        style={styles.linearGradient}>
-                        <Text style={styles.buttonText}>
-                            Learn More
-                        </Text>
-                    </LinearGradient>
-                </TouchableHighlight>
-                */}
             </View>
 
             <View style={styles.slide2}>

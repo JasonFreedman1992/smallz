@@ -93,7 +93,7 @@ class Client extends React.PureComponent {
 
     this.state = {
       current_tab: "status",
-      color_status: `rgba(202, 192, 241, 1)`,
+      color_status: `rgba(64, 253, 103, 1)`,
       color_history: `rgba(202, 192, 241, 1)`,
       color_quote: `rgba(202, 192, 241, 1)`,
       color_services: `rgba(202, 192, 241, 1)`,
