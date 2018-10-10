@@ -15,6 +15,10 @@ import Icon from "./_laska_/Icon";
 import imgcellphonelab from "./Logom.png";
 import imgjasonfreedmancode from "./LogoMakr_584eO.png";
 import imgjason from "./jason.png";
+import imglab from "./jaylab.jpg";
+import imglab1 from "./jayshop.jpg";
+import imgce from "./laptop2ce.jpg";
+import imgce1 from "./CE.jpg";
 
 
 let width = Dimensions.get('screen').width;
@@ -351,7 +355,7 @@ class Services2view extends React.PureComponent {
                     <Text style={styles.s222ad388}>CE Computer Repair</Text>
                     <Text style={styles.s543fbc82}>
                         Providing desktop, laptop, and cel-phone repairs, diagnostics,
-                        and consulting to the Lynnwood and Seattle areas for 5+ years.
+                        and consulting to the Lynnwood and Seattle areas for 5+ years. 
                         As of 2018 CE Computer Repairs is proud to be offering mobile and web apps!
                     </Text>
                     <Image
@@ -363,12 +367,18 @@ class Services2view extends React.PureComponent {
                     <Text style={styles.sfe57bb66}>
                         Chris Esponda is the owner of C.E. Computer Repairs. 
                         Chris manages, fulfills orders, and is the staple friendly
-                        face for the Company. You can always find him with a smile and a
-                        couple of trusty companions.
+                        face for the Company. Chris's positive attitude is contagious and always brings a happy personality to the table when your working together.
+                        You can always find him with a smile and a
+                        couple of trusty companions name Baeya and Bentley.
                         Working in the same Lynnwood
                         Location for over 5+ years, Chris has managed to bridge Desktop &amp; Mobile Repair 
                         with mobile &amp; web app services by partnering with both <Text style={styles.lightblueText}>Cell-Phone Lab</Text> and <Text style={styles.pinkText}>Jason Freedman Code</Text>.
                     </Text>
+                    <Image
+                        resizeMode={`contain`}
+                        source={imgce1}
+                        style={styles.s3d6da1b1}
+                    />
                     </View>
                 </ScrollView>
                 </View>
@@ -422,8 +432,8 @@ class Services2view extends React.PureComponent {
                     />
                     <Text style={styles.s222ad388}>Cell-Phone Lab</Text>
                     <Text style={styles.s543fbc82}>
-                        Cel-phone repairs, diagnostics, and consulting to the team and Lynnwood public for 2 years
-                        As of 2018 CE Computer Repairs is proud to be offering mobile and web apps!
+                        The Cell-Phone Lab is a local Lynnwood shop that offers repairs, diagnostics, and consulting for fair prices.  Screens Broken? Charging Ports not working? Battery replacement?
+                        Come on in for a visit and see what the laboratory can do for you.
                     </Text>
                     <Image
                         resizeMode={`contain`}
@@ -432,14 +442,16 @@ class Services2view extends React.PureComponent {
                     />
                     <Text style={styles.sb44318da}>Jay Castillo</Text>
                     <Text style={styles.sfe57bb66}>
-                        Chris Esponda is the owner of C.E. Computer Repairs. 
-                        Chris manages, fulfills orders, and is the staple friendly
-                        face for the Company. You can always find him with a smile and a
-                        couple of trusty companions.
-                        Working in the same Lynnwood
-                        Location for over 5+ years, Chris has managed to bridge Desktop &amp; Mobile Repair 
-                        with mobile &amp; web app services by partnering with both <Text style={styles.lightblueText}>Cell-Phone Lab</Text> and <Text style={styles.pinkText}>Jason Freedman Code</Text>.
+                        Jay Castillo is the owner and operator of the<Text style={styles.lightblueText}>Cell-Phone Lab.</Text> Jay is incredibly focused and hard-working.  Often
+                        you can find Jay in the laboratory utilizing his machines to fix hardware related problem with phones.  Several years prior to opening the laboratory, Jay
+                        worked for other companies learning valuable repair skills and knowledge of special tools for phone repair.  Nowadays, he seeks to use his skills and grow his business to
+                        deliver the perfect job every time.  Ask him anything about phones! I dare ya!
                     </Text>
+                    <Image
+                        resizeMode={`contain`}
+                        source={imglab1}
+                        style={styles.s3d6da1b1}
+                    />
                     </View>
                 </ScrollView>
                 </View>
@@ -493,7 +505,7 @@ class Services2view extends React.PureComponent {
                     <Text style={styles.s222ad388}>Jason Freedman Code</Text>
                     <Text style={styles.s543fbc82}>
                         Jasonfreedmancode.com is the website of Freelance developer Jason Freedman, whom is partnered with Chris and Jay
-                        to help bring software solutions to the table.
+                        to help bring software to the table.  
                     </Text>
                     <Image
                         resizeMode={`contain`}
@@ -503,8 +515,10 @@ class Services2view extends React.PureComponent {
                     <Text style={styles.sb44318da}>Jason Freedman</Text>
                     <Text style={styles.sfe57bb66}>
                     Jason Freedman is very fit in the
-                    nerd-cave. He writes code at the speed of light, debugs massive data piplines with such
-                    elegance, and even goes for runs.  He is forever sworn to craft websites and mobile apps until
+                    nerd-cave. He writes code at the speed of light, debugs massive data piplines with great
+                    elegance, and even goes for long distance runs at night time. It is rumored he can connect his brain to a computer using a USB port,
+                    giving him special software abilities no other cyborg can match.
+                    Jason's skills forever swear him to craft websites and mobile apps until
                     his fingers fall off.
                     </Text>
                     </View>

@@ -374,7 +374,7 @@ class Statusresultsloadingview extends React.PureComponent {
                         <View style={styles.column}><Text style={styles.item_body2}>Item:</Text><TextInput selectTextOnFocus={true} editable={false} multiline={true}  style={styles.item_phone23} value={globals.statusData.item}></TextInput></View>
                         <View style={styles.column}><Text style={styles.item_body2}>Description:</Text><TextInput selectTextOnFocus={true} editable={false} multiline={true} style={styles.item_phone27} value={globals.statusData.description}></TextInput></View>
                         <View style={{ flexDirection: 'row', flex: 1, borderColor: 'white', height: 2, borderWidth: 1, margin: 1, marginLeft: 5, marginRight: 5}}></View>
-                        <View style={styles.column}><Text style={styles.item_body2}>Notes:</Text></View>
+                        <View style={styles.column}><Text style={styles.item_body2}>Notes:</Text></View>+
                         {globals.statusData.notes.map((repeatForItem, i) => (
                           <View style={styles.column}><TextInput multiline={true} selectTextOnFocus={true} editable={false} style={styles.item_phone23} value={repeatForItem}></TextInput></View>
                         ))}

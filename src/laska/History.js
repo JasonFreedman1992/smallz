@@ -314,7 +314,7 @@ class History extends React.PureComponent {
     }
   }
 
-  onRefresh = () => {
+  _onRefresh = () => {
 
     this.setState({
       refreshing: true

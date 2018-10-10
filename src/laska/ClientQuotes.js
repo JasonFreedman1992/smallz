@@ -327,7 +327,7 @@ class ClientQuotes extends React.PureComponent {
                       <Text style={styles.s2ce229b2}>C.E. Computers</Text>
                     </View>
                     <View style={styles.s2e727a34}>
-                      <Text style={styles.s7085f604}>Geek Squad</Text>
+                      <Text style={styles.s7085f604}>Other Shops</Text>
                     </View>
                   </View>
                   <View style={styles.s623360ef}>
@@ -390,7 +390,7 @@ class ClientQuotes extends React.PureComponent {
                       <Text style={styles.sd84017fc}>Phone Diag</Text>
                     </View>
                     <View style={styles.s4fc72245}>
-                      <Text style={styles.sdb079014}>$20</Text>
+                      <Text style={styles.sdb079014}>$60</Text>
                     </View>
                     <View style={styles.sc4e8eb24}>
                       <Text style={styles.sf98f2715}>X</Text>
@@ -401,10 +401,10 @@ class ClientQuotes extends React.PureComponent {
                       <Text style={styles.s1ce5670e}>Phone Screen</Text>
                     </View>
                     <View style={styles.s89792ed2}>
-                      <Text style={styles.sa1aa13c4}>$79.99+</Text>
+                      <Text style={styles.sa1aa13c4}>$79.99</Text>
                     </View>
                     <View style={styles.sad91d641}>
-                      <Text style={styles.sa4dab2c2}>X</Text>
+                      <Text style={styles.sa4dab2c2}>$99.99+</Text>
                     </View>
                   </View>
                   <View style={styles.s3306baaf}>
