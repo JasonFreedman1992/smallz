@@ -38,7 +38,7 @@ const styles = StyleSheet.create({
   s2c06ba8c: { color: `rgba(255, 255, 255, 1)`, fontSize: 30 },
   sc7c80744: {
     alignItems: `center`,
-    backgroundColor: `rgba(0, 0, 0, 1)`,
+    backgroundColor: `rgba(0, 0, 0, .25)`,
     flex: 1,
     justifyContent: `center`
   }
@@ -54,8 +54,8 @@ class Statusview extends React.PureComponent {
 
       status_input: "",
       status_input_length: "",
-      status_text: ""
-
+      status_text: "",
+      statusData: ""
       
     };
 
@@ -71,13 +71,25 @@ class Statusview extends React.PureComponent {
       <Fragment>
         {state.current_tab === "status_results_loading" ? (
             <View style={styles.sc7c80744}>
-              <Statusresultsloadingview />
+              <Statusresultsloadingview/>
             </View>
         ) : null}
 
         {state.current_tab === "status_results" ? (
             <View style={styles.sc7c80744}>
-              <Statusresultsview />
+              <Statusresultsview 
+              currentDescription = {state.statusData.description}
+              currentEmail = {state.statusData.email}
+              currentId = {state.statusData.id}
+              currentItem = {state.statusData.item}
+              currentName = {state.statusData.name}
+              currentNotes = {state.statusData.notes}
+              currentPhone = {state.statusData.phone}
+              currentTimeSent = {state.statusData.timeSent}
+              currentTimeFinished = {state.statusData.timeFinished}
+              currentCharges = {state.statusData.charges}
+              
+              />
             </View>
         ) : null}
 
@@ -102,51 +114,40 @@ class Statusview extends React.PureComponent {
               onPress={() => {
                 setState({
                   current_tab: "status_results_loading"
+                })
 
-
+                fetch('https://us-central1-cecomputerrepair-6d460.cloudfunctions.net/get_status', {
+                method: 'POST',
+                headers: {
+                  'Accept': 'application/json',
+                  'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                  id: state.status_input
                 })
-                fetch('https://us-central1-cecomputerrepair-6d460.cloudfunctions.net/requestish', {
-                  method: 'POST',
-                  headers: {
-                    'Accept': 'application/jason',
-                    'Content-Type': 'application/json',
-                  },
-                  body: JSON.stringify({
-                    //id: status_input
-                  })
+              })
+              // reponse to json
+              .then(response => response.json())
+                      
+              .then(response => {
+                //console.log("Reason" + response.reason);
+                globals.statusData = response.reason;
+                setState({
+                  statusData: response.reason
                 })
-                .then(response => {
-                  // log response
-                  console.log(response);
-                })
-                .catch(() => {
-                  // if error
-
-                })
-                //
-                // fetch Http link
-                //
-                fetch('https://us-central1-cecomputerrepair-6d460.cloudfunctions.net/helloWorld')
-                .then(response => response.json())
+                console.log("status" + state.statusData);
+               
+                console.log(globals.statusData);
+                  setTimeout(() => {
+                    setState({
+                      current_tab: "status_results"
+                    })
+                }, 2000)
+              })
+              .catch(error => {
                 
-                .then(response => {
+              })
 
-                  globals.statusData = response.customers;
-
-                  setState({
-                    current_tab: "status_results"
-                  })
-                })
-                //
-                // if error caught
-                //
-                .catch(() => {
-                  setState({
-                    current_tab: "events"
-                  })
-                  // if error occured log here
-
-                })
               }}
             >
               <Icon
@@ -155,7 +156,7 @@ class Statusview extends React.PureComponent {
               />
             </TouchableHighlight>
           </View>
-          <Text style={styles.s2c06ba8c}>Check your status!</Text>
+          <Text style={styles.s2c06ba8c}>Check your status!!</Text>
         </View>
         ) : null}
       </Fragment>
