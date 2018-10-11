@@ -12,12 +12,14 @@ import Services2view from "./Services2view.js";
 import History from "./History.js";
 import ClientQuotes from "./ClientQuotes.js";
 import Icon from "./_laska_/Icon";
+import imgcadd08cd from "./BG.png";
 import {
   StyleSheet,
   Text,
   View,
   TouchableHighlight,
-  SafeAreaView
+  SafeAreaView,
+  ImageBackground
 } from "react-native";
 import { Permissions, Notifications } from "expo";
 
@@ -60,6 +62,11 @@ const styles = StyleSheet.create({
     alignItems: `center`,
     flex: 1,
     alignItems:`center`
+  },
+  backz:
+  {
+    flex: 1,
+    backgroundColor: `rgba(0, 0, 0, 1)`
   }
 });
 
@@ -106,6 +113,7 @@ class Skip extends React.PureComponent {
     const navigate = this.props.navigation;
     return (
         <Fragment>
+          <ImageBackground source={imgcadd08cd} style={styles.backz}>
           {state.current_tab === "quotes" ? <ClientQuotes navigation={navigate}/> : null}
           {state.current_tab === "contact" ? <Contactview navigation={navigate}/> : null}
           {state.current_tab === "status" ? <Statusview /> : null}
@@ -184,6 +192,7 @@ class Skip extends React.PureComponent {
               </View>
             </TouchableHighlight>
           </View>
+        </ImageBackground>
       </Fragment>
     );
   }

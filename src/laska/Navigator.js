@@ -37,7 +37,8 @@ const StackNavigatorf4eed113 = createStackNavigator(
     navigationOptions: {
       header: null
     },
-    initialRouteName: "splash"
+    //initialRouteName: "splash"
+    initialRouteName: "login"
   }
 );
 
