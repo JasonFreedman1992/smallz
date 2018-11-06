@@ -144,19 +144,17 @@ class Skip extends React.PureComponent {
               onPress={() => {
                 globals.current_tab = "quotes";
                 setState({
-                  color_status: `rgba(64, 253, 103, 1)`,
-                  color_history: `rgba(202, 192, 241, 1)`,
-                  color_quote: `rgba(202, 192, 241, 1)`,
+                  color_quote: `rgba(64, 253, 103, 1)`,
                   color_services: `rgba(202, 192, 241, 1)`,
                   color_contact: `rgba(202, 192, 241, 1)`,
-                  current_tab: "quote"
+                  current_tab: "quotes"
                 });
               }}
               style={{
-                backgroundColor:this.state.color_quotes,
+                backgroundColor:this.state.color_quote,
                 alignItems: `center`,
                 flex: 1,}}
-              underlayColor={`rgba(222, 222, 222, 1)`}
+              underlayColor={`rgba(64, 253, 103, 1)`}
             >
               <View style={styles.s16466d16}>
                 <Icon
@@ -170,6 +168,9 @@ class Skip extends React.PureComponent {
               onPress={() => {
                 globals.current_tab = "services";
                 setState({
+                  color_quote: `rgba(202, 192, 241, 1)`,
+                  color_services: `rgba(64, 253, 103, 1)`,
+                  color_contact: `rgba(202, 192, 241, 1)`,
                   current_tab: "services"
                 });
               }}
@@ -177,7 +178,7 @@ class Skip extends React.PureComponent {
                 backgroundColor:this.state.color_services,
                 alignItems: `center`,
                 flex: 1,}}
-              underlayColor={`rgba(222, 222, 222, 1)`}
+              underlayColor={`rgba(64, 253, 103, 1)`}
             >
               <View style={styles.sfad5c90a}>
                 <Icon
@@ -191,6 +192,9 @@ class Skip extends React.PureComponent {
               onPress={() => {
                 globals.current_tab = "contact";
                 setState({
+                  color_quote: `rgba(202, 192, 241, 1)`,
+                  color_services: `rgba(202, 192, 241, 1)`,
+                  color_contact: `rgba(64, 253, 103, 1)`,
                   current_tab: "contact"
                 });
               }}
@@ -198,7 +202,7 @@ class Skip extends React.PureComponent {
                 backgroundColor:this.state.color_contact,
                 alignItems: `center`,
                 flex: 1,}}
-              underlayColor={`rgba(222, 222, 222, 1)`}
+              underlayColor={`rgba(64, 253, 103, 1)`}
             >
               <View style={styles.s16466d16}>
                 <Icon

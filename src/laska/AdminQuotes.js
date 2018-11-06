@@ -271,7 +271,7 @@ class AdminQuotes extends React.PureComponent {
                     <View style={styles.sb6797fe4}>
                       <Text style={styles.item_phone2}>Phone/Email: {currentPhone}</Text>
                       <Text style={styles.item_body2}>Body: {currentBody}</Text>
-                      <Text style={styles.item_phone2}>Date Sent: {currentTimeSent}</Text>
+                      <Text style={styles.item_phone2}>Date Sent: {moment(state.currentTimeSent).format('MMMM Do YYYY, h:mm:ss a')}</Text>
                       <Text style={styles.item_phone2}>ID: {currentId}</Text>
                     </View>
                   </View>
