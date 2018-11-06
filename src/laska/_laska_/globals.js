@@ -14,7 +14,8 @@ const globals = {
     current_data: [],
     history_data: [],
     current_client_history: [],
-    current_history: []
+    current_history: [],
+    analytics_data: 0
 };
 
 
