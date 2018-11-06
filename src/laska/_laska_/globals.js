@@ -15,7 +15,13 @@ const globals = {
     history_data: [],
     current_client_history: [],
     current_history: [],
-    analytics_data: 0
+    analytics_data: {
+        quotes_total: 0,
+        charges_total: 0,
+        notes_total: 0,
+        amount_total: 0,
+        orders_total: 0
+    }
 };
 
 

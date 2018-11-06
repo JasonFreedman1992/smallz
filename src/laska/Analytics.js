@@ -33,6 +33,8 @@ class Analytics extends React.PureComponent {
 
   _onRefresh = () => {
 
+
+
     this.setState({
       refreshing: true
     })
@@ -60,12 +62,21 @@ class Analytics extends React.PureComponent {
           >
             <View style={{margin: 10, alignItems: 'center'}}>
               <Text style={styles.sa7f27131}>Total Customers:</Text>
+              <Text style={styles.sa7f27132}>{globals.customer_data.length}</Text>
+              <Text style={styles.sa7f27131}>Total Orders:</Text>
+              <Text style={styles.sa7f27132}>{globals.analytics_data.orders_total}</Text>
               <Text style={styles.sa7f27131}>Total Charges:</Text>
+              <Text style={styles.sa7f27132}>{globals.analytics_data.charges_total}</Text>
               <Text style={styles.sa7f27131}>Total $$:</Text>
+              <Text style={styles.sa7f27132}>{globals.analytics_data.amount_total}</Text>
               <Text style={styles.sa7f27131}>$$ / Charges:</Text>
+              <Text style={styles.sa7f27132}>{(globals.analytics_data.amount_total/globals.analytics_data.charges_total).toFixed(2)}</Text>
               <Text style={styles.sa7f27131}>$$ / Customer:</Text>
+              <Text style={styles.sa7f27132}>{(globals.analytics_data.amount_total/globals.customer_data.length).toFixed(2)}</Text>
               <Text style={styles.sa7f27131}>Total Quotes:</Text>
+              <Text style={styles.sa7f27132}>{globals.analytics_data.quotes_total}</Text>
               <Text style={styles.sa7f27131}>Total Notes:</Text>
+              <Text style={styles.sa7f27132}>{globals.analytics_data.notes_total}</Text>
             </View>
           </ScrollView>
           </View>
