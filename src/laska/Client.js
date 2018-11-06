@@ -92,9 +92,8 @@ class Client extends React.PureComponent {
     registerForPushNotifications();
 
     this.state = {
-      current_tab: "status",
-      color_status: `rgba(64, 253, 103, 1)`,
-      color_history: `rgba(202, 192, 241, 1)`,
+      current_tab: "history",
+      color_history: `rgba(64, 253, 103, 1)`,
       color_quote: `rgba(202, 192, 241, 1)`,
       color_services: `rgba(202, 192, 241, 1)`,
       color_contact: `rgba(202, 192, 241, 1)`
@@ -112,7 +111,6 @@ class Client extends React.PureComponent {
     return (
         <Fragment>
           <ImageBackground source={imgcadd08cd} style={styles.backz}>
-          {state.current_tab === "status" ? <Statusview /> : null}
           {state.current_tab === "history" ? <History navigation={navigate}/> : null}
           {state.current_tab === "quotes" ? <ClientQuotes navigation={navigate}/> : null}
           {state.current_tab === "services" ? <Services2view /> : null}
@@ -120,39 +118,9 @@ class Client extends React.PureComponent {
           <View style={styles.navContainerColumns}>
             <TouchableHighlight
               onPress={() => {
-                globals.current_tab = "status";
-                color_status = `rgba(64, 253, 103, 1)`;
-                setState({
-                  current_tab: "status",
-                  color_status: `rgba(64, 253, 103, 1)`,
-                  color_history: `rgba(202, 192, 241, 1)`,
-                  color_quote: `rgba(202, 192, 241, 1)`,
-                  color_services: `rgba(202, 192, 241, 1)`,
-                  color_contact: `rgba(202, 192, 241, 1)`
-                });
-                
-              }}
-              
-              style={{
-                backgroundColor:this.state.color_status,
-                alignItems: `center`,
-                flex: 1,}}
-              underlayColor={`rgba(64, 253, 103, 1)`}
-            >
-              <View style={styles.s396f5657}>
-                <Icon
-                  iconIdentifier={`FontAwesome/check-circle`}
-                  style={styles.sb5578ac3}
-                />
-                <Text style={styles.s1fb2c3ba}>Status</Text>
-              </View>
-            </TouchableHighlight>
-            <TouchableHighlight
-              onPress={() => {
                 globals.current_tab = "history";
                 setState({
                   current_tab: "history",
-                  color_status: `rgba(202, 192, 241, 1)`,
                   color_history: `rgba(64, 253, 103, 1)`,
                   color_quote: `rgba(202, 192, 241, 1)`,
                   color_services: `rgba(202, 192, 241, 1)`,
@@ -179,7 +147,6 @@ class Client extends React.PureComponent {
                 globals.current_tab = "quotes";
                 setState({
                   current_tab: "quotes",
-                  color_status: `rgba(202, 192, 241, 1)`,
                   color_history: `rgba(202, 192, 241, 1)`,
                   color_quote: `rgba(64, 253, 103, 1)`,
                   color_services: `rgba(202, 192, 241, 1)`,
@@ -205,7 +172,6 @@ class Client extends React.PureComponent {
                 globals.current_tab = "services";
                 setState({
                   current_tab: "services",
-                  color_status: `rgba(202, 192, 241, 1)`,
                   color_history: `rgba(202, 192, 241, 1)`,
                   color_quote: `rgba(202, 192, 241, 1)`,
                   color_services: `rgba(64, 253, 103, 1)`,
@@ -231,7 +197,6 @@ class Client extends React.PureComponent {
                 globals.current_tab = "contact";
                 setState({
                   current_tab: "contact",
-                  color_status: `rgba(202, 192, 241, 1)`,
                   color_history: `rgba(202, 192, 241, 1)`,
                   color_quote: `rgba(202, 192, 241, 1)`,
                   color_services: `rgba(202, 192, 241, 1)`,

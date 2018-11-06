@@ -99,7 +99,10 @@ class Skip extends React.PureComponent {
     registerForPushNotifications();
 
     this.state = {
-      current_tab: "status",
+      current_tab: "quotes",
+      color_quote: `rgba(64, 253, 103, 1)`,
+      color_services: `rgba(202, 192, 241, 1)`,
+      color_contact: `rgba(202, 192, 241, 1)`
     };
 
     if (this.awake) {
@@ -116,10 +119,10 @@ class Skip extends React.PureComponent {
           <ImageBackground source={imgcadd08cd} style={styles.backz}>
           {state.current_tab === "quotes" ? <ClientQuotes navigation={navigate}/> : null}
           {state.current_tab === "contact" ? <Contactview navigation={navigate}/> : null}
-          {state.current_tab === "status" ? <Statusview /> : null}
+          {/* {state.current_tab === "status" ? <Statusview /> : null} */}
           {state.current_tab === "services" ? <Services2view /> : null}
           <View style={styles.navContainerColumns}>
-            <TouchableHighlight
+            {/* <TouchableHighlight
               onPress={() => {
                 globals.current_tab = "status";
                 setState({
@@ -136,15 +139,23 @@ class Skip extends React.PureComponent {
                 />
                 <Text style={styles.s1fb2c3ba}>Status</Text>
               </View>
-            </TouchableHighlight>
+            </TouchableHighlight> */}
             <TouchableHighlight
               onPress={() => {
                 globals.current_tab = "quotes";
                 setState({
-                  current_tab: "quotes"
+                  color_status: `rgba(64, 253, 103, 1)`,
+                  color_history: `rgba(202, 192, 241, 1)`,
+                  color_quote: `rgba(202, 192, 241, 1)`,
+                  color_services: `rgba(202, 192, 241, 1)`,
+                  color_contact: `rgba(202, 192, 241, 1)`,
+                  current_tab: "quote"
                 });
               }}
-              style={styles.touchableStyle}
+              style={{
+                backgroundColor:this.state.color_quotes,
+                alignItems: `center`,
+                flex: 1,}}
               underlayColor={`rgba(222, 222, 222, 1)`}
             >
               <View style={styles.s16466d16}>
@@ -162,7 +173,10 @@ class Skip extends React.PureComponent {
                   current_tab: "services"
                 });
               }}
-              style={styles.touchableStyle}
+              style={{
+                backgroundColor:this.state.color_services,
+                alignItems: `center`,
+                flex: 1,}}
               underlayColor={`rgba(222, 222, 222, 1)`}
             >
               <View style={styles.sfad5c90a}>
@@ -180,7 +194,10 @@ class Skip extends React.PureComponent {
                   current_tab: "contact"
                 });
               }}
-              style={styles.touchableStyle}
+              style={{
+                backgroundColor:this.state.color_contact,
+                alignItems: `center`,
+                flex: 1,}}
               underlayColor={`rgba(222, 222, 222, 1)`}
             >
               <View style={styles.s16466d16}>
