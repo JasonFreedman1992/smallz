@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "Laska App",
+    "name": "CE Computer Repair",
     "description": "Built with laska.io",
     "slug": "test",
     "privacy": "unlisted",
@@ -12,7 +12,7 @@
     "splash": {
       "image": "./logo.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#000000"
     },
     "updates": {
       "fallbackToCacheTimeout": 0

@@ -2,8 +2,8 @@
   "expoServerPort": 19000,
   "expoServerNgrokUrl": "https://ne-7ah.vibekatcher.zippers.exp.direct",
   "packagerNgrokUrl": "https://packager.ne-7ah.vibekatcher.zippers.exp.direct",
-  "ngrokPid": 2908,
+  "ngrokPid": 1396,
   "packagerPort": 19001,
-  "packagerPid": 18668,
+  "packagerPid": 3440,
   "devToolsPort": 19002
 }
