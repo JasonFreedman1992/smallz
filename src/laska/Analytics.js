@@ -12,7 +12,7 @@ const styles = StyleSheet.create({
   s50a58322: {
     width: '100%',
     //alignItems: `center`,
-    backgroundColor: `rgba(0, 0, 0, .25)`,
+    backgroundColor: `rgba(0, 0, 0, .5)`,
     flex: 1,
     //justifyContent: `center`
   }

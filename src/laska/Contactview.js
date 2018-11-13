@@ -66,7 +66,7 @@ const styles = StyleSheet.create({
     textAlign: `center`
   },
   s0ac6189a: {
-    backgroundColor: `rgba(0, 0, 0, 1)`,
+    backgroundColor: `rgba(0, 0, 0, .5)`,
     flex: 1,
     justifyContent: `center`
   }
@@ -93,7 +93,8 @@ class Contactview extends React.PureComponent {
           <View style={styles.s96368d72}>
             <TouchableHighlight style={styles.s147db180} onPress={() => {
               Linking.openURL('https://www.facebook.com/CEComputerRepair/');
-            }}>
+            }}
+            underlayColor={`rgba(255, 255, 255, .5)`}>
               <View style={styles.s93af10a8}>
                 <Icon
                   iconIdentifier={`FontAwesome/facebook`}
@@ -104,7 +105,8 @@ class Contactview extends React.PureComponent {
             </TouchableHighlight>
             <TouchableHighlight style={styles.s1e73dd22} onPress={() => {
               Linking.openURL('https://www.instagram.com/cecomputerrepairs/');
-            }}>
+            }}
+            underlayColor={`rgba(255, 255, 255, .5)`}>
               <View style={styles.s58ba6bf7}>
                 <Icon
                   iconIdentifier={`FontAwesome/instagram`}
@@ -115,7 +117,8 @@ class Contactview extends React.PureComponent {
             </TouchableHighlight>
             <TouchableHighlight style={styles.sb9be6d83} onPress={() => {
               Linking.openURL('https://www.yelp.com/biz/ce-computer-repair-lynnwood');
-            }}>
+            }}
+            underlayColor={`rgba(255, 255, 255, .5)`}>
               <View style={styles.s75e14fe2}>
                 <Icon
                   iconIdentifier={`FontAwesome/yelp`}
@@ -125,7 +128,7 @@ class Contactview extends React.PureComponent {
               </View>
             </TouchableHighlight>
           </View>
-          <Text style={styles.sb334c867}>CECOMPUTERREPAIRS.COM</Text>
+          <Text style={styles.sb334c867}>WWW.CECOMPUTERREPAIRS.COM</Text>
           <Text style={styles.s1da27553}>(206) 687-6160</Text>
           <Text style={styles.s9b5052e9}>16825 48th Ave W Suite 254</Text>
           <Text style={styles.sffcccc76}>Lynnwood, WA 98037</Text>

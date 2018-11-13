@@ -44,7 +44,7 @@ let color7 = "pink";
 const styles = StyleSheet.create({
     slide1: 
     {
-        backgroundColor: `rgba(0, 0, 0, .35)`,
+        backgroundColor: `rgba(0, 0, 0, .5)`,
         
         width: width,
         justifyContent: 'center',
@@ -52,7 +52,7 @@ const styles = StyleSheet.create({
     },
     slide2: 
     {
-        backgroundColor: `rgba(0, 0, 0, .35)`,
+        backgroundColor: `rgba(0, 0, 0, .5)`,
         
         width: width,
         justifyContent: 'center',
@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
     },
     slide3: 
     {
-        backgroundColor: `rgba(0, 0, 0, .35)`,
+        backgroundColor: `rgba(0, 0, 0, .5)`,
         
         width: width,
         justifyContent: 'center',

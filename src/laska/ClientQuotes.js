@@ -194,7 +194,7 @@ const styles = StyleSheet.create({
   },
   s4d009cfe: { flex: 1 },
   s87596392: { flex: 1, margin: 5, flexDirection: `row` },
-  s2add6618: { backgroundColor: `rgba(0, 0, 0, .25)`, flex: 1, margin: 20 },
+  s2add6618: { backgroundColor: `rgba(0, 0, 0, .5)`, flex: 1, margin: 20 },
   s80c91560: {
     color: `rgba(255, 255, 255, 1)`,
     fontSize: 24,
@@ -241,7 +241,7 @@ const styles = StyleSheet.create({
   },
   s4545c6de: { flex: 0.15, margin: 20, marginTop: 0 },
   sae2d423f: {
-    backgroundColor: `rgba(0, 0, 0, .25)`,
+    backgroundColor: `rgba(0, 0, 0, .5)`,
     height: 400,
     margin: 20,
     marginBottom: 20,

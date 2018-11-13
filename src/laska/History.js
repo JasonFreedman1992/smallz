@@ -67,12 +67,6 @@ const styles = StyleSheet.create({
           backgroundColor: `rgba(0, 0, 0, .25)`,
           flex: 1,
         },
-        //
-        //
-        //
-        //
-        //
-        //
     sa7f27131: { color: `rgba(255, 255, 255, 1)`, fontSize: 30 },
     s50a58322: {
       alignItems: `center`,
