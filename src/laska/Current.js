@@ -158,6 +158,12 @@ sff493afb: { height: 100, width: '100%' },
       margin: 20,
       marginTop: 0
     },
+    s3e2c715d: {
+      backgroundColor: `rgba(0, 0, 0, 0.25)`,
+      height: 210,
+      margin: 20,
+      marginTop: 0
+    },
     sff493afc: { marginTop: 0, height: 100, width: '100%' },
     sc4aa036b: {
       alignItems: `center`,
@@ -936,7 +942,7 @@ class Current extends React.PureComponent {
                 </View>
               </View>
               {state.bot_current === "form" ? (
-              <View style={styles.s3e2c715c}>
+              <View style={styles.s3e2c715d}>
                 <View style={styles.sff493afb}>
                   <TouchableHighlight
                   shouldRasterizeIOS={true} renderToHardwareTextureAndroid={true}
