@@ -33,18 +33,39 @@ class Analytics extends React.PureComponent {
 
   _onRefresh = () => {
 
-
-
     this.setState({
       refreshing: true
     })
 
-    setTimeout(() => {
-      this.setState({
-        refreshing: false
+    fetch('https://us-central1-cecomputerrepair-6d460.cloudfunctions.net/get_analytics', {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        admin: "z4q$",
       })
-    }, 2000)
-    
+    })
+    .then(response3 => response3.json())
+    .then(response3 => {
+      if(response3.body === "Auth")
+      {
+        console.log(response3.reason + "response 3");
+        globals.analytics_data = response3.reason;
+        this.setState({
+          refreshing: false
+        })
+      }
+      else
+      {
+        console.log(response3.reason);
+        console.log("response was denied");
+        this.setState({
+          refreshing: false
+        })
+      }
+    })
   }
 
   render() {
