@@ -313,62 +313,68 @@ class History extends React.PureComponent {
     this.setState({
       refreshing: true
     })
-
-      fetch('https://us-central1-cecomputerrepair-6d460.cloudfunctions.net/get_cust_history', {
-      method: 'POST',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        phone: currentPhone
-      })
-    })
-    .then(response => response.json())
-
-    .then(response => {
-      console.log(response.reason);
-      if(response.body === "Auth")
+    console.log("///////");
+    console.log("Cur" , globals.current_client);
+      if(globals.current_client.phone !== "")
       {
-        this.setState({
-          current_history: response.reason,
-          refreshing: false,
+        fetch('https://us-central1-cecomputerrepair-6d460.cloudfunctions.net/get_cust_history', {
+        method: 'POST',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          phone: globals.current_client.phone,
+          email: globals.current_client.email,
         })
-          if(response.reason == "0")
-          {
-            setState({
-              article2_name: currentName,
-              article2_phone: currentPhone,
-            })
-          }
-          else
-          {
-            state.current_client_history = response.reason;
-            setState({
-              article2_name: currentName,
-              article2_phone: currentPhone,
-            })
-          }
+      })
+      .then(response => response.json())
 
-      }
-      else //if response.body === "Denied"
-      {
-        console.log("wrong 1");
+      .then(response => {
+        console.log(response.reason);
+        if(response.body === "Auth")
+        {
+          this.setState({
+            current_history: response.reason,
+            refreshing: false,
+          })
+            if(response.reason == "0")
+            {
+              setState({
+                article2_name: currentName,
+                article2_phone: currentPhone,
+              })
+            }
+            else
+            {
+              globals.current_history = response.reason;
+              state.current_client_history = response.reason;
+              setState({
+                article2_name: currentName,
+                article2_phone: currentPhone,
+              })
+            }
+
+        }
+        else //if response.body === "Denied"
+        {
+          console.log("wrong 1");
+          this.setState({
+            refreshing: false
+          })
+        }
+      })
+      .catch(error => {
+        console.log("wrong 2");
+        console.log(response);
+        console.log("wrong 2");
+        console.log(error);
         this.setState({
           refreshing: false
+          //article_bot2_current: "wrong"
         })
-      }
-    })
-    .catch(error => {
-      console.log("wrong 2");
-      console.log(response);
-      console.log("wrong 2");
-      console.log(error);
-      this.setState({
-        refreshing: false
-        //article_bot2_current: "wrong"
       })
-    })
+    }
   }
 
   total(charges)

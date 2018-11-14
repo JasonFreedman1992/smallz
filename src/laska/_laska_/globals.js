@@ -21,6 +21,10 @@ const globals = {
         notes_total: 0,
         amount_total: 0,
         orders_total: 0
+    },
+    current_client: {
+        phone: "",
+        email: "",
     }
 };
 
