@@ -357,10 +357,6 @@ class History extends React.PureComponent {
         this.setState({
           refreshing: false
         })
-
-        this.setState({
-          refreshing: false
-        })
       }
     })
     .catch(error => {
