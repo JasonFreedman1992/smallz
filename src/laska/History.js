@@ -315,45 +315,45 @@ class History extends React.PureComponent {
     })
     console.log("///////");
     console.log("Cur" , globals.current_client);
-      if(globals.current_client.phone !== "")
-      {
+      // if(globals.current_client.phone !== "")
+      // {
         fetch('https://us-central1-cecomputerrepair-6d460.cloudfunctions.net/get_cust_history', {
-        method: 'POST',
-        headers: {
-          'Accept': 'application/json',
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          phone: globals.current_client.phone,
-          email: globals.current_client.email,
+          method: 'POST',
+          headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            phone: globals.current_client.phone,
+            email: globals.current_client.email,
+          })
         })
-      })
       .then(response => response.json())
-
       .then(response => {
         console.log(response.reason);
         if(response.body === "Auth")
         {
-          this.setState({
-            current_history: response.reason,
-            refreshing: false,
-          })
+          // this.setState({
+          //   current_history: response.reason,
+          //   refreshing: false,
+          // })
             if(response.reason === "0")
             {
-              setState({
+              this.setState({
                 refreshing: false,
-                article2_name: currentName,
-                article2_phone: currentPhone,
+                // article2_name: currentName,
+                // article2_phone: currentPhone,
+                current_history: response.reason,
               })
             }
             else
             {
               globals.current_history = response.reason;
-              state.current_client_history = response.reason;
-              setState({
+              this.setState({
                 refreshing: false,
-                article2_name: currentName,
-                article2_phone: currentPhone,
+                current_history: response.reason
+                // article2_name: currentName,
+                // article2_phone: currentPhone,
               })
             }
         }
@@ -366,16 +366,13 @@ class History extends React.PureComponent {
         }
       })
       .catch(error => {
-        console.log("wrong 2");
-        console.log(response);
-        console.log("wrong 2");
         console.log(error);
         this.setState({
           refreshing: false
           //article_bot2_current: "wrong"
         })
       })
-    }
+    // }
   }
 
   total(charges)
