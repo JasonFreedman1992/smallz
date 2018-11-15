@@ -338,9 +338,10 @@ class History extends React.PureComponent {
             current_history: response.reason,
             refreshing: false,
           })
-            if(response.reason == "0")
+            if(response.reason === "0")
             {
               setState({
+                refreshing: false,
                 article2_name: currentName,
                 article2_phone: currentPhone,
               })
@@ -350,11 +351,11 @@ class History extends React.PureComponent {
               globals.current_history = response.reason;
               state.current_client_history = response.reason;
               setState({
+                refreshing: false,
                 article2_name: currentName,
                 article2_phone: currentPhone,
               })
             }
-
         }
         else //if response.body === "Denied"
         {
